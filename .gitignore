@@ -1,5 +1,6 @@
-*.xcodeproj
-
-*.xcuserstate
-
-LibraryWho.xcodeproj/**
+/*
+!/.gitignore
+!/LibraryWho/
+!/LICENSE
+!/README.md
+.DS_Store
