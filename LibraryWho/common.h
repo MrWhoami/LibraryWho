@@ -3,7 +3,7 @@
 //  LibraryWho
 //
 //  Created by Whoami on 14/12/15.
-//  Copyright (c) 2014年 Whoami. All rights reserved.
+//  Copyright (c) 2014年 Whoami.
 //
 
 #ifndef LibraryWho_common_h
