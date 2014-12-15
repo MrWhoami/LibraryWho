@@ -10,6 +10,7 @@
 		18C295E01A3EE4D1003ED771 /* book.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C295DB1A3EE4D1003ED771 /* book.cpp */; };
 		18C295E31A3EE4DF003ED771 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C295E21A3EE4DF003ED771 /* main.cpp */; };
 		18C295E61A3EE682003ED771 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 18C295E51A3EE682003ED771 /* README.md */; };
+		18C295EB1A3EECEC003ED771 /* reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C295E91A3EECEC003ED771 /* reader.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +33,8 @@
 		18C295E21A3EE4DF003ED771 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		18C295E41A3EE682003ED771 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		18C295E51A3EE682003ED771 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		18C295E91A3EECEC003ED771 /* reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = reader.cpp; sourceTree = "<group>"; };
+		18C295EA1A3EECEC003ED771 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,8 @@
 			isa = PBXGroup;
 			children = (
 				18C295E21A3EE4DF003ED771 /* main.cpp */,
+				18C295E91A3EECEC003ED771 /* reader.cpp */,
+				18C295EA1A3EECEC003ED771 /* reader.h */,
 				18C295DB1A3EE4D1003ED771 /* book.cpp */,
 				18C295DC1A3EE4D1003ED771 /* book.h */,
 				18C295DE1A3EE4D1003ED771 /* queue.h */,
@@ -140,6 +145,7 @@
 			files = (
 				18C295E61A3EE682003ED771 /* README.md in Sources */,
 				18C295E01A3EE4D1003ED771 /* book.cpp in Sources */,
+				18C295EB1A3EECEC003ED771 /* reader.cpp in Sources */,
 				18C295E31A3EE4DF003ED771 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +260,7 @@
 				18C295DA1A3EE490003ED771 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
