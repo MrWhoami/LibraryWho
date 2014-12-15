@@ -144,12 +144,12 @@ Date BorrowNode::returnDate(){
     return returnDay;
 }
 
-Book::Book(){
-    isbn.group1 = 0;
-    isbn.group2 = 0;
-    isbn.group3 = 0;
-    isbn.group4 = 0;
-    isbn.group5 = 0;
+Book::Book(ISBN isbnIn){
+    isbn.group1 = isbnIn.group1;
+    isbn.group2 = isbnIn.group2;
+    isbn.group3 = isbnIn.group3;
+    isbn.group4 = isbnIn.group4;
+    isbn.group5 = isbnIn.group5;
     date.year = 2000;
     date.month = 1;
     date.day = 1;
@@ -199,4 +199,40 @@ void Book::ruleBreaker(Queue<unsigned> &breakers){
 
 double Book::outputPrice(){
     return ((double)price)/100;
+}
+
+int Book::readerReturn(unsigned rRid) {
+    BorrowNode* p = readers;
+    BorrowNode* pre = NULL;
+    time_t rawtime;
+    tm* now;
+    time(&rawtime);
+    now = localtime(&rawtime);
+    while (p != NULL) {
+        if (p->rid == rRid) {
+            Date expect = p->returnDate();
+            if (expect.year < now->tm_year) {
+                return 1;
+            }
+            else if (expect.month < now->tm_mon+1){
+                return 1;
+            }
+            else if (expect.day < now->tm_mday) {
+                return 1;
+            }
+            else {
+                if (pre == NULL) {
+                    readers = p->nextReader;
+                } else {
+                    pre->nextReader = p->nextReader;
+                }
+                delete p;
+                return 0;
+            }
+        } else {
+            pre = p;
+            p = p->nextReader;
+        }
+    }
+    return 2;
 }
