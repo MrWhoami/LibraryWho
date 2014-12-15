@@ -1,3 +1,5 @@
 *.xcodeproj
-*.xcodeproj/**
+
 *.xcuserstate
+
+LibraryWho.xcodeproj/**
