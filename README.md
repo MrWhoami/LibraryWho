@@ -1,4 +1,4 @@
-Library
-=======
+LibraryWho
+==========
 
-Data structure final project.
+This is the final project of the course Data Structure.
