@@ -26,5 +26,4 @@ struct ISBN {
     unsigned group5;
 };
 
-
 #endif
