@@ -7,3 +7,20 @@
 //
 
 #include "reader.h"
+
+
+Reader::Reader(unsigned ridIn){
+    bookBorrowed = NULL;
+    rid = ridIn;
+    borrowed = 0;
+    level = 1;
+}
+
+Reader::~Reader(){
+    while (bookBorrowed != NULL) {
+        BookBorrowed* p = bookBorrowed;
+        bookBorrowed = bookBorrowed->nextBook;
+        delete p;
+    }
+}
+

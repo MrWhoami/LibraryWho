@@ -23,7 +23,7 @@ struct BookBorrowed {
     }
 };
 
-class reader {
+class Reader {
 private:
     BookBorrowed *bookBorrowed;
     unsigned rid;
@@ -33,8 +33,8 @@ public:
     int level;
     string contact;
     
-    reader(unsigned rid);
-    ~reader();
+    Reader(unsigned rid);
+    ~Reader();
     unsigned getRid();
     int getNumber();
     int getBook(Book** &bookBorrowed);
