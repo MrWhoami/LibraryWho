@@ -21,18 +21,27 @@ struct ReaderNode {
         nextReader = NULL;
     }
     ~ReaderNode(){
-        
+        delete reader;
     }
 };
 
 struct BookNode {
-    Book book;
+    Book *book;
     BookNode *nextBook;
+    BookNode(ISBN isbnIn){
+        book = new Book(isbnIn);
+        nextBook = NULL;
+    }
+    ~BookNode() {
+        delete book;
+    }
 };
 
 class Library {
     unsigned bookNumber;
     unsigned userNumber;
+    ReaderNode* readerPool;
+    BookNode* bookPool;
     
 public:
     Library();

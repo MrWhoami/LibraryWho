@@ -7,3 +7,23 @@
 //
 
 #include "library.h"
+
+Library::Library() {
+    bookNumber = 0;
+    userNumber = 0;
+    readerPool = NULL;
+    bookPool = NULL;
+}
+
+Library::~Library() {
+    while (readerPool != NULL) {
+        ReaderNode *p = readerPool;
+        readerPool = readerPool->nextReader;
+        delete p;
+    }
+    while (bookPool != NULL) {
+        BookNode *p = bookPool;
+        bookPool = bookPool->nextBook;
+        delete p;
+    }
+}
