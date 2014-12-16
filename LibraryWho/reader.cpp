@@ -58,3 +58,25 @@ bool Reader::borrowNew(Book* newBook){
     }
     return 1;
 }
+
+bool Reader::returnOld(Book* oldBook) {
+    if (bookBorrowed == NULL) {
+        return 0;
+    }
+    BookBorrowed *p = bookBorrowed;
+    if (p->theBook == oldBook) {
+        bookBorrowed = p->nextBook;
+        delete p;
+    } else {
+        while (p->nextBook != NULL || p->nextBook->theBook != oldBook) {
+            p = p->nextBook;
+        }
+        if (p->nextBook == NULL) {
+            return 0;
+        }
+        BookBorrowed *tod = p->nextBook;
+        p->nextBook = tod->nextBook;
+        delete tod;
+    }
+    return 1;
+}

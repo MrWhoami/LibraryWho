@@ -14,11 +14,9 @@
 
 struct BookBorrowed {
     Book *theBook;
-    bool breakRule;
     BookBorrowed* nextBook;
     BookBorrowed() {
         theBook = NULL;
-        breakRule = 0;
         nextBook = NULL;
     }
 };
