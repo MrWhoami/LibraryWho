@@ -5,6 +5,8 @@
 //  Created by Whoami on 14/12/16.
 //  Copyright (c) 2014年 Whoami.
 //
+//  TODO: Add book addition function.
+//        Change readers book storage format into ISBN
 
 #ifndef __LibraryWho__library__
 #define __LibraryWho__library__
@@ -48,4 +50,4 @@ public:
     ~Library();
 };
 
-#endif /* defined(__LibraryWho__Library__) */
+#endif /* defined(__LibraryWho__library__) */
