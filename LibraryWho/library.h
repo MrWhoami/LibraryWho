@@ -6,7 +6,6 @@
 //  Copyright (c) 2014年 Whoami.
 //
 //  TODO: Add book addition function.
-//        Change readers book storage format into ISBN
 
 #ifndef __LibraryWho__library__
 #define __LibraryWho__library__

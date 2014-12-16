@@ -10,13 +10,11 @@
 #define __LibraryWho__reader__
 
 #include "common.h"
-#include "book.h"
 
 struct BookBorrowed {
-    Book *theBook;
+    ISBN theBook;
     BookBorrowed* nextBook;
     BookBorrowed() {
-        theBook = NULL;
         nextBook = NULL;
     }
 };
@@ -35,9 +33,9 @@ public:
     ~Reader();
     unsigned getRid();
     int getNumber();
-    int getBook(Book** &bookBorrowed);
-    bool borrowNew(Book* newBook);
-    bool returnOld(Book* oldBook);
+    int getBook(ISBN* &bookBorrowed);
+    bool borrowNew(ISBN newBook);
+    bool returnOld(ISBN oldBook);
 };
 
 #endif /* defined(__LibraryWho__reader__) */

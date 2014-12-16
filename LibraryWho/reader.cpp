@@ -38,7 +38,7 @@ int Reader::getNumber(){
     return num;
 }
 
-bool Reader::borrowNew(Book* newBook){
+bool Reader::borrowNew(ISBN newBook){
     if (getNumber() == level) {
         return 0;
     }
@@ -59,7 +59,7 @@ bool Reader::borrowNew(Book* newBook){
     return 1;
 }
 
-bool Reader::returnOld(Book* oldBook) {
+bool Reader::returnOld(ISBN oldBook) {
     if (bookBorrowed == NULL) {
         return 0;
     }
@@ -79,4 +79,14 @@ bool Reader::returnOld(Book* oldBook) {
         delete tod;
     }
     return 1;
+}
+
+int Reader::getBook(ISBN* &borrowedList) {
+    BookBorrowed *p = bookBorrowed;
+    int i = 0;
+    while (p != NULL) {
+        borrowedList[i] = p->theBook;
+        i++;
+    }
+    return i;
 }

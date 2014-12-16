@@ -24,6 +24,24 @@ struct ISBN {
     unsigned group3;
     unsigned group4;
     unsigned group5;
+    bool operator ==(const ISBN& x) {
+        bool equal = 1;
+        equal = (this->group1==x.group1)&equal;
+        equal = (this->group2==x.group2)&equal;
+        equal = (this->group3==x.group3)&equal;
+        equal = (this->group4==x.group4)&equal;
+        equal = (this->group5==x.group5)&equal;
+        return equal;
+    }
+    bool operator !=(const ISBN& x) {
+        bool equal = 1;
+        equal = (this->group1!=x.group1)&equal;
+        equal = (this->group2!=x.group2)&equal;
+        equal = (this->group3!=x.group3)&equal;
+        equal = (this->group4!=x.group4)&equal;
+        equal = (this->group5!=x.group5)&equal;
+        return equal;
+    }
 };
 
 #endif
