@@ -10,10 +10,11 @@
 #ifndef __LibraryWho__library__
 #define __LibraryWho__library__
 
+#include <fstream>
+#include <iostream>
 #include "common.h"
 #include "reader.h"
 #include "book.h"
-#include <fstream>
 
 struct ReaderNode {
     Reader *reader;
@@ -49,6 +50,9 @@ public:
     Library();
     ~Library();
     int buildALibrary(string filePath);
+    int printAllBooks(string filePath);
+    Book* ISBN_search(ISBN Isbn);
+    Book* BOOKNAME_search(string name);
 };
 
 #endif /* defined(__LibraryWho__library__) */

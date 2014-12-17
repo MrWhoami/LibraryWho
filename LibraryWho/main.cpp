@@ -8,19 +8,89 @@
 
 #include <fstream>
 #include <iostream>
-#include <string>
-using namespace std;
+#include "common.h"
+#include "library.h"
+
+Library library;
+
+void printHelp(){
+    cout << "OPTION FUNCTION" << endl;
+    cout << " ?(H)  Viewing this page." << endl;
+    cout << " Q     Quit this program." << endl;
+    cout << " A     Add books to this library through a file." << endl;
+    cout << " E     Export the library books into a file." <<  endl;
+}
+
+void cmd_A() {
+    cout << "Please input the path of the file: " << endl;
+    string path;
+    cin >> path;
+    int result;
+    result = library.buildALibrary(path);
+    switch (result) {
+        case 0:
+            cout << "Success." << endl;
+            break;
+        case -1:
+            cout << "Wrong path." << endl;
+            break;
+            
+        default:
+            cout << "Unknown cases." << endl;
+            break;
+    }
+}
+
+void cmd_E() {
+    cout << "Please input the path of the file: " << endl;
+    string path;
+    cin >> path;
+    int result;
+    result = library.printAllBooks(path);
+    switch (result) {
+        case 0:
+            cout << "Success." << endl;
+            break;
+        case -1:
+            cout << "Wrong path." << endl;
+            break;
+            
+        default:
+            cout << "Unknown cases." << endl;
+            break;
+    }
+}
 
 int main(int argc, const char * argv[]) {
-    ifstream fin("/Users/apple/Documents/programs/cookies/test.txt");
-    string a, b;
-    fin >> a >> b;
-    int c, d;
-    sscanf(a.c_str(), "%d-%d", &c, &d);
-    cout << a << ' ' << b << ' ' << c << d << endl;
-    cout << b.c_str()[0] << ' '<< b.c_str()[1] << ' ' << b.c_str()[2] << ' ' << b.c_str()[3] << endl;
-    cout << (int)b.data()[0] << ' ' <<  (int)b.data()[1] << ' ' << (int)b.data()[2] << ' ' << b.data()[3] << endl;
-    cin >> a;
-    cout << a;
-    return 0;
+    cout << "============ LibraryWho ============" << endl;
+    char option = '~';
+    Library library;
+    while (option != 0) {
+        cout << endl;
+        cout << "Please input an option (? for help): " << endl;
+        cin >> option;
+        switch (option) {
+            case 'Q':
+            case 'q':
+                return 0;
+                break;
+            case '?':
+            case 'h':
+            case 'H':
+                printHelp();
+                option = '~';
+                break;
+            case 'A':
+                cmd_A();
+                option = '~';
+                break;
+            case 'E':
+                cmd_E();
+                option = '~';
+                break;
+                
+            default:
+                break;
+        }
+    }
 }

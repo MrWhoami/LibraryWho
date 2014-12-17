@@ -29,7 +29,7 @@ private:
     ISBN isbn;
 public:
     string name;
-    string writer;
+    string author;
     Date date;
     unsigned price;
     int quantity;
@@ -40,6 +40,7 @@ public:
     void ruleBreaker(Queue<unsigned> &breakers);
     double outputPrice();
     int readerReturn(unsigned rRid);
+    ISBN getISBN();
 };
 
 #endif /* defined(__Library__library__) */

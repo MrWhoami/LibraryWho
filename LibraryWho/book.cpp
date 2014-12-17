@@ -232,3 +232,7 @@ int Book::readerReturn(unsigned rRid) {
     }
     return 2;
 }
+
+ISBN Book::getISBN(){
+    return isbn;
+}
