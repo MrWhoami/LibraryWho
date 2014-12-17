@@ -13,6 +13,7 @@
 #include "common.h"
 #include "reader.h"
 #include "book.h"
+#include <fstream>
 
 struct ReaderNode {
     Reader *reader;
@@ -47,6 +48,7 @@ class Library {
 public:
     Library();
     ~Library();
+    int buildALibrary(string filePath);
 };
 
 #endif /* defined(__LibraryWho__library__) */

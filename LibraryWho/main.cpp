@@ -20,5 +20,7 @@ int main(int argc, const char * argv[]) {
     cout << a << ' ' << b << ' ' << c << d << endl;
     cout << b.c_str()[0] << ' '<< b.c_str()[1] << ' ' << b.c_str()[2] << ' ' << b.c_str()[3] << endl;
     cout << (int)b.data()[0] << ' ' <<  (int)b.data()[1] << ' ' << (int)b.data()[2] << ' ' << b.data()[3] << endl;
+    cin >> a;
+    cout << a;
     return 0;
 }

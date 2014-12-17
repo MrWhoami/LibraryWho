@@ -166,10 +166,6 @@ void Book::inputPrice(double priceIn) {
     price = (unsigned)(priceIn * 100);
 }
 
-void Book::inputISBN(string isbnIn) {
-    sscanf(isbnIn.c_str(), "%d-%d-%d-%d-%d", &isbn.group1, &isbn.group2, &isbn.group3, &isbn.group4, &isbn.group5);
-}
-
 void Book::ruleBreaker(Queue<unsigned> &breakers){
     BorrowNode* current = readers;
     time_t rawtime;

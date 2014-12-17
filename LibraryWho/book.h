@@ -37,7 +37,6 @@ public:
     
     Book(ISBN isbnIn);
     void inputPrice(double priceIn);
-    void inputISBN(string isbnIn);
     void ruleBreaker(Queue<unsigned> &breakers);
     double outputPrice();
     int readerReturn(unsigned rRid);
