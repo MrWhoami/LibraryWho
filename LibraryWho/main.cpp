@@ -61,6 +61,14 @@ void cmd_E() {
     }
 }
 
+void cmd_T(){
+    ifstream fin("/Users/apple/Documents/programs/cookies/test.txt");
+    string a;
+    fin >> a;
+    cout << a << endl;
+    fin.close();
+}
+
 int main(int argc, const char * argv[]) {
     cout << "============ LibraryWho ============" << endl;
     char option = '~';
@@ -86,6 +94,10 @@ int main(int argc, const char * argv[]) {
                 break;
             case 'E':
                 cmd_E();
+                option = '~';
+                break;
+            case 'T':
+                cmd_T();
                 option = '~';
                 break;
                 

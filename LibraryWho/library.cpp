@@ -29,7 +29,7 @@ Library::~Library() {
 }
 
 int Library::buildALibrary(string filePath) {
-    ifstream fin(filePath);
+    ifstream fin("/Users/apple/Documents/programs/cookies/BookData.txt");
     if (!fin) return -1;
     string reading;
     string buffer;
@@ -108,8 +108,7 @@ Book* Library::ISBN_search(ISBN Isbn){
     if(test == NULL){
         cout<<"Sorry, can't find a book whose ISBN is"<<look_for<<endl;
         return NULL;
-    }//can't find
-    else {
+    } else {
         return test->book;
     }
 }
@@ -125,10 +124,9 @@ Book* Library::BOOKNAME_search(string name){
         }
     }
     if(test == NULL){
-        cout<<"Sorry, can't find a book whose name is"<<look_for<<endl;
+        cout<< "Sorry, can't find a book whose name is" << look_for << endl;
         return NULL;
-    }//can't find
-    else {
+    } else {
         return test->book;
     }
 }
