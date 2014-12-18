@@ -33,12 +33,11 @@ int Library::buildALibrary(string filePath) {
     if (!fin) return -1;
     string reading;
     string buffer;
+    string lastReading;
     double price;
-    char endTest;
     BookNode* p;
-    endTest = fin.get();                    //Get a charactor to judge if it is the end of the file.
-    while (endTest != EOF) {
-        fin >> reading;                     //Read No.
+    fin >> reading;                         //Read the No.
+    do {
         fin >> buffer;                      //Read name into the buffer.
         ISBN tmpISBN;
         fin >> reading;                     //Read the next string.
@@ -64,8 +63,11 @@ int Library::buildALibrary(string filePath) {
         fin >> price;                       //Read the price.
         bookPool->book->inputPrice(price);  //Input the price to the new node.
         bookNumber++;
-        endTest = fin.get();                //Get another charactor to judge if it ios the end of the file.
-    }
+        tmpDate.year = 0;
+        tmpISBN.group1 = 0;
+        lastReading = reading;
+        fin >> reading;                     //Read the next No to judge if it is the end.
+    } while (reading != lastReading);
     fin.close();
     return 0;
 }
@@ -88,6 +90,8 @@ int Library::printAllBooks(string filePath) {
         fout << p->book->date.month << '-';
         fout << p->book->date.day << ' ';
         fout << p->book->outputPrice() << '\n';
+        p = p->nextBook;
+        i++;
     }
     fout.close();
     return 0;
