@@ -3,7 +3,7 @@
 //  Queue
 //
 //  Created by Whoami on 14/11/9.
-//  Copyright (c) 2014年 Whoami.
+//  Copyright (c) 2014年 Jiyuan Liu.
 //
 
 #ifndef Queue_queue_h

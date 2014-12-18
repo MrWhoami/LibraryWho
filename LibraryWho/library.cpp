@@ -3,7 +3,7 @@
 //  LibraryWho
 //
 //  Created by Whoami on 14/12/16.
-//  Copyright (c) 2014年 Whoami.
+//  Copyright (c) 2014年 Jiyuan Liu.
 //
 
 #include "library.h"
@@ -13,6 +13,8 @@ Library::Library() {
     userNumber = 0;
     readerPool = NULL;
     bookPool = NULL;
+    readerNow = NULL;
+    bookNow = NULL;
 }
 
 Library::~Library() {
@@ -97,12 +99,15 @@ int Library::printAllBooks(string filePath) {
     return 0;
 }
 
-Book* Library::ISBN_search(){
+bool Library::ISBN_search(){
     string look_for;
-    printf("Please code the book'ISBN that you're looking for:\n");
-    cin>>look_for;
+    printf("Please code the ISBN of the target book(978-x-xxx-xxxxx-x):\n");
+    cin  >> look_for;
     ISBN fuck;
-    fuck << look_for;
+    if (!(fuck << look_for)){
+        cout << "Invalid ISBN code. " << look_for << endl;
+        return 0;
+    }
     BookNode * test;
     for( test = bookPool; test != NULL; test = test->nextBook ){
         if(test->book->getISBN() == fuck){
@@ -110,17 +115,18 @@ Book* Library::ISBN_search(){
         }
     }
     if(test == NULL){
-        cout<<"Sorry, can't find a book whose ISBN is "<<look_for<<endl;
-        return NULL;
+        cout << " Sorry, we can't find a book whose ISBN is " << look_for << endl;
+        return 0;
     } else {
-        return test->book;
+        bookNow = test->book;
+        return 1;
     }
 }
 
-Book* Library::BOOKNAME_search(string name){
+bool Library::BOOKNAME_search(){
     string look_for;
-    printf("Please code the book'name that you're looking for:\n");
-    cin>>look_for;
+    printf("Please input the name of the target book:\n");
+    cin >> look_for;
     BookNode * test;
     for( test = bookPool; test != NULL; test = test->nextBook ){
         if(look_for.compare(test->book->name)==0){
@@ -128,9 +134,30 @@ Book* Library::BOOKNAME_search(string name){
         }
     }
     if(test == NULL){
-        cout<< "Sorry, can't find a book whose name is " << look_for << endl;
-        return NULL;
+        cout<< "Sorry, we can't find a book whose name is " << look_for << endl;
+        return 0;
     } else {
-        return test->book;
+        bookNow = test->book;
+        return 1;
     }
+}
+
+void Library::printBookInfo() {
+    if (bookNow == NULL) {
+        cout << "You haven't got a book yet." << endl;
+        return;
+    }
+    cout << "Book:        " << bookNow->name << endl;
+    cout << "ISBN:        ";
+    cout << bookNow->getISBN().group1 << '-';
+    cout << bookNow->getISBN().group2 << '-';
+    cout << bookNow->getISBN().group3 << '-';
+    cout << bookNow->getISBN().group4 << '-';
+    cout << bookNow->getISBN().group5 << endl;
+    cout << "Author:       " << bookNow->author << endl;
+    cout << "Publish Date: ";
+    cout << bookNow->date.year << '-';
+    cout << bookNow->date.month << '-';
+    cout << bookNow->date.day << endl;
+    cout << "Price:        " << bookNow->outputPrice() << endl;
 }

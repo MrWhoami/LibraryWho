@@ -3,7 +3,7 @@
 //  Library
 //
 //  Created by Whoami on 14/12/14.
-//  Copyright (c) 2014年 Whoami.
+//  Copyright (c) 2014年 Jiyuan Liu.
 //
 
 #include <fstream>
@@ -20,6 +20,8 @@ void printHelp(){
     cout << " A     Add books to this library through a file." << endl;
     cout << " E     Export the library books into a file." <<  endl;
     cout << " I     Search the book with an ISBN code." << endl;
+    cout << " B     Search the book with the name." << endl;
+    cout << " P     Print the information of the current book." << endl;
 }
 
 void cmd_A() {
@@ -75,13 +77,16 @@ void cmd_T(){
 }
 
 void cmd_I(){
-    Book* tmp = library.ISBN_search();
-    if (tmp != NULL) {
-        cout << tmp->name << endl;
-        cout << tmp->author << endl;
-        cout << tmp->date.year << ' ' << tmp->date.month << ' ' <<  tmp->date.day << endl;
-        cout << tmp->outputPrice() << endl;
-    }
+    library.ISBN_search();
+    library.printBookInfo();
+}
+void cmd_B(){
+    library.BOOKNAME_search();
+    library.printBookInfo();
+}
+
+void cmd_P(){
+    library.printBookInfo();
 }
 
 int main(int argc, const char * argv[]) {
@@ -119,8 +124,18 @@ int main(int argc, const char * argv[]) {
                 cmd_I();
                 option = '~';
                 break;
+            case 'P':
+                cmd_P();
+                option = '~';
+                break;
+            case 'B':
+                cmd_B();
+                option = '~';
+                break;
                 
             default:
+                cout << "Invalid option: " << option << endl;
+                option = '~';
                 break;
         }
     }

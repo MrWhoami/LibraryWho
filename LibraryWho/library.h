@@ -3,9 +3,8 @@
 //  LibraryWho
 //
 //  Created by Whoami on 14/12/16.
-//  Copyright (c) 2014年 Whoami.
+//  Copyright (c) 2014年 Jiyuan Liu.
 //
-//  TODO: Add book addition function.
 
 #ifndef __LibraryWho__library__
 #define __LibraryWho__library__
@@ -47,12 +46,16 @@ class Library {
     BookNode* bookPool;
     
 public:
+    Book* bookNow;
+    Reader* readerNow;
+    
     Library();
     ~Library();
     int buildALibrary(string filePath);
     int printAllBooks(string filePath);
-    Book* ISBN_search();
-    Book* BOOKNAME_search(string name);
+    bool ISBN_search();
+    bool BOOKNAME_search();
+    void printBookInfo();
 };
 
 #endif /* defined(__LibraryWho__library__) */
