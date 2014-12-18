@@ -51,7 +51,7 @@ public:
     ~Library();
     int buildALibrary(string filePath);
     int printAllBooks(string filePath);
-    Book* ISBN_search(ISBN Isbn);
+    Book* ISBN_search();
     Book* BOOKNAME_search(string name);
 };
 

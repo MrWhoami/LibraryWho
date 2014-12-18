@@ -29,42 +29,42 @@ Library::~Library() {
 }
 
 int Library::buildALibrary(string filePath) {
-    ifstream fin("/Users/apple/Documents/programs/cookies/BookData.txt");
+    ifstream fin(filePath);
     if (!fin) return -1;
     string reading;
     string buffer;
     double price;
     char endTest;
     BookNode* p;
-    endTest = fin.get();
+    endTest = fin.get();                    //Get a charactor to judge if it is the end of the file.
     while (endTest != EOF) {
-        fin >> reading;
-        fin >> buffer;
+        fin >> reading;                     //Read No.
+        fin >> buffer;                      //Read name into the buffer.
         ISBN tmpISBN;
-        fin >> reading;
-        while (!(tmpISBN << reading)) {
-            buffer += "+";
+        fin >> reading;                     //Read the next string.
+        while (!(tmpISBN << reading)) {     //If this string is not an ISBN code.
+            buffer += "+";                  //Add this string to the name.
             buffer += reading;
-            fin >> reading;
+            fin >> reading;                 //Read another string.
         }
-        p = bookPool;
-        bookPool = new BookNode(tmpISBN);
+        p = bookPool;                       //If this string is an ISBN code.
+        bookPool = new BookNode(tmpISBN);   //Create a new book node with this ISBN code.
         bookPool->nextBook = p;
-        bookPool->book->name = buffer;
-        fin >> buffer;
+        bookPool->book->name = buffer;      //Input its name.
+        fin >> buffer;                      //Input the author.
         Date tmpDate;
-        fin >> reading;
-        while (!(tmpDate << reading)) {
-            buffer += "+";
+        fin >> reading;                     //Input another string.
+        while (!(tmpDate << reading)) {     //If this string is not a Date string.
+            buffer += "+";                  //Add this string to the author.
             buffer += reading;
-            fin >> reading;
+            fin >> reading;                 //Read another string.
         }
-        bookPool->book->date = tmpDate;
-        bookPool->book->author = buffer;
-        fin >> price;
-        bookPool->book->inputPrice(price);
+        bookPool->book->date = tmpDate;     //If this string is a Date code.
+        bookPool->book->author = buffer;    //Input the author and the date to the new node.
+        fin >> price;                       //Read the price.
+        bookPool->book->inputPrice(price);  //Input the price to the new node.
         bookNumber++;
-        endTest = fin.get();
+        endTest = fin.get();                //Get another charactor to judge if it ios the end of the file.
     }
     fin.close();
     return 0;
@@ -93,7 +93,7 @@ int Library::printAllBooks(string filePath) {
     return 0;
 }
 
-Book* Library::ISBN_search(ISBN Isbn){
+Book* Library::ISBN_search(){
     string look_for;
     printf("Please code the book'ISBN that you're looking for:\n");
     cin>>look_for;
@@ -106,7 +106,7 @@ Book* Library::ISBN_search(ISBN Isbn){
         }
     }
     if(test == NULL){
-        cout<<"Sorry, can't find a book whose ISBN is"<<look_for<<endl;
+        cout<<"Sorry, can't find a book whose ISBN is "<<look_for<<endl;
         return NULL;
     } else {
         return test->book;
@@ -124,7 +124,7 @@ Book* Library::BOOKNAME_search(string name){
         }
     }
     if(test == NULL){
-        cout<< "Sorry, can't find a book whose name is" << look_for << endl;
+        cout<< "Sorry, can't find a book whose name is " << look_for << endl;
         return NULL;
     } else {
         return test->book;

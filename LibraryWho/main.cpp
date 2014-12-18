@@ -19,6 +19,7 @@ void printHelp(){
     cout << " Q     Quit this program." << endl;
     cout << " A     Add books to this library through a file." << endl;
     cout << " E     Export the library books into a file." <<  endl;
+    cout << " I     Search the book with an ISBN code." << endl;
 }
 
 void cmd_A() {
@@ -62,11 +63,25 @@ void cmd_E() {
 }
 
 void cmd_T(){
-    ifstream fin("/Users/apple/Documents/programs/cookies/test.txt");
+    string path;
+    cin >> path;
+    ifstream fin(path);
     string a;
-    fin >> a;
-    cout << a << endl;
+    for (int i = 0; i<20; i++) {
+        fin >> a;
+        cout << a << endl;
+    }
     fin.close();
+}
+
+void cmd_I(){
+    Book* tmp = library.ISBN_search();
+    if (tmp != NULL) {
+        cout << tmp->name << endl;
+        cout << tmp->author << endl;
+        cout << tmp->date.year << ' ' << tmp->date.month << ' ' <<  tmp->date.day << endl;
+        cout << tmp->outputPrice() << endl;
+    }
 }
 
 int main(int argc, const char * argv[]) {
@@ -98,6 +113,10 @@ int main(int argc, const char * argv[]) {
                 break;
             case 'T':
                 cmd_T();
+                option = '~';
+                break;
+            case 'I':
+                cmd_I();
                 option = '~';
                 break;
                 
