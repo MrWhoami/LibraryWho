@@ -40,6 +40,7 @@
 		18C295EA1A3EECEC003ED771 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
 		18C295EC1A3EF22B003ED771 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		18C295ED1A3F4838003ED771 /* BookData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BookData.txt; sourceTree = "<group>"; };
+		18F865B61A472E760028F5CD /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +93,7 @@
 				18C295ED1A3F4838003ED771 /* BookData.txt */,
 				18C295E41A3EE682003ED771 /* LICENSE */,
 				18C295E51A3EE682003ED771 /* README.md */,
+				18F865B61A472E760028F5CD /* TODO.md */,
 			);
 			name = Document;
 			sourceTree = "<group>";

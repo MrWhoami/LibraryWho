@@ -207,15 +207,25 @@ int Library::printAllReaders(string filePath){
         int bookNum = p->reader->getNumber();
         fout << bookNum << ' ';
         ISBN* booksBorrowed = new ISBN[bookNum];
+        Date* booksDate = new Date[bookNum];
+        bool* booksRenew = new bool[bookNum];
         p->reader->getBook(booksBorrowed);
+        p->reader->getData(booksDate);
         for (int j=0; j<bookNum; j++) {
             fout << booksBorrowed[i].group1 << '-';
             fout << booksBorrowed[i].group2 << '-';
             fout << booksBorrowed[i].group3 << '-';
             fout << booksBorrowed[i].group4 << '-';
             fout << booksBorrowed[i].group5 << ' ';
+            fout << booksDate[i].year << '-';
+            fout << booksDate[i].month << '-';
+            fout << booksDate[i].day << ' ';
+            fout << booksRenew[i] << ' ';
         }
         fout << '\n';
+        delete [] booksRenew;
+        delete [] booksDate;
+        delete [] booksBorrowed;
         p = p->nextReader;
         i++;
     }

@@ -44,6 +44,7 @@ public:
     int getNumber();
     int getBook(ISBN* &borrowedList);
     int getData(Date* &borrowedList);
+    int getRenew(bool* &borrowedList);
     bool borrowNew(ISBN newBook);
     int returnOld(ISBN oldBook);            //0:No such book, 1.Success, 2.Broken the rule. 
 };

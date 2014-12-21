@@ -1,6 +1,6 @@
 # TODO of LibraryWho
 ## Functions to Achieve
-1. Export readers into a file.
+1. ~~Export readers into a file.~~
 2. Import readers from a file.
 3. Renew return date.
 4. Search a book by its writer.
