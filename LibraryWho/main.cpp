@@ -24,6 +24,7 @@ void printHelp(){
     cout << " B     Search the book with the name." << endl;
     cout << " P     Print the information of the current book." << endl;
     cout << " T     Test if the file can be read correctly. " << endl;
+    cout << " r     Add readers by command line." << endl;
 }
 
 void cmd_A() {
@@ -101,6 +102,33 @@ void cmd_P(){
     library.printBookInfo();
 }
 
+void cmd_r(){
+    int num = 0;
+    int levelIn = 0;
+    cout << "Please input the number of readers to be input: ";
+    cin >> num;
+    cout << "And their level: ";
+    cin >> levelIn;
+    switch (library.addReaders(num, levelIn)) {
+        case 0:
+            cout << "Added all the readers successfully." << endl;
+            break;
+        case 1:
+            cout << "Invalid reader number." << endl;
+            break;
+        case 2:
+            cout << "Invalid level. " << endl;
+            break;
+        case 3:
+            cout << "Invalid reader number and level." << endl;
+            break;
+            
+        default:
+            cout << "Unknown error." << endl;
+            break;
+    }
+}
+
 int main(int argc, const char * argv[]) {
     cout << "============ LibraryWho ============" << endl;
     char option = '~';
@@ -112,6 +140,7 @@ int main(int argc, const char * argv[]) {
         switch (option) {
             case 'Q':
             case 'q':
+                option = 0;
                 return 0;
                 break;
             case '?':
@@ -142,6 +171,10 @@ int main(int argc, const char * argv[]) {
                 break;
             case 'B':
                 cmd_B();
+                option = '~';
+                break;
+            case 'r':
+                cmd_r();
                 option = '~';
                 break;
                 

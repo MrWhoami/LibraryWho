@@ -10,7 +10,8 @@
 
 Library::Library() {
     bookNumber = 0;
-    userNumber = 0;
+    readerNumber = 0;
+    ridCount = 0;
     readerPool = NULL;
     bookPool = NULL;
     readerNow = NULL;
@@ -160,4 +161,64 @@ void Library::printBookInfo() {
     cout << bookNow->date.month << '-';
     cout << bookNow->date.day << endl;
     cout << "Price:        " << bookNow->outputPrice() << endl;
+}
+
+int Library::addReaders(int num, int levelIn) {
+    char code = 0;
+    if (num < 1) {
+        code = code+1;
+    }
+    if (levelIn < 1) {
+        code = code+2;
+    }
+    if (code > 0) {
+        return code;
+    }
+    string reading;
+    for(int i=0; i<num; i++){
+        ReaderNode* tmp = new ReaderNode(ridCount);
+        cout << "No. " << tmp->reader->getRid() << endl;;
+        cout << "Name: ";
+        cin >> reading;
+        tmp->reader->name = reading;
+        tmp->reader->level = levelIn;
+        cout << "Level: " << tmp->reader->level << endl;
+        cout << "Email: ";
+        cin >> reading;
+        tmp->reader->email = reading;
+        tmp->nextReader = readerPool;
+        readerPool = tmp;
+        readerNumber++;
+        cout << endl;
+    }
+    return 0;
+}
+
+int Library::printAllReaders(string filePath){
+    ofstream fout(filePath);
+    if (!fout) return -1;
+    ReaderNode *p = readerPool;
+    int i = 1;
+    while (i <= readerNumber) {
+        fout << i << ".  ";
+        fout << p->reader->name << ' ';
+        fout << p->reader->level << ' ';
+        fout << p->reader->email << ' ';
+        int bookNum = p->reader->getNumber();
+        fout << bookNum << ' ';
+        ISBN* booksBorrowed = new ISBN[bookNum];
+        p->reader->getBook(booksBorrowed);
+        for (int j=0; j<bookNum; j++) {
+            fout << booksBorrowed[i].group1 << '-';
+            fout << booksBorrowed[i].group2 << '-';
+            fout << booksBorrowed[i].group3 << '-';
+            fout << booksBorrowed[i].group4 << '-';
+            fout << booksBorrowed[i].group5 << ' ';
+        }
+        fout << '\n';
+        p = p->nextReader;
+        i++;
+    }
+    fout.close();
+    return 0;
 }

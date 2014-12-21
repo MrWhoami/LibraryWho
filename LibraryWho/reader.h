@@ -27,13 +27,14 @@ private:
 public:
     string name;
     int level;
-    string contact;
+    string email;
     
     Reader(unsigned rid);
     ~Reader();
     unsigned getRid();
     int getNumber();
-    int getBook(ISBN* &bookBorrowed);
+    int getBook(ISBN* &borrowedList);
+    int getData(Date* &borrowedList);
     bool borrowNew(ISBN newBook);
     bool returnOld(ISBN oldBook);
 };

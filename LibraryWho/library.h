@@ -41,7 +41,8 @@ struct BookNode {
 
 class Library {
     unsigned bookNumber;
-    unsigned userNumber;
+    unsigned readerNumber;
+    unsigned ridCount;
     ReaderNode* readerPool;
     BookNode* bookPool;
     
@@ -53,6 +54,9 @@ public:
     ~Library();
     int buildALibrary(string filePath);
     int printAllBooks(string filePath);
+    int buildReaderClub(string filePath);
+    int printAllReaders(string filePath);
+    int addReaders(int num, int level);
     bool ISBN_search();
     bool BOOKNAME_search();
     void printBookInfo();

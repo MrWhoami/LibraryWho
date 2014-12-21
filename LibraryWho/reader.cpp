@@ -90,3 +90,11 @@ int Reader::getBook(ISBN* &borrowedList) {
     }
     return i;
 }
+
+int Reader::getData(Date* &borrowedList) {
+    BookBorrowed* p = bookBorrowed;
+    int i = 0;
+    while (p != NULL) {
+    }
+    return i;
+}
