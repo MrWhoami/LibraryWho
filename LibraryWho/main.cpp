@@ -12,6 +12,7 @@
 #include "library.h"
 
 Library library;
+bool test;
 
 void printHelp(){
     cout << "OPTION FUNCTION" << endl;
@@ -22,9 +23,18 @@ void printHelp(){
     cout << " I     Search the book with an ISBN code." << endl;
     cout << " B     Search the book with the name." << endl;
     cout << " P     Print the information of the current book." << endl;
+    cout << " T     Test if the file can be read correctly. " << endl;
 }
 
 void cmd_A() {
+    if (!test) {
+        cout << "You haven't test the data file yet. Do you want to test it before use? (0/1)" << endl;
+        cin >> test;
+        if (test) {
+            test = 0;
+            return;
+        }
+    }
     cout << "Please input the path of the file: " << endl;
     string path;
     cin >> path;
@@ -65,6 +75,7 @@ void cmd_E() {
 }
 
 void cmd_T(){
+    cout << "Please input the path if the file to be test: " << endl;
     string path;
     cin >> path;
     ifstream fin(path);
@@ -74,6 +85,7 @@ void cmd_T(){
         cout << a << endl;
     }
     fin.close();
+    test = 1;
 }
 
 void cmd_I(){
@@ -92,7 +104,7 @@ void cmd_P(){
 int main(int argc, const char * argv[]) {
     cout << "============ LibraryWho ============" << endl;
     char option = '~';
-    Library library;
+    test = 0;
     while (option != 0) {
         cout << endl;
         cout << "Please input an option (? for help): " << endl;
