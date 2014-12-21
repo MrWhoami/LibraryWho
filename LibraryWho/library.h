@@ -52,14 +52,15 @@ public:
     
     Library();
     ~Library();
-    int buildALibrary(string filePath);
-    int printAllBooks(string filePath);
-    int buildReaderClub(string filePath);
-    int printAllReaders(string filePath);
-    int addReaders(int num, int level);
-    bool ISBN_search();
-    bool BOOKNAME_search();
-    void printBookInfo();
+    int buildALibrary(string filePath);     //-1.Fail, 0.Success
+    int printAllBooks(string filePath);     //-1.Fail, 0.Success need to change
+    int buildReaderClub(string filePath);   //todo
+    int printAllReaders(string filePath);   //-1.Fail, 0.Success
+    int addReaders(int num, int level);     //0.Success, 1-3, Fail.
+    bool ISBN_search();                     //0.Fail, 1.Success
+    bool BOOKNAME_search();                 //0.Fail, 1.Success
+    void printBookInfo();                   //Print the information of the book
+    void printReaderInfo();                 //todo
 };
 
 #endif /* defined(__LibraryWho__library__) */

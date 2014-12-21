@@ -19,12 +19,13 @@ void printHelp(){
     cout << " ?(H)  Viewing this page." << endl;
     cout << " Q     Quit this program." << endl;
     cout << " A     Add books to this library through a file." << endl;
-    cout << " E     Export the library books into a file." <<  endl;
+    cout << " e     Export the library books into a file." <<  endl;
     cout << " I     Search the book with an ISBN code." << endl;
     cout << " B     Search the book with the name." << endl;
     cout << " P     Print the information of the current book." << endl;
     cout << " T     Test if the file can be read correctly. " << endl;
     cout << " r     Add readers by command line." << endl;
+    cout << " E     Export all the library infomation into a folder." << endl;
 }
 
 void cmd_A() {
@@ -55,7 +56,7 @@ void cmd_A() {
     }
 }
 
-void cmd_E() {
+void cmd_e() {
     cout << "Please input the path of the file: " << endl;
     string path;
     cin >> path;
@@ -75,7 +76,7 @@ void cmd_E() {
     }
 }
 
-void cmd_T(){
+void cmd_T() {
     cout << "Please input the path if the file to be test: " << endl;
     string path;
     cin >> path;
@@ -89,20 +90,21 @@ void cmd_T(){
     test = 1;
 }
 
-void cmd_I(){
+void cmd_I() {
     library.ISBN_search();
     library.printBookInfo();
 }
-void cmd_B(){
+
+void cmd_B() {
     library.BOOKNAME_search();
     library.printBookInfo();
 }
 
-void cmd_P(){
+void cmd_P() {
     library.printBookInfo();
 }
 
-void cmd_r(){
+void cmd_r() {
     int num = 0;
     int levelIn = 0;
     cout << "Please input the number of readers to be input: ";
@@ -129,9 +131,33 @@ void cmd_r(){
     }
 }
 
+void cmd_E() {
+    //printAllBooks need to be changed.
+    //path confirm needed.
+    cout << "Use default path(0/1) ?" << endl;
+    bool defPath = 1;
+    string path;
+    string pathLWB;
+    string pathLWR;
+    cin >> defPath;
+    if (defPath){
+        path = "~/Documents/LibraryWho/";
+    } else {
+        cout << "Input the path of the target folder: " << endl;
+        cin >> path;
+    }
+    pathLWB = path+"backup.lwb";
+    pathLWR = path+"backup.lwr";
+    library.printAllBooks(pathLWB);
+    library.printAllReaders(pathLWR);
+}
+
 int main(int argc, const char * argv[]) {
     cout << "============ LibraryWho ============" << endl;
     char option = '~';
+    cout << "Import the back up date ?" << endl;
+    cout << "0. No.   1. Default path.   2. Other path." << endl;
+    //More to be done.
     test = 0;
     while (option != 0) {
         cout << endl;
@@ -153,8 +179,8 @@ int main(int argc, const char * argv[]) {
                 cmd_A();
                 option = '~';
                 break;
-            case 'E':
-                cmd_E();
+            case 'e':
+                cmd_e();
                 option = '~';
                 break;
             case 'T':
@@ -175,6 +201,10 @@ int main(int argc, const char * argv[]) {
                 break;
             case 'r':
                 cmd_r();
+                option = '~';
+                break;
+            case 'E':
+                cmd_E();
                 option = '~';
                 break;
                 
