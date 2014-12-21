@@ -11,17 +11,11 @@
 
 #include <time.h>
 #include "common.h"
-#include "queue.h"
 
-class BorrowNode {
-public:
-    Date borrowDate;
-    bool renew;
+struct BorrowNode {
     unsigned rid;
     BorrowNode* nextReader;
-    
     BorrowNode();
-    Date returnDate();
 };
 
 class Book {
@@ -37,9 +31,8 @@ public:
     
     Book(ISBN isbnIn);
     void inputPrice(double priceIn);
-    void ruleBreaker(Queue<unsigned> &breakers);
     double outputPrice();
-    int readerReturn(unsigned rRid);
+    bool readerReturn(unsigned rRid);        //0.fail, 1.success.
     ISBN getISBN();
 };
 

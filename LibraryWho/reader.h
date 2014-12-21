@@ -11,12 +11,21 @@
 
 #include "common.h"
 
-struct BookBorrowed {
+class BookBorrowed {
+public:
     ISBN theBook;
+    Date borrowDate;
+    bool renew;
     BookBorrowed* nextBook;
+    
     BookBorrowed() {
         nextBook = NULL;
+        borrowDate.year = 2000;
+        borrowDate.month = 1;
+        borrowDate.day = 1;
+        renew = 0;
     }
+    Date returnDate();
 };
 
 class Reader {
@@ -36,7 +45,7 @@ public:
     int getBook(ISBN* &borrowedList);
     int getData(Date* &borrowedList);
     bool borrowNew(ISBN newBook);
-    bool returnOld(ISBN oldBook);
+    int returnOld(ISBN oldBook);            //0:No such book, 1.Success, 2.Broken the rule. 
 };
 
 #endif /* defined(__LibraryWho__reader__) */

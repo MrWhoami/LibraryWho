@@ -59,7 +59,8 @@ bool Reader::borrowNew(ISBN newBook){
     return 1;
 }
 
-bool Reader::returnOld(ISBN oldBook) {
+int Reader::returnOld(ISBN oldBook) {
+/*
     if (bookBorrowed == NULL) {
         return 0;
     }
@@ -79,6 +80,42 @@ bool Reader::returnOld(ISBN oldBook) {
         delete tod;
     }
     return 1;
+ */
+    BookBorrowed *pre = NULL;
+    BookBorrowed *p = bookBorrowed;
+    while (p!=NULL && p->theBook!=oldBook) {
+        pre = p;
+        p = p->nextBook;
+    }
+    if (p == NULL) {
+        return 0;
+    } else {
+        int returnNum = 1;
+        time_t rawtime;
+        tm* now;
+        time(&rawtime);
+        now = localtime(&rawtime);
+        Date expect = p->returnDate();
+        if (expect.year < now->tm_year) {
+            returnNum = 2;
+        }
+        else if (expect.month < now->tm_mon+1){
+            returnNum = 2;
+        }
+        else if (expect.day < now->tm_mday) {
+            returnNum = 2;
+        }
+        else {
+            returnNum = 1;
+        }
+        if (pre == NULL) {
+            bookBorrowed = p->nextBook;
+        } else {
+            pre->nextBook = p->nextBook;
+        }
+        delete p;
+        return returnNum;
+    }
 }
 
 int Reader::getBook(ISBN* &borrowedList) {
@@ -97,4 +134,131 @@ int Reader::getData(Date* &borrowedList) {
     while (p != NULL) {
     }
     return i;
+}
+
+Date BookBorrowed::returnDate(){
+    Date returnDay = borrowDate;
+    returnDay.day += 30;
+    switch (borrowDate.month) {
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+            if (returnDay.day > 31) {
+                returnDay.day -= 31;
+                returnDay.month += 1;
+            }
+            break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            if (returnDay.day > 30) {
+                returnDay.day -= 30;
+                returnDay.month += 1;
+            }
+            break;
+        case 1:
+            if (returnDay.day > 31) {
+                returnDay.day -= 31;
+                returnDay.month += 1;
+            }
+        case 2:
+            short feb;
+            if (returnDay.year%4 == 0) {
+                if (returnDay.year%100 == 0) {
+                    if (returnDay.year%400 == 0) {
+                        feb = 29;
+                    } else {
+                        feb =28;
+                    }
+                } else {
+                    feb = 29;
+                }
+            } else {
+                feb = 28;
+            }
+            if (returnDay.day > feb) {
+                returnDay.day -= feb;
+                returnDay.month += 1;
+            }
+            break;
+        case 12:
+            if (returnDay.day > 31) {
+                returnDay.day -= 31;
+                returnDay.month = 1;
+                returnDay.year += 1;
+            }
+            break;
+            
+        default:
+            returnDay.year = 2000;
+            returnDay.month = 1;
+            returnDay.day = 1;
+            break;
+    }
+    if (renew) {
+        returnDay.day += 30;
+        switch (borrowDate.month) {
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+                if (returnDay.day > 31) {
+                    returnDay.day -= 31;
+                    returnDay.month += 1;
+                }
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                if (returnDay.day > 30) {
+                    returnDay.day -= 30;
+                    returnDay.month += 1;
+                }
+                break;
+            case 1:
+                if (returnDay.day > 31) {
+                    returnDay.day -= 31;
+                    returnDay.month += 1;
+                }
+            case 2:
+                short feb;
+                if (returnDay.year%4 == 0) {
+                    if (returnDay.year%100 == 0) {
+                        if (returnDay.year%400 == 0) {
+                            feb = 29;
+                        } else {
+                            feb =28;
+                        }
+                    } else {
+                        feb = 29;
+                    }
+                } else {
+                    feb = 28;
+                }
+                if (returnDay.day > feb) {
+                    returnDay.day -= feb;
+                    returnDay.month += 1;
+                }
+                break;
+            case 12:
+                if (returnDay.day > 31) {
+                    returnDay.day -= 31;
+                    returnDay.month = 1;
+                    returnDay.year += 1;
+                }
+                break;
+                
+            default:
+                returnDay.year = 2000;
+                returnDay.month = 1;
+                returnDay.day = 1;
+                break;
+        }
+    }
+    return returnDay;
 }
