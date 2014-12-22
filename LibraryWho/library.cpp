@@ -36,16 +36,16 @@ int Library::importBooks(string filePath, int num) {
     if (!fin) return -1;
     string reading;
     string buffer;
-    string lastReading;
     double price;
     BookNode* p;
-    fin >> reading;                         //Read the No.
-    do {
-        fin >> buffer;                      //Read name into the buffer.
+    fin >> buffer;                          //Read the No.
+    reading = buffer;
+    fin >> buffer;                          //Read name into the buffer.
+    while (reading != buffer) {
         ISBN tmpISBN;
         fin >> reading;                     //Read the next string.
         while (!(tmpISBN << reading)) {     //If this string is not an ISBN code.
-            buffer += "+";                  //Add this string to the name.
+            buffer += " ";                  //Add this string to the name.
             buffer += reading;
             fin >> reading;                 //Read another string.
         }
@@ -57,7 +57,7 @@ int Library::importBooks(string filePath, int num) {
         Date tmpDate;
         fin >> reading;                     //Input another string.
         while (!(tmpDate << reading)) {     //If this string is not a Date string.
-            buffer += "+";                  //Add this string to the author.
+            buffer += " ";                  //Add this string to the author.
             buffer += reading;
             fin >> reading;                 //Read another string.
         }
@@ -69,9 +69,10 @@ int Library::importBooks(string filePath, int num) {
         bookNumber++;
         tmpDate.year = 0;
         tmpISBN.group1 = 0;
-        lastReading = reading;
-        fin >> reading;                     //Read the next No to judge if it is the end.
-    } while (reading != lastReading);
+        fin >> buffer;                          //Read the No.
+        reading = buffer;
+        fin >> buffer;                          //Read name into the buffer.
+    }
     fin.close();
     return 0;
 }
@@ -200,6 +201,7 @@ int Library::addReaders(int num, int levelIn) {
         tmp->nextReader = readerPool;
         readerPool = tmp;
         readerNumber++;
+        ridCount++;
         cout << endl;
     }
     return 0;
@@ -258,14 +260,15 @@ void Library::printReaderInfo() {
 
 int Library::exportReaderPool(string filePath) {
     ofstream fout(filePath);
-    if (!fout) return -1;
+    if (!fout) return 2;
     ReaderNode *p = readerPool;
     int i = 1;
     while (i <= readerNumber) {
-        fout << p->reader->getRid() << "  ";
+        fout << p->reader->getRid() << ' ';
         fout << p->reader->name << ' ';
         fout << p->reader->level << ' ';
         fout << p->reader->email << ' ';
+        fout << p->reader->getBorrowed() << ' ';
         int bookNum = p->reader->getNumber();
         fout << bookNum << ' ';
         ISBN* booksBorrowed = new ISBN[bookNum];
@@ -298,7 +301,7 @@ int Library::exportReaderPool(string filePath) {
 
 int Library::exportBookPool(string filePath) {
     ofstream fout(filePath);
-    if (!fout) return -1;
+    if (!fout) return 1;
     BookNode *p = bookPool;
     int i = 1;
     while (i <= bookNumber) {
@@ -332,10 +335,135 @@ int Library::exportBookPool(string filePath) {
 
 int Library::exportTheLibrary(string filePath) {
     string path = filePath;
-    string pathLWR;
-    string pathLWB;
-    pathLWR = path+"backup.lwr";
-    pathLWB = path+"backup.lwb";
-    //Doing
+    if (path.back() != '/') {
+        path += "/";
+    }
+    string pathLWR = path;
+    string pathLWB = path;
+    pathLWR += "backup.lwr";
+    pathLWB += "backup.lwb";
+    int runResult = 0;
+    runResult += exportBookPool(pathLWB);
+    runResult += exportReaderPool(pathLWR);
+    return runResult;
+}
+
+int Library::buildALibrary(string filePath) {
+    string path = filePath;
+    if (path.back() != '/') {
+        path += "/";
+    }
+    string pathLWR = path;
+    string pathLWB = path;
+    pathLWR += "backup.lwr";
+    pathLWB += "backup.lwb";
+    int runResult = 0;
+    runResult += buildReaderPool(pathLWR);
+    runResult += buildBookPool(pathLWB);
+    return runResult;
+}
+
+int Library::buildBookPool(string filePath) {
+    ifstream fin(filePath);
+    if (!fin) return 1;
+    string reading;
+    string buffer;
+    string lastReading;
+    double price;
+    int num = 0;
+    unsigned rid;
+    BookNode* p;
+    fin >> buffer;                          //Read the No.
+    reading = buffer;
+    fin >> buffer;                          //Read name into the buffer.
+    while (reading != buffer) {
+        ISBN tmpISBN;
+        fin >> reading;                     //Read the next string.
+        while (!(tmpISBN << reading)) {     //If this string is not an ISBN code.
+            buffer += " ";                  //Add this string to the name.
+            buffer += reading;
+            fin >> reading;                 //Read another string.
+        }
+        p = bookPool;                       //If this string is an ISBN code.
+        bookPool = new BookNode(tmpISBN);   //Create a new book node with this ISBN code.
+        bookPool->nextBook = p;
+        bookPool->book->name = buffer;      //Input its name.
+        fin >> buffer;                      //Input the author.
+        Date tmpDate;
+        fin >> reading;                     //Input another string.
+        while (!(tmpDate << reading)) {     //If this string is not a Date string.
+            buffer += " ";                  //Add this string to the author.
+            buffer += reading;
+            fin >> reading;                 //Read another string.
+        }
+        bookPool->book->date = tmpDate;     //If this string is a Date code.
+        bookPool->book->author = buffer;    //Input the author and the date to the new node.
+        fin >> price;                       //Read the price.
+        bookPool->book->inputPrice(price);  //Input the price to the new node.
+        fin >> num;
+        bookPool->book->quantity = num;     //Input the quantity of the new node.
+        fin >> num;
+        for (int i = 0; i<num; i++) {       //Input the readers.
+            fin >> reading;
+            rid = (unsigned)stoul(reading);
+            bookPool->book->borrowBook(rid);
+        }
+        bookNumber++;
+        tmpDate.year = 0;
+        tmpISBN.group1 = 0;
+        lastReading = reading;
+        fin >> buffer;                       //Read the No.
+        reading = buffer;
+        fin >> buffer;                       //Read name into the buffer.
+    }
+    fin.close();
+    return 0;
+}
+
+int Library::buildReaderPool(string filePath) {
+    ifstream fin(filePath);
+    if(!fin) return 2;
+    string reading;
+    string buffer;
+    unsigned ridIn;
+    int tmpCount;
+    int borrowedIn;
+    ReaderNode* p;
+    fin >> buffer;
+    reading = buffer;
+    fin >> buffer;
+    while (reading != buffer) {
+        ridIn = (unsigned)stoul(reading);
+        p = readerPool;
+        readerPool = new ReaderNode(ridIn);
+        readerNumber++;
+        if(ridCount <= ridIn)
+            ridCount = ridIn+1;
+        readerPool->nextReader = p;
+        readerPool->reader->name = buffer;
+        fin >> reading;
+        readerPool->reader->level = stoi(reading);
+        fin >> reading;
+        readerPool->reader->email = reading;
+        fin >> borrowedIn;
+        fin >> tmpCount;
+        ISBN* booksBorrowed = new ISBN[tmpCount];
+        Date* booksDate = new Date[tmpCount];
+        bool* booksRenew = new bool[tmpCount];
+        for (int i=0; i<tmpCount; i++) {
+            fin >> reading;
+            booksBorrowed[i] << reading;
+            fin >> reading;
+            booksDate[i] << reading;
+            fin >> booksRenew[i];
+        }
+        readerPool->reader->importData(booksBorrowed, booksDate, booksRenew, tmpCount, borrowedIn);
+        delete [] booksRenew;
+        delete [] booksDate;
+        delete [] booksBorrowed;
+        fin >> buffer;
+        reading = buffer;
+        fin >> buffer;
+    }
     return 0;
 }

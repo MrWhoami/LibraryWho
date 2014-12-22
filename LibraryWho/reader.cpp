@@ -279,3 +279,15 @@ Date BookBorrowed::returnDate(){
 int Reader::getBorrowed(){
     return borrowed;
 }
+
+void Reader::importData(ISBN* isbnIn, Date* dateIn, bool* renewIn, int bookNum, int borrowedIn){
+    borrowed = borrowedIn;
+    for (int i=0; i<bookNum; i++) {
+        BookBorrowed* p = bookBorrowed;
+        bookBorrowed = new BookBorrowed;
+        bookBorrowed->theBook = isbnIn[i];
+        bookBorrowed->borrowDate = dateIn[i];
+        bookBorrowed->renew = renewIn[i];
+        bookBorrowed->nextBook = p;
+    }
+}

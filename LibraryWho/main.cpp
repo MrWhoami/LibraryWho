@@ -19,13 +19,14 @@ void printHelp(){
     cout << " ?(H)  Viewing this page." << endl;
     cout << " Q     Quit this program." << endl;
     cout << " A     Add books to this library through a file." << endl;
-    cout << " e     Export the library books into a file." <<  endl;
-    cout << " i     Search the book with an ISBN code." << endl;
+    cout << " F     Export the library books into a file." <<  endl;
+    cout << " C     Search the book with an ISBN code." << endl;
     cout << " B     Search the book with the name." << endl;
     cout << " P     Print the information of the current book." << endl;
     cout << " T     Test if the file can be read correctly. " << endl;
-    cout << " r     Add readers by command line." << endl;
-    cout << " E     Export all the library infomation into a folder." << endl;
+    cout << " R     Add readers by command line." << endl;
+    cout << " E     Export all the library information into a folder." << endl;
+    cout << " I     Import all the library information from a folder." << endl;
 }
 
 void cmd_A() {
@@ -66,7 +67,7 @@ void cmd_A() {
     }
 }
 
-void cmd_e() {
+void cmd_F() {
     cout << "Please input the path of the file: " << endl;
     string path;
     cin >> path;
@@ -100,7 +101,7 @@ void cmd_T() {
     test = 1;
 }
 
-void cmd_i() {
+void cmd_C() {
     library.ISBN_search();
     library.printBookInfo();
 }
@@ -114,7 +115,7 @@ void cmd_P() {
     library.printBookInfo();
 }
 
-void cmd_r() {
+void cmd_R() {
     int num = 0;
     int levelIn = 0;
     cout << "Please input the number of readers to be input: ";
@@ -156,7 +157,23 @@ void cmd_E() {
         cin >> path;
     }
     runResult = library.exportTheLibrary(path);
-    //Switch runResult.
+    switch (runResult) {
+        case 0:
+            cout << "Exported successfully." << endl;
+            break;
+        case 1:
+            cout << "Fail to export *.lwb." << endl;
+            break;
+        case 3:
+            cout << "Fail to export *.lwb." << endl;
+        case 2:
+            cout << "Fail to export *.lwr." << endl;
+            break;
+            
+        default:
+            cout << "Unknown cases while exporting backups." << endl;
+            break;
+    }
 }
 
 bool cmd_I() {
@@ -170,6 +187,7 @@ bool cmd_I() {
     switch (option) {
         case '0':
             cout << "No operation." << endl;
+            return 0;
             break;
         case '1':
             cout << "Using the default path. " << endl;
@@ -181,11 +199,29 @@ bool cmd_I() {
             break;
             
         default:
-            cout << "Invalid option. No operation will be taken. If you want to import the backup files later, just use the option 'I'" << endl;;
+            cout << "Invalid option. No operation will be taken. If you want to import the backup files later, just use the option 'I'" << endl;
+            return 0;
             break;
     }
     runResult = library.buildALibrary(path);
-    //Switch runResult;
+    switch (runResult) {
+        case 0:
+            cout << "Imported successfully." << endl;
+            return 1;
+            break;
+        case 1:
+            cout << "Fail to import *.lwb." << endl;
+            break;
+        case 3:
+            cout << "Fail to import *.lwb." << endl;
+        case 2:
+            cout << "Fail to import *.lwr." << endl;
+            break;
+            
+        default:
+            cout << "Unknown cases while importing backups." << endl;
+            break;
+    }
     return 0;
 }
 
@@ -202,12 +238,10 @@ int main(int argc, const char * argv[]) {
         cin >> option;
         switch (option) {
             case 'Q':
-            case 'q':
                 option = 0;
                 return 0;
                 break;
             case '?':
-            case 'h':
             case 'H':
                 printHelp();
                 option = '~';
@@ -216,16 +250,16 @@ int main(int argc, const char * argv[]) {
                 cmd_A();
                 option = '~';
                 break;
-            case 'e':
-                cmd_e();
+            case 'F':
+                cmd_F();
                 option = '~';
                 break;
             case 'T':
                 cmd_T();
                 option = '~';
                 break;
-            case 'i':
-                cmd_i();
+            case 'C':
+                cmd_C();
                 option = '~';
                 break;
             case 'P':
@@ -236,8 +270,8 @@ int main(int argc, const char * argv[]) {
                 cmd_B();
                 option = '~';
                 break;
-            case 'r':
-                cmd_r();
+            case 'R':
+                cmd_R();
                 option = '~';
                 break;
             case 'E':

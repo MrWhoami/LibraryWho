@@ -12,7 +12,7 @@
 #include <string>
 using namespace std;
 
-#define DEFAULT_PATH "~/Documents/LibraryWho/"
+#define DEFAULT_PATH "/Users/apple/Documents/LibraryWho/"
 
 struct Date {
     short year;

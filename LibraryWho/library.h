@@ -47,8 +47,8 @@ class Library {
     BookNode* bookPool;
     
     int buildReaderPool(string filePath);   //todo
-    int buildBookPool(string filePath);     //todo
-    int exportBookPool(string filePath);    //Export the book pool into *.lwr.
+    int buildBookPool(string filePath);     //Import the book pool from *.lwb.
+    int exportBookPool(string filePath);    //Export the book pool into *.lwb.
     int exportReaderPool(string filePath);  //Export the reader pool into *.lwr.
     
 public:
@@ -60,15 +60,15 @@ public:
     int importBooks(string filePath, int num);       //-1.Fail, 0.Success
     int printAllBooks(string filePath);     //-1.Fail, 0.Success need to change
     int printAllReaders(string filePath);   //-1.Fail, 0.Success
-    int buildALibrary(string filePath);     //todo
+    int buildALibrary(string filePath);     //0.Success, 1.Book fail, 2.Reader fail.
     int addReaders(int num, int level);     //0.Success, 1-3, Fail.
     bool ISBN_search();                     //0.Fail, 1.Success
     bool BOOKNAME_search();                 //0.Fail, 1.Success
     void printBookInfo();                   //Print the information of the book.
     void printReaderInfo();                 //Print the information of the reader.
     int borrowBook();                       //Reader now borrow the book now.   todo
-    int returnBook();                       //Reader mow return the book now.   todo
-    int exportTheLibrary(string filepath);                 //todo
+    int returnBook();                       //Reader now return the book now.   todo
+    int exportTheLibrary(string filepath);  //0.Success, 1.Book fail, 2.Reader fail.
 };
 
 #endif /* defined(__LibraryWho__library__) */

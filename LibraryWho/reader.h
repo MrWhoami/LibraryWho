@@ -41,6 +41,7 @@ public:
     
     Reader(unsigned rid);
     ~Reader();
+    void importData(ISBN* isbnIn, Date* dateIn, bool* renewIn, int bookNum, int borrowedIn);           //Used to import backup data.
     unsigned getRid();
     int getNumber();
     int getBorrowed();
