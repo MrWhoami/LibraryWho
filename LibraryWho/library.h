@@ -66,7 +66,7 @@ public:
     bool BOOKNAME_search();                 //0.Fail, 1.Success
     void printBookInfo();                   //Print the information of the book.
     void printReaderInfo();                 //Print the information of the reader.
-    int borrowBook();                       //Reader now borrow the book now.   todo
+    int borrowBook();                       //Reader now borrow the book now.
     int returnBook();                       //Reader now return the book now.   todo
     int exportTheLibrary(string filepath);  //0.Success, 1.Book fail, 2.Reader fail.
 };

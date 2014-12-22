@@ -185,15 +185,15 @@ bool cmd_I() {
     string path;
     cin >> option;
     switch (option) {
-        case '0':
+        case 0:
             cout << "No operation." << endl;
             return 0;
             break;
-        case '1':
+        case 1:
             cout << "Using the default path. " << endl;
             path = DEFAULT_PATH;
             break;
-        case '2':
+        case 2:
             cout << "Please input the path. " << endl;
             cin >> path;
             break;
@@ -223,6 +223,39 @@ bool cmd_I() {
             break;
     }
     return 0;
+}
+
+void cmd_N() {
+    cout << library.readerNow->name << " will borrow " << library.bookNow->name <<" (0/1)?" << endl;
+    cout << "[LibraryWho]: ";
+    bool judge = 0;
+    cin >> judge;
+    if (judge) {
+        int returnNum = library.borrowBook();
+        if (returnNum == 0) {
+            cout << "Borrowed successfully. " << endl;
+            return;
+        }
+        if(returnNum&1)
+            cout << "No book selected." << endl;
+        returnNum = returnNum >> 1;
+        if (returnNum&1)
+            cout << "No reader selected." << endl;
+        returnNum = returnNum >> 1;
+        if (returnNum&1)
+            cout << "No book left." << endl;
+        returnNum = returnNum >> 1;
+        if (returnNum&1)
+            cout << "The reader has already borrowed the book." << endl;
+        returnNum = returnNum >> 1;
+        if (returnNum&1)
+            cout << "The reader has reach the borrow limit." << endl;
+        returnNum = returnNum >> 1;
+        if (returnNum&1)
+            cout << "The reader has already borrowed the book." << endl;
+    } else {
+        cout << "Cancaled." << endl;
+    }
 }
 
 int main(int argc, const char * argv[]) {
@@ -284,6 +317,10 @@ int main(int argc, const char * argv[]) {
                 } else {
                     readBackup = cmd_I();
                 }
+                option = '~';
+                break;
+            case 'N':
+                cmd_N();
                 option = '~';
                 break;
                 

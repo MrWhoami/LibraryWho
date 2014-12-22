@@ -306,7 +306,7 @@ int Library::exportBookPool(string filePath) {
     int i = 1;
     while (i <= bookNumber) {
         fout << i << ".  ";
-        fout << p->book->name;
+        fout << p->book->name << ' ';
         fout << p->book->getISBN().group1 << '-';
         fout << p->book->getISBN().group2 << '-';
         fout << p->book->getISBN().group3 << '-';
@@ -466,4 +466,28 @@ int Library::buildReaderPool(string filePath) {
         fin >> buffer;
     }
     return 0;
+}
+
+int Library::borrowBook(){
+    int returnNum = 0;
+    if (bookNow == NULL) {
+        returnNum += 1;
+    }
+    if (readerNow == NULL) {
+        returnNum += 2;
+    }
+    if (returnNum > 0) {
+        return returnNum;
+    }
+    returnNum = bookNow->borrowBook(readerNow->getRid());
+    if (returnNum > 0) {
+        returnNum = returnNum*4;
+        return returnNum;
+    }
+    returnNum = readerNow->borrowNew(bookNow->getISBN());
+    if (returnNum > 0) {
+        returnNum = returnNum*16;
+        bookNow->returnBook(readerNow->getRid());
+    }
+    return returnNum;
 }
