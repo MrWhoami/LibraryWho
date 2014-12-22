@@ -275,3 +275,7 @@ Date BookBorrowed::returnDate(){
     }
     return returnDay;
 }
+
+int Reader::getBorrowed(){
+    return borrowed;
+}

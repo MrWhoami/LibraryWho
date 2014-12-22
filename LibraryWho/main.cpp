@@ -31,17 +31,27 @@ void printHelp(){
 void cmd_A() {
     if (!test) {
         cout << "You haven't test the data file yet. Do you want to test it before use? (0/1)" << endl;
+        cout << "[LibraryWho]: ";
         cin >> test;
         if (test) {
             test = 0;
             return;
         }
     }
+    int num = 1;
+    cout << "Please input the quantity of each book about to input: " << endl;
+    cout << "[LibraryWho]: ";
+    cin >> num;
+    if (num < 0) {
+        cout << "Invalid number. Set the number 0." << endl;
+        num = 0;
+    }
     cout << "Please input the path of the file: " << endl;
+    cout << "[LibraryWho]: ";
     string path;
     cin >> path;
     int result;
-    result = library.buildALibrary(path);
+    result = library.importBooks(path, num);
     switch (result) {
         case 0:
             cout << "Success." << endl;
@@ -132,28 +142,24 @@ void cmd_r() {
 }
 
 void cmd_E() {
-    //printAllBooks need to be changed.
-    //path confirm needed.
     cout << "Use default path(0/1) ?" << endl;
     bool defPath = 1;
     string path;
-    string pathLWB;
-    string pathLWR;
+    int runResult = -1;
+    cout << "[LibraryWho]: ";
     cin >> defPath;
     if (defPath){
         path = DEFAULT_PATH;
     } else {
         cout << "Input the path of the target folder: " << endl;
+        cout << "[LibraryWho]: ";
         cin >> path;
     }
-    pathLWB = path+"backup.lwb";
-    pathLWR = path+"backup.lwr";
-    library.printAllBooks(pathLWB);
-    library.printAllReaders(pathLWR);
+    runResult = library.exportTheLibrary(path);
+    //Switch runResult.
 }
 
 bool cmd_I() {
-    //Need to be done.
     cout << "Import the back up date ?" << endl;
     cout << "0. No.   1. Default path.   2. Other path." << endl;
     cout << "[LibraryWho]: ";
@@ -175,13 +181,11 @@ bool cmd_I() {
             break;
             
         default:
-            cout << "Invalid option. No operation will be taken. If you want to import the backup files, just use the option 'I'" << endl;;
+            cout << "Invalid option. No operation will be taken. If you want to import the backup files later, just use the option 'I'" << endl;;
             break;
     }
-    string pathLWR;
-    string pathLWB;
-    pathLWR = path+"backup.lwr";
-    pathLWB = path+"backup.lwb";
+    runResult = library.buildALibrary(path);
+    //Switch runResult;
     return 0;
 }
 

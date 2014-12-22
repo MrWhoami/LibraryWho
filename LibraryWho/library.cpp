@@ -31,7 +31,7 @@ Library::~Library() {
     }
 }
 
-int Library::importBooks(string filePath) {
+int Library::importBooks(string filePath, int num) {
     ifstream fin(filePath);
     if (!fin) return -1;
     string reading;
@@ -65,6 +65,7 @@ int Library::importBooks(string filePath) {
         bookPool->book->author = buffer;    //Input the author and the date to the new node.
         fin >> price;                       //Read the price.
         bookPool->book->inputPrice(price);  //Input the price to the new node.
+        bookPool->book->quantity = num;     //Input the quantity of the new node.
         bookNumber++;
         tmpDate.year = 0;
         tmpISBN.group1 = 0;
@@ -214,29 +215,7 @@ int Library::printAllReaders(string filePath) {
         fout << p->reader->name << ' ';
         fout << p->reader->level << ' ';
         fout << p->reader->email << ' ';
-        int bookNum = p->reader->getNumber();
-        fout << bookNum << ' ';
-        ISBN* booksBorrowed = new ISBN[bookNum];
-        Date* booksDate = new Date[bookNum];
-        bool* booksRenew = new bool[bookNum];
-        p->reader->getBook(booksBorrowed);
-        p->reader->getData(booksDate);
-        p->reader->getRenew(booksRenew);
-        for (int j=0; j<bookNum; j++) {
-            fout << booksBorrowed[j].group1 << '-';
-            fout << booksBorrowed[j].group2 << '-';
-            fout << booksBorrowed[j].group3 << '-';
-            fout << booksBorrowed[j].group4 << '-';
-            fout << booksBorrowed[j].group5 << ' ';
-            fout << booksDate[j].year << '-';
-            fout << booksDate[j].month << '-';
-            fout << booksDate[j].day << ' ';
-            fout << booksRenew[j] << ' ';
-        }
-        fout << '\n';
-        delete [] booksRenew;
-        delete [] booksDate;
-        delete [] booksBorrowed;
+        fout << p->reader->getBorrowed() << '\n';
         p = p->nextReader;
         i++;
     }
@@ -275,4 +254,88 @@ void Library::printReaderInfo() {
         cout << booksRenew[j] << '\n';
     }
     cout << endl;
+}
+
+int Library::exportReaderPool(string filePath) {
+    ofstream fout(filePath);
+    if (!fout) return -1;
+    ReaderNode *p = readerPool;
+    int i = 1;
+    while (i <= readerNumber) {
+        fout << p->reader->getRid() << "  ";
+        fout << p->reader->name << ' ';
+        fout << p->reader->level << ' ';
+        fout << p->reader->email << ' ';
+        int bookNum = p->reader->getNumber();
+        fout << bookNum << ' ';
+        ISBN* booksBorrowed = new ISBN[bookNum];
+        Date* booksDate = new Date[bookNum];
+        bool* booksRenew = new bool[bookNum];
+        p->reader->getBook(booksBorrowed);
+        p->reader->getData(booksDate);
+        p->reader->getRenew(booksRenew);
+        for (int j=0; j<bookNum; j++) {
+            fout << booksBorrowed[j].group1 << '-';
+            fout << booksBorrowed[j].group2 << '-';
+            fout << booksBorrowed[j].group3 << '-';
+            fout << booksBorrowed[j].group4 << '-';
+            fout << booksBorrowed[j].group5 << ' ';
+            fout << booksDate[j].year << '-';
+            fout << booksDate[j].month << '-';
+            fout << booksDate[j].day << ' ';
+            fout << booksRenew[j] << ' ';
+        }
+        fout << '\n';
+        delete [] booksRenew;
+        delete [] booksDate;
+        delete [] booksBorrowed;
+        p = p->nextReader;
+        i++;
+    }
+    fout.close();
+    return 0;
+}
+
+int Library::exportBookPool(string filePath) {
+    ofstream fout(filePath);
+    if (!fout) return -1;
+    BookNode *p = bookPool;
+    int i = 1;
+    while (i <= bookNumber) {
+        fout << i << ".  ";
+        fout << p->book->name;
+        fout << p->book->getISBN().group1 << '-';
+        fout << p->book->getISBN().group2 << '-';
+        fout << p->book->getISBN().group3 << '-';
+        fout << p->book->getISBN().group4 << '-';
+        fout << p->book->getISBN().group5 << ' ';
+        fout << p->book->author << ' ';
+        fout << p->book->date.year << '-';
+        fout << p->book->date.month << '-';
+        fout << p->book->date.day << ' ';
+        fout << p->book->outputPrice() << ' ';
+        fout << p->book->quantity << ' ';
+        int bookNum = p->book->getReaderNum();
+        unsigned* ridList = new unsigned[bookNum];
+        p->book->getReaders(ridList);
+        fout << bookNum << ' ';
+        for (int j=0; j<bookNum; j++) {
+            fout << ridList[j] << ' ';
+        }
+        fout << '\n';
+        p = p->nextBook;
+        i++;
+    }
+    fout.close();
+    return 0;
+}
+
+int Library::exportTheLibrary(string filePath) {
+    string path = filePath;
+    string pathLWR;
+    string pathLWB;
+    pathLWR = path+"backup.lwr";
+    pathLWB = path+"backup.lwb";
+    //Doing
+    return 0;
 }

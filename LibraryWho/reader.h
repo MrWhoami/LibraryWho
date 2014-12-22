@@ -43,6 +43,7 @@ public:
     ~Reader();
     unsigned getRid();
     int getNumber();
+    int getBorrowed();
     int getBook(ISBN* &borrowedList);
     int getData(Date* &borrowedList);
     int getRenew(bool* &borrowedList);
