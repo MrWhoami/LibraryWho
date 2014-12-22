@@ -20,7 +20,7 @@ void printHelp(){
     cout << " Q     Quit this program." << endl;
     cout << " A     Add books to this library through a file." << endl;
     cout << " e     Export the library books into a file." <<  endl;
-    cout << " I     Search the book with an ISBN code." << endl;
+    cout << " i     Search the book with an ISBN code." << endl;
     cout << " B     Search the book with the name." << endl;
     cout << " P     Print the information of the current book." << endl;
     cout << " T     Test if the file can be read correctly. " << endl;
@@ -90,7 +90,7 @@ void cmd_T() {
     test = 1;
 }
 
-void cmd_I() {
+void cmd_i() {
     library.ISBN_search();
     library.printBookInfo();
 }
@@ -141,7 +141,7 @@ void cmd_E() {
     string pathLWR;
     cin >> defPath;
     if (defPath){
-        path = "~/Documents/LibraryWho/";
+        path = DEFAULT_PATH;
     } else {
         cout << "Input the path of the target folder: " << endl;
         cin >> path;
@@ -152,16 +152,49 @@ void cmd_E() {
     library.printAllReaders(pathLWR);
 }
 
+bool cmd_I() {
+    //Need to be done.
+    cout << "Import the back up date ?" << endl;
+    cout << "0. No.   1. Default path.   2. Other path." << endl;
+    cout << "[LibraryWho]: ";
+    int option = 0;
+    int runResult = 0;
+    string path;
+    cin >> option;
+    switch (option) {
+        case '0':
+            cout << "No operation." << endl;
+            break;
+        case '1':
+            cout << "Using the default path. " << endl;
+            path = DEFAULT_PATH;
+            break;
+        case '2':
+            cout << "Please input the path. " << endl;
+            cin >> path;
+            break;
+            
+        default:
+            cout << "Invalid option. No operation will be taken. If you want to import the backup files, just use the option 'I'" << endl;;
+            break;
+    }
+    string pathLWR;
+    string pathLWB;
+    pathLWR = path+"backup.lwr";
+    pathLWB = path+"backup.lwb";
+    return 0;
+}
+
 int main(int argc, const char * argv[]) {
     cout << "============ LibraryWho ============" << endl;
     char option = '~';
-    cout << "Import the back up date ?" << endl;
-    cout << "0. No.   1. Default path.   2. Other path." << endl;
-    //More to be done.
     test = 0;
+    bool readBackup = 0;
+    readBackup = cmd_I();
     while (option != 0) {
         cout << endl;
         cout << "Please input an option (? for help): " << endl;
+        cout << "[LibraryWho]: ";
         cin >> option;
         switch (option) {
             case 'Q':
@@ -187,8 +220,8 @@ int main(int argc, const char * argv[]) {
                 cmd_T();
                 option = '~';
                 break;
-            case 'I':
-                cmd_I();
+            case 'i':
+                cmd_i();
                 option = '~';
                 break;
             case 'P':
@@ -205,6 +238,14 @@ int main(int argc, const char * argv[]) {
                 break;
             case 'E':
                 cmd_E();
+                option = '~';
+                break;
+            case 'I':
+                if (readBackup) {
+                    cout << "You have already input the backup data." << endl;
+                } else {
+                    readBackup = cmd_I();
+                }
                 option = '~';
                 break;
                 

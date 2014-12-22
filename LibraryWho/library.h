@@ -46,16 +46,19 @@ class Library {
     ReaderNode* readerPool;
     BookNode* bookPool;
     
+    int buildReaderPool(string filePath);   //todo
+    int buildBookPool(string filePath);     //todo
+    
 public:
     Book* bookNow;
     Reader* readerNow;
     
     Library();
     ~Library();
-    int buildALibrary(string filePath);     //-1.Fail, 0.Success
+    int importBooks(string filePath);     //-1.Fail, 0.Success
     int printAllBooks(string filePath);     //-1.Fail, 0.Success need to change
-    int buildReaderClub(string filePath);   //todo
     int printAllReaders(string filePath);   //-1.Fail, 0.Success
+    int buildALibrary(string filePath);     //todo
     int addReaders(int num, int level);     //0.Success, 1-3, Fail.
     bool ISBN_search();                     //0.Fail, 1.Success
     bool BOOKNAME_search();                 //0.Fail, 1.Success

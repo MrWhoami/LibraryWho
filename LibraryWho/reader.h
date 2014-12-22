@@ -33,6 +33,7 @@ private:
     BookBorrowed *bookBorrowed;
     unsigned rid;
     int borrowed;
+    
 public:
     string name;
     int level;

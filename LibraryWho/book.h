@@ -21,18 +21,25 @@ struct BorrowNode {
 class Book {
 private:
     ISBN isbn;
+    BorrowNode* readers;
+    
 public:
     string name;
     string author;
     Date date;
     unsigned price;
     int quantity;
-    BorrowNode* readers;
     
     Book(ISBN isbnIn);
+    ~Book();
+    int getTotal();
+    int getReaderNum();
+    int getReaders(unsigned* &rid);
+    int borrowBook(unsigned rid);            //0.Success, 1.No book, 2.Already borrowed,
+    int returnBook(unsigned rid);            //0.Success, 1.Not borrowed.
     void inputPrice(double priceIn);
     double outputPrice();
-    bool readerReturn(unsigned rRid);        //0.fail, 1.success.
+//  bool readerReturn(unsigned rRid);
     ISBN getISBN();
 };
 

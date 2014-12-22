@@ -31,7 +31,7 @@ Library::~Library() {
     }
 }
 
-int Library::buildALibrary(string filePath) {
+int Library::importBooks(string filePath) {
     ifstream fin(filePath);
     if (!fin) return -1;
     string reading;
@@ -100,7 +100,7 @@ int Library::printAllBooks(string filePath) {
     return 0;
 }
 
-bool Library::ISBN_search(){
+bool Library::ISBN_search() {
     string look_for;
     printf("Please code the ISBN of the target book(978-x-xxx-xxxxx-x):\n");
     cin  >> look_for;
@@ -124,7 +124,7 @@ bool Library::ISBN_search(){
     }
 }
 
-bool Library::BOOKNAME_search(){
+bool Library::BOOKNAME_search() {
     string look_for;
     printf("Please input the name of the target book:\n");
     cin >> look_for;
@@ -161,6 +161,8 @@ void Library::printBookInfo() {
     cout << bookNow->date.month << '-';
     cout << bookNow->date.day << endl;
     cout << "Price:        " << bookNow->outputPrice() << endl;
+    cout << "Storage:      " << bookNow->quantity << endl;
+    //Not finished.
 }
 
 int Library::addReaders(int num, int levelIn) {
@@ -194,13 +196,13 @@ int Library::addReaders(int num, int levelIn) {
     return 0;
 }
 
-int Library::printAllReaders(string filePath){
+int Library::printAllReaders(string filePath) {
     ofstream fout(filePath);
     if (!fout) return -1;
     ReaderNode *p = readerPool;
     int i = 1;
     while (i <= readerNumber) {
-        fout << i << ".  ";
+        fout << p->reader->getRid() << ".  ";
         fout << p->reader->name << ' ';
         fout << p->reader->level << ' ';
         fout << p->reader->email << ' ';
@@ -231,4 +233,16 @@ int Library::printAllReaders(string filePath){
     }
     fout.close();
     return 0;
+}
+
+void Library::printReaderInfo() {
+    if (readerNow == NULL) {
+        cout << "You haven't got a book yet." << endl;
+        return;
+    }
+    cout << "RID: " << readerNow->getRid() << endl;
+    cout << "Name: " << readerNow->name << endl;
+    cout << "E-mail: " << readerNow->email << endl;
+    cout << "Level: " << readerNow->level << endl;
+    //Not finished yet.
 }

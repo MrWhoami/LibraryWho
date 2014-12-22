@@ -12,6 +12,8 @@
 #include <string>
 using namespace std;
 
+#define DEFAULT_PATH "~/Documents/LibraryWho/"
+
 struct Date {
     short year;
     short month;
