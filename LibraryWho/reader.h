@@ -10,6 +10,7 @@
 #define __LibraryWho__reader__
 
 #include "common.h"
+#include <time.h>
 
 class BookBorrowed {
 public:

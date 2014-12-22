@@ -9,7 +9,6 @@
 #ifndef __Library__book__
 #define __Library__book__
 
-#include <time.h>
 #include "common.h"
 
 struct BorrowNode {
