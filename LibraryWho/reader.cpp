@@ -124,6 +124,7 @@ int Reader::getBook(ISBN* &borrowedList) {
     int i = 0;
     while (p != NULL) {
         borrowedList[i] = p->theBook;
+        p = p->nextBook;
         i++;
     }
     return i;
@@ -134,6 +135,7 @@ int Reader::getData(Date* &borrowedList) {
     int i = 0;
     while (p != NULL) {
         borrowedList[i] = p->borrowDate;
+        p = p->nextBook;
         i++;
     }
     return i;
@@ -144,6 +146,7 @@ int Reader::getRenew(bool* &borrowedList) {
     int i = 0;
     while (p != NULL) {
         borrowedList[i] = p->renew;
+        p = p->nextBook;
         i++;
     }
     return i;
