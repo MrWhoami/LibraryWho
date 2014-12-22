@@ -162,7 +162,15 @@ void Library::printBookInfo() {
     cout << bookNow->date.day << endl;
     cout << "Price:        " << bookNow->outputPrice() << endl;
     cout << "Storage:      " << bookNow->quantity << endl;
-    //Not finished.
+    int readerNum = bookNow->getReaderNum();
+    unsigned* ridList = new unsigned[readerNum];
+    bookNow->getReaders(ridList);
+    cout << "Readers:      " << readerNum << endl;
+    for (int i=0; i<readerNum; i++) {
+        cout << ridList[i] << ' ';
+    }
+    cout << endl;
+    cout << endl;
 }
 
 int Library::addReaders(int num, int levelIn) {
@@ -202,7 +210,7 @@ int Library::printAllReaders(string filePath) {
     ReaderNode *p = readerPool;
     int i = 1;
     while (i <= readerNumber) {
-        fout << p->reader->getRid() << ".  ";
+        fout << p->reader->getRid() << "  ";
         fout << p->reader->name << ' ';
         fout << p->reader->level << ' ';
         fout << p->reader->email << ' ';
@@ -213,16 +221,17 @@ int Library::printAllReaders(string filePath) {
         bool* booksRenew = new bool[bookNum];
         p->reader->getBook(booksBorrowed);
         p->reader->getData(booksDate);
+        p->reader->getRenew(booksRenew);
         for (int j=0; j<bookNum; j++) {
-            fout << booksBorrowed[i].group1 << '-';
-            fout << booksBorrowed[i].group2 << '-';
-            fout << booksBorrowed[i].group3 << '-';
-            fout << booksBorrowed[i].group4 << '-';
-            fout << booksBorrowed[i].group5 << ' ';
-            fout << booksDate[i].year << '-';
-            fout << booksDate[i].month << '-';
-            fout << booksDate[i].day << ' ';
-            fout << booksRenew[i] << ' ';
+            fout << booksBorrowed[j].group1 << '-';
+            fout << booksBorrowed[j].group2 << '-';
+            fout << booksBorrowed[j].group3 << '-';
+            fout << booksBorrowed[j].group4 << '-';
+            fout << booksBorrowed[j].group5 << ' ';
+            fout << booksDate[j].year << '-';
+            fout << booksDate[j].month << '-';
+            fout << booksDate[j].day << ' ';
+            fout << booksRenew[j] << ' ';
         }
         fout << '\n';
         delete [] booksRenew;
@@ -240,9 +249,30 @@ void Library::printReaderInfo() {
         cout << "You haven't got a book yet." << endl;
         return;
     }
-    cout << "RID: " << readerNow->getRid() << endl;
-    cout << "Name: " << readerNow->name << endl;
-    cout << "E-mail: " << readerNow->email << endl;
-    cout << "Level: " << readerNow->level << endl;
-    //Not finished yet.
+    cout << "RID:          " << readerNow->getRid() << endl;
+    cout << "Name:         " << readerNow->name << endl;
+    cout << "E-mail:       " << readerNow->email << endl;
+    cout << "Level:        " << readerNow->level << endl;
+    cout << "Book History: " << readerNow->getNumber() << endl;
+    int bookNum = readerNow->getNumber();
+    cout << "Now Reading:  " << bookNum << endl;
+    cout << "ISBN        Date         Renew" << endl;
+    ISBN* booksBorrowed = new ISBN[bookNum];
+    Date* booksDate = new Date[bookNum];
+    bool* booksRenew = new bool[bookNum];
+    readerNow->getBook(booksBorrowed);
+    readerNow->getData(booksDate);
+    readerNow->getRenew(booksRenew);
+    for (int j=0; j<bookNum; j++) {
+        cout << booksBorrowed[j].group1 << '-';
+        cout << booksBorrowed[j].group2 << '-';
+        cout << booksBorrowed[j].group3 << '-';
+        cout << booksBorrowed[j].group4 << '-';
+        cout << booksBorrowed[j].group5 << ' ';
+        cout << booksDate[j].year << '-';
+        cout << booksDate[j].month << '-';
+        cout << booksDate[j].day << ' ';
+        cout << booksRenew[j] << '\n';
+    }
+    cout << endl;
 }
