@@ -69,6 +69,7 @@ public:
     int borrowBook();                       //Reader now borrow the book now.
     int returnBook();                       //Reader now return the book now.
     int exportTheLibrary(string filepath);  //0.Success, 1.Book fail, 2.Reader fail.
+    void AUTHOR_search();
 };
 
 #endif /* defined(__LibraryWho__library__) */

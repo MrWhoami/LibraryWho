@@ -29,6 +29,7 @@ void printHelp(){
     cout << " I     Import all the library information from a folder." << endl;
     cout << " N     The reader now want to borrow the book now." << endl;
     cout << " O     The reader now want to return the book now." << endl;
+    cout << " W     Search the bool with the author's name." << endl;
 }
 
 void cmd_A() {
@@ -290,6 +291,10 @@ void cmd_O() {
     }
 }
 
+void cmd_W() {
+    library.AUTHOR_search();
+}
+
 int main(int argc, const char * argv[]) {
     cout << "============ LibraryWho ============" << endl;
     char option = '~';
@@ -359,6 +364,9 @@ int main(int argc, const char * argv[]) {
                 cmd_O();
                 option = '~';
                 break;
+            case 'W':
+                cmd_W();
+                option = '~';
                 
             default:
                 cout << "Invalid option: " << option << endl;

@@ -512,3 +512,21 @@ int Library::returnBook(){
     returnNum = returnNum*8;
     return returnNum;
 }
+
+void Library::AUTHOR_search() {
+    string look_for;
+    cout << "Please input the author's name of the target book." << endl;
+    cout << "[LibraryWho]: ";
+    cin >> look_for;
+    BookNode * test;
+    int count = 0;
+    for(test=bookPool; test!=NULL; test=test->nextBook) {
+        if(test->book->author.find(look_for) != test->book->author.npos ) {
+            bookNow = test->book;
+            printBookInfo();
+            cout<<endl;
+            count++;
+        }
+    }
+    cout<< "We find " << count << " books whose auther's name is " << look_for << endl;
+}
