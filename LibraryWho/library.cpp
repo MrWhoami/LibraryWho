@@ -491,3 +491,24 @@ int Library::borrowBook(){
     }
     return returnNum;
 }
+
+int Library::returnBook(){
+    int returnNum = 0;
+    if (bookNow == NULL) {
+        returnNum += 1;
+    }
+    if (readerNow == NULL) {
+        returnNum += 2;
+    }
+    if (returnNum > 0) {
+        return returnNum;
+    }
+    returnNum = bookNow->returnBook(readerNow->getRid());
+    if (returnNum > 0) {
+        returnNum = returnNum*4;
+        return returnNum;
+    }
+    returnNum = readerNow->returnOld(bookNow->getISBN());
+    returnNum = returnNum*8;
+    return returnNum;
+}

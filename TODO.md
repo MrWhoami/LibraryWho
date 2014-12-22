@@ -9,7 +9,7 @@
 7. Find a reader by its name.
 8. Find a reader by its email.
 9. ~~Borrow a book.~~
-10. Return a book.
+10. ~~Return a book.~~
 11. Delete a reader.
 12. Delete a book.
 13. ~~Print the information of a reader.~~

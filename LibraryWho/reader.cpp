@@ -89,7 +89,7 @@ int Reader::returnOld(ISBN oldBook) {
         p = p->nextBook;
     }
     if (p == NULL) {
-        return 0;
+        return 1;
     } else {
         int returnNum = 1;
         time_t rawtime;
@@ -107,7 +107,7 @@ int Reader::returnOld(ISBN oldBook) {
             returnNum = 2;
         }
         else {
-            returnNum = 1;
+            returnNum = 0;
         }
         if (pre == NULL) {
             bookBorrowed = p->nextBook;

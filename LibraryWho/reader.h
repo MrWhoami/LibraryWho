@@ -48,8 +48,8 @@ public:
     int getBook(ISBN* &borrowedList);
     int getData(Date* &borrowedList);
     int getRenew(bool* &borrowedList);
-    int borrowNew(ISBN newBook);           //0.Success, 1.Level limited. 2.Already borrowed.
-    int returnOld(ISBN oldBook);            //0:No such book, 1.Success, 2.Broken the rule. 
+    int borrowNew(ISBN newBook);           //0.Success, 1.Level limited, 2.Already borrowed.
+    int returnOld(ISBN oldBook);           //0:Success, 1.No such book, 2.Broken the rule.
 };
 
 #endif /* defined(__LibraryWho__reader__) */

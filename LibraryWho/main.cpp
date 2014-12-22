@@ -27,6 +27,8 @@ void printHelp(){
     cout << " R     Add readers by command line." << endl;
     cout << " E     Export all the library information into a folder." << endl;
     cout << " I     Import all the library information from a folder." << endl;
+    cout << " N     The reader now want to borrow the book now." << endl;
+    cout << " O     The reader now want to return the book now." << endl;
 }
 
 void cmd_A() {
@@ -258,6 +260,36 @@ void cmd_N() {
     }
 }
 
+void cmd_O() {
+    cout << library.readerNow->name << " will return " << library.bookNow->name <<" (0/1)?" << endl;
+    cout << "[LibraryWho]: ";
+    bool judge = 0;
+    cin >> judge;
+    if (judge) {
+        int returnNum = library.borrowBook();
+        if (returnNum == 0) {
+            cout << "Returned successfully. " << endl;
+            return;
+        }
+        if(returnNum&1)
+            cout << "No book selected." << endl;
+        returnNum = returnNum >> 1;
+        if (returnNum&1)
+            cout << "No reader selected." << endl;
+        returnNum = returnNum >> 1;
+        if (returnNum&1)
+            cout << "No book borrowed." << endl;
+        returnNum = returnNum >> 1;
+        if (returnNum&1)
+            cout << "The reader hasn't borrowed the book." << endl;
+        returnNum = returnNum >> 1;
+        if (returnNum&1)
+            cout << "The reader has broken the time limit." << endl;
+    } else {
+        cout << "Cancaled." << endl;
+    }
+}
+
 int main(int argc, const char * argv[]) {
     cout << "============ LibraryWho ============" << endl;
     char option = '~';
@@ -321,6 +353,10 @@ int main(int argc, const char * argv[]) {
                 break;
             case 'N':
                 cmd_N();
+                option = '~';
+                break;
+            case 'O':
+                cmd_O();
                 option = '~';
                 break;
                 
