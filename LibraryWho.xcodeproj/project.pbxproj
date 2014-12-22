@@ -10,7 +10,6 @@
 		189F481A1A40643D00837A26 /* library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 189F48181A40643D00837A26 /* library.cpp */; };
 		18C295E01A3EE4D1003ED771 /* book.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C295DB1A3EE4D1003ED771 /* book.cpp */; };
 		18C295E31A3EE4DF003ED771 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C295E21A3EE4DF003ED771 /* main.cpp */; };
-		18C295E61A3EE682003ED771 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 18C295E51A3EE682003ED771 /* README.md */; };
 		18C295EB1A3EECEC003ED771 /* reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C295E91A3EECEC003ED771 /* reader.cpp */; };
 /* End PBXBuildFile section */
 
@@ -155,7 +154,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				189F481A1A40643D00837A26 /* library.cpp in Sources */,
-				18C295E61A3EE682003ED771 /* README.md in Sources */,
 				18C295E01A3EE4D1003ED771 /* book.cpp in Sources */,
 				18C295EB1A3EECEC003ED771 /* reader.cpp in Sources */,
 				18C295E31A3EE4DF003ED771 /* main.cpp in Sources */,
