@@ -1,13 +1,13 @@
 //
 //  library.h
-//  Library
+//  LibraryWho
 //
 //  Created by Whoami on 14/12/14.
 //  Copyright (c) 2014年 Jiyuan Liu.
 //
 
-#ifndef __Library__book__
-#define __Library__book__
+#ifndef __LibraryWho__book__
+#define __LibraryWho__book__
 
 #include "common.h"
 
@@ -42,4 +42,4 @@ public:
     ISBN getISBN();
 };
 
-#endif /* defined(__Library__library__) */
+#endif /* defined(__LibraryWho__library__) */

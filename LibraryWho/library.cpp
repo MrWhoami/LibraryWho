@@ -303,7 +303,7 @@ int Library::exportBookPool(string filePath) {
     ofstream fout(filePath);
     if (!fout) return 1;
     BookNode *p = bookPool;
-    int i = 1;
+    unsigned i = 1;
     while (i <= bookNumber) {
         fout << i << ".  ";
         fout << p->book->name << ' ';

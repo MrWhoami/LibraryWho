@@ -1,6 +1,6 @@
 //
 //  library.cpp
-//  Library
+//  LibraryWho
 //
 //  Created by Whoami on 14/12/14.
 //  Copyright (c) 2014年 Jiyuan Liu.

@@ -46,7 +46,7 @@ class Library {
     ReaderNode* readerPool;
     BookNode* bookPool;
     
-    int buildReaderPool(string filePath);   //todo
+    int buildReaderPool(string filePath);   //
     int buildBookPool(string filePath);     //Import the book pool from *.lwb.
     int exportBookPool(string filePath);    //Export the book pool into *.lwb.
     int exportReaderPool(string filePath);  //Export the reader pool into *.lwr.
@@ -67,7 +67,7 @@ public:
     void printBookInfo();                   //Print the information of the book.
     void printReaderInfo();                 //Print the information of the reader.
     int borrowBook();                       //Reader now borrow the book now.
-    int returnBook();                       //Reader now return the book now.   todo
+    int returnBook();                       //Reader now return the book now.
     int exportTheLibrary(string filepath);  //0.Success, 1.Book fail, 2.Reader fail.
 };
 
