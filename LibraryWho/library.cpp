@@ -236,7 +236,7 @@ void Library::printReaderInfo() {
     cout << "Name:         " << readerNow->name << endl;
     cout << "E-mail:       " << readerNow->email << endl;
     cout << "Level:        " << readerNow->level << endl;
-    cout << "Book History: " << readerNow->getNumber() << endl;
+    cout << "Book History: " << readerNow->getBorrowed() << endl;
     int bookNum = readerNow->getNumber();
     cout << "Now Reading:  " << bookNum << endl;
     cout << "ISBN        Date         Renew" << endl;

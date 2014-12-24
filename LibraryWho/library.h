@@ -46,7 +46,7 @@ class Library {
     ReaderNode* readerPool;
     BookNode* bookPool;
     
-    int buildReaderPool(string filePath);   //
+    int buildReaderPool(string filePath);   //Import the reader pool from *.lwr.
     int buildBookPool(string filePath);     //Import the book pool from *.lwb.
     int exportBookPool(string filePath);    //Export the book pool into *.lwb.
     int exportReaderPool(string filePath);  //Export the reader pool into *.lwr.

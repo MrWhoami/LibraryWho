@@ -271,7 +271,7 @@ void cmd_O() {
     bool judge = 0;
     cin >> judge;
     if (judge) {
-        int returnNum = library.borrowBook();
+        int returnNum = library.returnBook();
         if (returnNum == 0) {
             cout << "Returned successfully. " << endl;
             return;
