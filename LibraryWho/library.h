@@ -74,6 +74,7 @@ public:
     bool RID_search();                      //0.Fail, 1.Success
     bool READERNAME_search();               //0.Fail, 1.Success
     bool EMAIL_search();                    //0.Fail, 1.Success
+    int renewBook();                        ////0.Success, 1.No such book, 2.Already renewed, 4.Broken the rule.
 };
 
 #endif /* defined(__LibraryWho__library__) */

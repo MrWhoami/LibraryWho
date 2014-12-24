@@ -610,3 +610,7 @@ void Library::BOOKNAMEpart_search() {
     }
     cout<< "We find " << count << " books whose name has " << look_for << endl;
 }
+
+int Library::renewBook(){
+     return readerNow->renewBook(bookNow->getISBN());
+}

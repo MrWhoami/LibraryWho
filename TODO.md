@@ -2,7 +2,7 @@
 ## Functions to Achieve
 1. ~~Export readers into a file.~~
 2. ~~Import readers from a file.~~
-3. Renew return date.
+3. ~~Renew return date.~~
 4. ~~Search a book by its writer.~~
 5. ~~Search a book by part of its name.~~
 6. Add new books through command line.

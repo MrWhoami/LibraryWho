@@ -34,6 +34,7 @@ void printHelp(){
     cout << " D     Search the reader with the name." << endl;
     cout << " M     Search the reader with the e-mail." << endl;
     cout << " G     Search the book with part of its name. " << endl;
+    cout << " H     Renew the book's return date." << endl;
 }
 
 void cmd_A() {
@@ -315,6 +316,34 @@ void cmd_G() {
     library.BOOKNAMEpart_search();
 }
 
+void cmd_H() {
+    cout << library.readerNow->name << " will renew " << library.bookNow->name <<" (0/1)?" << endl;
+    cout << "[LibraryWho]: ";
+    bool judge = 0;
+    cin >> judge;
+    if (judge) {
+        int returnNum = library.renewBook();
+        switch (returnNum) {
+            case 0:
+                cout << "Success." << endl;
+                break;
+            case 1:
+                cout << "The reader hasn't borrowed the book yet." << endl;
+                break;
+            case 2:
+                cout << "The reader has renewed its return date." << endl;
+                break;
+            case 4:
+                cout << "The reader has broken the rule." << endl;
+                break;
+                
+            default:
+                cout << "Unknown error." << endl;
+                break;
+        }
+    }
+}
+
 int main(int argc, const char * argv[]) {
     cout << "============ LibraryWho ============" << endl;
     char option = '~';
@@ -328,7 +357,12 @@ int main(int argc, const char * argv[]) {
         cin >> option;
         switch (option) {
             case 'Q':
-                option = 0;
+                cout << "Would you like to backup your data ?(0/1)" << endl;
+                cout << "[LibraryWho]: ";
+                cin >> test;
+                if (test) {
+                    cmd_E();
+                }
                 return 0;
                 break;
             case '?':
