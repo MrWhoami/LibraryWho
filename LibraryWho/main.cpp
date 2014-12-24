@@ -29,7 +29,11 @@ void printHelp(){
     cout << " I     Import all the library information from a folder." << endl;
     cout << " N     The reader now want to borrow the book now." << endl;
     cout << " O     The reader now want to return the book now." << endl;
-    cout << " W     Search the bool with the author's name." << endl;
+    cout << " W     Search the book with the author's name." << endl;
+    cout << " U     Search the reader with the RID." << endl;
+    cout << " D     Search the reader with the name." << endl;
+    cout << " M     Search the reader with the e-mail." << endl;
+    cout << " G     Search the book with part of its name. " << endl;
 }
 
 void cmd_A() {
@@ -292,7 +296,23 @@ void cmd_O() {
 }
 
 void cmd_W() {
-    library.AUTHOR_search();
+    library.AUTHORpart_search();
+}
+
+void cmd_U() {
+    library.RID_search();
+}
+
+void cmd_D() {
+    library.READERNAME_search();
+}
+
+void cmd_M() {
+    library.EMAIL_search();
+}
+
+void cmd_G() {
+    library.BOOKNAMEpart_search();
 }
 
 int main(int argc, const char * argv[]) {
@@ -366,6 +386,19 @@ int main(int argc, const char * argv[]) {
                 break;
             case 'W':
                 cmd_W();
+                option = '~';
+            case 'U':
+                cmd_U();
+                option = '~';
+            case 'M':
+                cmd_M();
+                option = '~';
+            case 'D':
+                cmd_D();
+                option = '~';
+                break;
+            case 'G':
+                cmd_G();
                 option = '~';
                 
             default:
