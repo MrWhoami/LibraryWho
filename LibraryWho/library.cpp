@@ -104,43 +104,45 @@ int Library::printAllBooks(string filePath) {
 
 bool Library::ISBN_search() {
     string look_for;
-    printf("Please code the ISBN of the target book(978-x-xxx-xxxxx-x):\n");
+    cout << "Please code the ISBN of the target book(978-x-xxx-xxxxx-x)." << endl;
+    cout << "[LibraryWho]: ";
     cin  >> look_for;
-    ISBN fuck;
-    if (!(fuck << look_for)){
+    ISBN isbnIn;
+    if (!(isbnIn << look_for)){
         cout << "Invalid ISBN code. " << look_for << endl;
         return 0;
     }
-    BookNode * test;
-    for( test = bookPool; test != NULL; test = test->nextBook ){
-        if(test->book->getISBN() == fuck){
+    BookNode * target;
+    for( target = bookPool; target != NULL; target = target->nextBook ){
+        if(target->book->getISBN() == isbnIn){
             break;
         }
     }
-    if(test == NULL){
+    if(target == NULL){
         cout << " Sorry, we can't find a book whose ISBN is " << look_for << endl;
         return 0;
     } else {
-        bookNow = test->book;
+        bookNow = target->book;
         return 1;
     }
 }
 
 bool Library::BOOKNAME_search() {
     string look_for;
-    printf("Please input the name of the target book:\n");
+    cout << "Please input the name of the target book." << endl;
+    cout << "[LibraryWho]: ";
     cin >> look_for;
-    BookNode * test;
-    for( test = bookPool; test != NULL; test = test->nextBook ){
-        if(look_for.compare(test->book->name)==0){
+    BookNode * target;
+    for( target = bookPool; target != NULL; target = target->nextBook ){
+        if(look_for.compare(target->book->name)==0){
             break;
         }
     }
-    if(test == NULL){
+    if(target == NULL){
         cout<< "Sorry, we can't find a book whose name is " << look_for << endl;
         return 0;
     } else {
-        bookNow = test->book;
+        bookNow = target->book;
         return 1;
     }
 }
@@ -234,7 +236,7 @@ void Library::printReaderInfo() {
     cout << "Name:         " << readerNow->name << endl;
     cout << "E-mail:       " << readerNow->email << endl;
     cout << "Level:        " << readerNow->level << endl;
-    cout << "Book History: " << readerNow->getNumber() << endl;
+    cout << "Book History: " << readerNow->getBorrowed() << endl;
     int bookNum = readerNow->getNumber();
     cout << "Now Reading:  " << bookNum << endl;
     cout << "ISBN        Date         Renew" << endl;
@@ -513,20 +515,98 @@ int Library::returnBook(){
     return returnNum;
 }
 
-void Library::AUTHOR_search() {
+void Library::AUTHORpart_search() {
     string look_for;
     cout << "Please input the author's name of the target book." << endl;
     cout << "[LibraryWho]: ";
     cin >> look_for;
-    BookNode * test;
+    BookNode * target;
     int count = 0;
-    for(test=bookPool; test!=NULL; test=test->nextBook) {
-        if(test->book->author.find(look_for) != test->book->author.npos ) {
-            bookNow = test->book;
+    for(target=bookPool; target!=NULL; target=target->nextBook) {
+        if(target->book->author.find(look_for) != target->book->author.npos ) {
+            bookNow = target->book;
             printBookInfo();
             cout<<endl;
             count++;
         }
     }
     cout<< "We find " << count << " books whose auther's name is " << look_for << endl;
+}
+
+bool Library::RID_search() {
+    unsigned ridS;
+    cout << "Please input the reader's RID." << endl;
+    cout << "[LibraryWho]: ";
+    cin >> ridS;
+    ReaderNode* target;
+    for (target=readerPool; target!=NULL; target = target->nextReader) {
+        if (target->reader->getRid() == ridS) {
+            readerNow = target->reader;
+            printReaderInfo();
+            cout << "Success." << endl;
+            return 1;
+        }
+    }
+    cout << "No such reader." << endl;
+    return 0;
+}
+
+bool Library::READERNAME_search(){
+    string look_for;
+    cout << "Please input the reader name." << endl;
+    cout << "[LibraryWho]: ";
+    cin >> look_for;
+    ReaderNode* target;
+    for (target=readerPool; target!=NULL; target=target->nextReader) {
+        if (look_for.compare(target->reader->name) == 0) {
+            break;
+        }
+    }
+    if(target == NULL){
+        cout<< "Sorry, we can't find the reader whose name is " << look_for << endl;
+        return 0;
+    } else {
+        readerNow = target->reader;
+        printReaderInfo();
+        return 1;
+    }
+}
+
+bool Library::EMAIL_search(){
+    string look_for;
+    cout << "Please input the reader's E-mail." << endl;
+    cout << "[LibraryWho]: ";
+    cin >> look_for;
+    ReaderNode* target;
+    for (target=readerPool; target!=NULL; target=target->nextReader) {
+        if (look_for.compare(target->reader->email) == 0) {
+            break;
+        }
+    }
+    if(target == NULL){
+        cout<< "Sorry, we can't find the reader whose name is " << look_for << endl;
+        return 0;
+    } else {
+        readerNow = target->reader;
+        printReaderInfo();
+        return 1;
+    }
+}
+
+void Library::BOOKNAMEpart_search() {
+    string look_for;
+    cout << "Please input the part of the name of the target book." << endl;
+    cout << "[LibraryWho]: ";
+    cin >> look_for;
+    BookNode * target;
+    int count = 0;
+    for(target=bookPool; target!=NULL; target=target->nextBook) {
+        if(target->book->name.find(look_for) != target->book->name.npos ) {
+            bookNow = target->book;
+            printBookInfo();
+            cout<<endl;
+            count++;
+        }
+    }
+    cout<< "We find " << count << " books whose name has " << look_for << endl;
 }
