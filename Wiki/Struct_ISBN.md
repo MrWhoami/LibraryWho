@@ -2,7 +2,7 @@
 ## General Description
 Struct ISBN is used to store the ISBN code of a book. ISBN is the short of International Standard Book Number. For more information about the ISBN, click [here](http://en.wikipedia.org/wiki/International_Standard_Book_Number).
 ## Location
-Struct ISBN is declared and definited in commmon.h. 
+Struct ISBN is declared and defined in commmon.h. 
 ## Variables
     unsigned group1  
     unsigned group2  

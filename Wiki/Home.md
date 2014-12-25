@@ -5,10 +5,10 @@ This is a command line library management tool. It can manage the books in the l
 ### Book Management
 1. Add new books through command line;
 2. Import book list through files in special format;
-3. Find a book through its ISBN, title, writer, pubish date;
+3. Find a book through its ISBN, title, writer, publish date;
 4. Find the number of books in this library;
 5. Find the rule breakers for a specific book;
-6. Calculte the return date;
+6. Calculate the return date;
 7. Renew the return date;
 8. Export the book list. 
 
@@ -22,7 +22,7 @@ This is a command line library management tool. It can manage the books in the l
 7. Export the reader list.
 
 ## Reference
-### Enviroment Recommend
+### Environment Recommend
 + Architectures:    Standard Architectures (64-bit Intel)(x86_64)
 + Base SDK:         OS X 10.10
 + Compiler:         Apple LLVM 6.0

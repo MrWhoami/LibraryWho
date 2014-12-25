@@ -2,7 +2,7 @@
 ## General Description
 Struct Date is used to store the date information with year, month and day. It is used in this project to store the date information such as borrow date, return date and so on.
 ## Location
-Struct Date is declared and definited in commmon.h.
+Struct Date is declared and defined in commmon.h.
 ## Variables
     short year  
 This variable is used to store the year information which must be between 1000 and 2100.  

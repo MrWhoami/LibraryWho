@@ -14,6 +14,7 @@
 		18E4C2F61A4BF9B400672B6E /* Home.md in Sources */ = {isa = PBXBuildFile; fileRef = 18E4C2F31A4BF9B400672B6E /* Home.md */; };
 		18E4C2F71A4BF9B400672B6E /* Struct_Date.md in Sources */ = {isa = PBXBuildFile; fileRef = 18E4C2F41A4BF9B400672B6E /* Struct_Date.md */; };
 		18E4C2F81A4BF9B400672B6E /* Struct_ISBN.md in Sources */ = {isa = PBXBuildFile; fileRef = 18E4C2F51A4BF9B400672B6E /* Struct_ISBN.md */; };
+		18E4C2FA1A4BFC3B00672B6E /* Class_Book.md in Sources */ = {isa = PBXBuildFile; fileRef = 18E4C2F91A4BFC3B00672B6E /* Class_Book.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +46,7 @@
 		18E4C2F31A4BF9B400672B6E /* Home.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Home.md; sourceTree = "<group>"; };
 		18E4C2F41A4BF9B400672B6E /* Struct_Date.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Struct_Date.md; sourceTree = "<group>"; };
 		18E4C2F51A4BF9B400672B6E /* Struct_ISBN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Struct_ISBN.md; sourceTree = "<group>"; };
+		18E4C2F91A4BFC3B00672B6E /* Class_Book.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Class_Book.md; sourceTree = "<group>"; };
 		18F865B61A472E760028F5CD /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,7 @@
 		18E4C2F21A4BF9B400672B6E /* Wiki */ = {
 			isa = PBXGroup;
 			children = (
+				18E4C2F91A4BFC3B00672B6E /* Class_Book.md */,
 				18E4C2F31A4BF9B400672B6E /* Home.md */,
 				18E4C2F41A4BF9B400672B6E /* Struct_Date.md */,
 				18E4C2F51A4BF9B400672B6E /* Struct_ISBN.md */,
@@ -174,6 +177,7 @@
 				18E4C2F61A4BF9B400672B6E /* Home.md in Sources */,
 				18C295E01A3EE4D1003ED771 /* book.cpp in Sources */,
 				18E4C2F71A4BF9B400672B6E /* Struct_Date.md in Sources */,
+				18E4C2FA1A4BFC3B00672B6E /* Class_Book.md in Sources */,
 				18E4C2F81A4BF9B400672B6E /* Struct_ISBN.md in Sources */,
 				18C295EB1A3EECEC003ED771 /* reader.cpp in Sources */,
 				18C295E31A3EE4DF003ED771 /* main.cpp in Sources */,
