@@ -15,6 +15,8 @@
 13. ~~Print the information of a reader.~~
 14. ~~Backup and restore.~~
 15. ~~Find a reader with his RID.~~
+16. Add date judge.
+16. Add ISBN judge.
 
 ## Documents to Write
 ### Wiki
@@ -24,7 +26,6 @@
 4. Class BorrowNode
 5. Class Queue
 6. Class BookBorrowed.
-7. Struct Date
 8. Struct ReaderNode
 9. Struct BookNode
 

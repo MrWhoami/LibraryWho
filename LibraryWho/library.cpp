@@ -614,3 +614,23 @@ void Library::BOOKNAMEpart_search() {
 int Library::renewBook(){
      return readerNow->renewBook(bookNow->getISBN());
 }
+
+int Library::addBooks(int num) {  //Doing
+    BookNode* p;
+    string input;
+    ISBN isbnTmp;
+    for (int i=0; i<num; i++) {
+        cout << "Book " << i+1 << endl;
+        cout << "ISBM: ";
+        cin >> input;
+        while (!(isbnTmp<<input)) {
+            cout << "Invalid ISBN code." << endl;
+            cout << "ISBM: ";
+            cin >> input;
+        }
+        p = bookPool;
+        bookPool = new BookNode(isbnTmp);
+        bookPool->nextBook = p;
+    }
+    return 0;
+}

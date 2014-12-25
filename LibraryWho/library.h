@@ -62,19 +62,20 @@ public:
     int printAllReaders(string filePath);   //-1.Fail, 0.Success
     int buildALibrary(string filePath);     //0.Success, 1.Book fail, 2.Reader fail.
     int addReaders(int num, int level);     //0.Success, 1-3, Fail.
+    int addBooks(int num);                  //Doing.
     bool ISBN_search();                     //0.Fail, 1.Success
     bool BOOKNAME_search();                 //0.Fail, 1.Success
-    void BOOKNAMEpart_search();
+    void BOOKNAMEpart_search();             //0.Fail, 1.Success
     void printBookInfo();                   //Print the information of the book.
     void printReaderInfo();                 //Print the information of the reader.
     int borrowBook();                       //Reader now borrow the book now.
     int returnBook();                       //Reader now return the book now.
     int exportTheLibrary(string filepath);  //0.Success, 1.Book fail, 2.Reader fail.
-    void AUTHORpart_search();
+    void AUTHORpart_search();               //Search the book with part of its author name.
     bool RID_search();                      //0.Fail, 1.Success
     bool READERNAME_search();               //0.Fail, 1.Success
     bool EMAIL_search();                    //0.Fail, 1.Success
-    int renewBook();                        ////0.Success, 1.No such book, 2.Already renewed, 4.Broken the rule.
+    int renewBook();                        //0.Success, 1.No such book, 2.Already renewed, 4.Broken the rule.
 };
 
 #endif /* defined(__LibraryWho__library__) */
