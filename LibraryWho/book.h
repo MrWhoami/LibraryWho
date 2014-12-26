@@ -29,17 +29,16 @@ public:
     unsigned price;
     int quantity;
     
-    Book(ISBN isbnIn);
+    Book(ISBN isbnIn);                       //Must create a book with an ISBN code.
     ~Book();
-    int getTotal();
-    int getReaderNum();
-    int getReaders(unsigned* &rid);
+    int getTotal();                          //Get the total book number.
+    int getReaderNum();                      //Return reader number.
+    int getReaders(unsigned* &rid);          //Get the reader list. Return reader number.
     int borrowBook(unsigned rid);            //0.Success, 1.No book, 2.Already borrowed,
     int returnBook(unsigned rid);            //0.Success, 1.Not borrowed.
-    void inputPrice(double priceIn);
-    double outputPrice();
-//  bool readerReturn(unsigned rRid);
-    ISBN getISBN();
+    void inputPrice(double priceIn);         //Input the price in double.
+    double outputPrice();                    //Output the price in double.
+    ISBN getISBN();                          //Get the ISBN code of the book.
 };
 
 #endif /* defined(__LibraryWho__library__) */

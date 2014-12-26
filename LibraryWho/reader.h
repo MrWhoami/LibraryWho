@@ -40,17 +40,18 @@ public:
     int level;
     string email;
     
-    Reader(unsigned rid);
-    ~Reader();
+    Reader(unsigned rid);                   //Must have a uid to creat a reader.
+    ~Reader();                              //Distructor.
     void importData(ISBN* isbnIn, Date* dateIn, bool* renewIn, int bookNum, int borrowedIn);           //Used to import backup data.
-    unsigned getRid();
-    int getNumber();
-    int getBorrowed();
-    int getBook(ISBN* &borrowedList);
-    int getData(Date* &borrowedList);
-    int getRenew(bool* &borrowedList);
-    int borrowNew(ISBN newBook);           //0.Success, 1.Level limited, 2.Already borrowed.
-    int returnOld(ISBN oldBook);           //0:Success, 1.No such book, 2.Broken the rule.
+    unsigned getRid();                      //Return user's rid.
+    int getNumber();                        //Return reading book number.
+    int getBorrowed();                      //Return borrowed history number.
+    int getBook(ISBN* &borrowedList);       //Return the book number.
+    int getData(Date* &borrowedList);       //Return the book number.
+    int getRenew(bool* &borrowedList);      //Return the book number.
+    int borrowNew(ISBN newBook);            //0.Success, 1.Level limited, 2.Already borrowed.
+    int returnOld(ISBN oldBook);            //0:Success, 1.No such book, 2.Broken the rule.
+    int renewBook(ISBN oldBook);            //0.Success, 1.No such book, 2.Already renewed, 4.Broken the rule.
 };
 
 #endif /* defined(__LibraryWho__reader__) */

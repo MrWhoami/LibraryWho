@@ -42,19 +42,32 @@ int Reader::borrowNew(ISBN newBook){
     if (getNumber() == level) {
         return 1;
     }
+    time_t rawtime;
+    tm* now;
+    time(&rawtime);
+    now = localtime(&rawtime);
     if (bookBorrowed == NULL) {
         bookBorrowed = new BookBorrowed;
         bookBorrowed->theBook = newBook;
+        bookBorrowed->borrowDate.year = now->tm_year;
+        bookBorrowed->borrowDate.month = now->tm_mon;
+        bookBorrowed->borrowDate.day = now->tm_mday;
     } else {
         BookBorrowed* p= bookBorrowed;
-        while (p->nextBook != NULL) {
+        BookBorrowed* pre = NULL;
+        while (p != NULL) {
             if (p->theBook == newBook) {
                 return 2;
             }
+            pre = p;
             p = p->nextBook;
         }
-        p->nextBook = new BookBorrowed;
-        p->nextBook->theBook = newBook;
+        pre->nextBook = new BookBorrowed;
+        p = pre->nextBook;
+        p->theBook = newBook;
+        p->borrowDate.year = now->tm_year;
+        p->borrowDate.month = now->tm_mon;
+        p->borrowDate.day = now->tm_mday;
     }
     borrowed++;
     return 0;
@@ -292,5 +305,38 @@ void Reader::importData(ISBN* isbnIn, Date* dateIn, bool* renewIn, int bookNum, 
         bookBorrowed->borrowDate = dateIn[i];
         bookBorrowed->renew = renewIn[i];
         bookBorrowed->nextBook = p;
+    }
+}
+
+int Reader::renewBook(ISBN oldBook){
+    BookBorrowed* p = bookBorrowed;
+    while (p != NULL) {
+        if (p->theBook == oldBook) {
+            break;
+        }
+    }
+    if (p == NULL) {
+        return 1;
+    }
+    if (p->renew == 1) {
+        return 2;
+    }
+    time_t rawtime;
+    tm* now;
+    time(&rawtime);
+    now = localtime(&rawtime);
+    Date expect = p->returnDate();
+    if (expect.year < now->tm_year) {
+        return 4;
+    }
+    else if (expect.month < now->tm_mon+1){
+        return 4;
+    }
+    else if (expect.day < now->tm_mday) {
+        return 4;
+    }
+    else {
+        p->renew = 1;
+        return 0;
     }
 }
