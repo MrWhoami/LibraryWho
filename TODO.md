@@ -16,7 +16,7 @@
 14. ~~Backup and restore.~~
 15. ~~Find a reader with his RID.~~
 16. Add date judge.
-16. Add ISBN judge.
+16. ~~Add ISBN judge.~~
 
 ## Documents to Write
 ### Wiki
