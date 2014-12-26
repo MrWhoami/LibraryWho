@@ -34,7 +34,11 @@ struct Date {
     }
     bool operator <<(const string dataIn) {
         sscanf(dataIn.c_str(), "%hd-%hd-%hd", &year, &month, &day);
-        if(year < 1000 || year > 2100)
+        if(year<1000 || year>2100)
+            return 0;
+        else if (month>12 || month<1)
+            return 0;
+        else if (day<1 || day>31)
             return 0;
         else
             return 1;
