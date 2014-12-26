@@ -14,7 +14,9 @@ Those five variables are used to store the five parts of an ISBN code.
 ### ==
 This operator is used to compare two ISBN code. If they are the same, the operator will return true. Else, it will return false.   
 ### !=
-Opposite to the operator '=='.
+Opposite to the operator '=='.  
+### >>  
+Change a ISBN code into a unsigned int. It will return nothing but change the unsigned int value.  
 ### <<
 Change a string into a ISBN. If the string is an ISBN code, it will return true. Else, it will return false.  
 
