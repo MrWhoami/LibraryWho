@@ -85,11 +85,11 @@ int Library::printAllBooks(string filePath) {
     while (i <= bookNumber) {
         fout << i << ".  ";
         fout << p->book->name;
-        fout << p->book->getISBN().group1 << '-';
-        fout << p->book->getISBN().group2 << '-';
-        fout << p->book->getISBN().group3 << '-';
-        fout << p->book->getISBN().group4 << '-';
-        fout << p->book->getISBN().group5 << ' ';
+        fout << p->book->getISBN().group1s << '-';
+        fout << p->book->getISBN().group2s << '-';
+        fout << p->book->getISBN().group3s << '-';
+        fout << p->book->getISBN().group4s << '-';
+        fout << p->book->getISBN().group5s << ' ';
         fout << p->book->author << ' ';
         fout << p->book->date.year << '-';
         fout << p->book->date.month << '-';
@@ -154,11 +154,11 @@ void Library::printBookInfo() {
     }
     cout << "Book:        " << bookNow->name << endl;
     cout << "ISBN:        ";
-    cout << bookNow->getISBN().group1 << '-';
-    cout << bookNow->getISBN().group2 << '-';
-    cout << bookNow->getISBN().group3 << '-';
-    cout << bookNow->getISBN().group4 << '-';
-    cout << bookNow->getISBN().group5 << endl;
+    cout << bookNow->getISBN().group1s << '-';
+    cout << bookNow->getISBN().group2s << '-';
+    cout << bookNow->getISBN().group3s << '-';
+    cout << bookNow->getISBN().group4s << '-';
+    cout << bookNow->getISBN().group5s << endl;
     cout << "Author:       " << bookNow->author << endl;
     cout << "Publish Date: ";
     cout << bookNow->date.year << '-';
@@ -247,11 +247,11 @@ void Library::printReaderInfo() {
     readerNow->getData(booksDate);
     readerNow->getRenew(booksRenew);
     for (int j=0; j<bookNum; j++) {
-        cout << booksBorrowed[j].group1 << '-';
-        cout << booksBorrowed[j].group2 << '-';
-        cout << booksBorrowed[j].group3 << '-';
-        cout << booksBorrowed[j].group4 << '-';
-        cout << booksBorrowed[j].group5 << ' ';
+        cout << booksBorrowed[j].group1s << '-';
+        cout << booksBorrowed[j].group2s << '-';
+        cout << booksBorrowed[j].group3s << '-';
+        cout << booksBorrowed[j].group4s << '-';
+        cout << booksBorrowed[j].group5s << ' ';
         cout << booksDate[j].year << '-';
         cout << booksDate[j].month << '-';
         cout << booksDate[j].day << ' ';
@@ -280,11 +280,11 @@ int Library::exportReaderPool(string filePath) {
         p->reader->getData(booksDate);
         p->reader->getRenew(booksRenew);
         for (int j=0; j<bookNum; j++) {
-            fout << booksBorrowed[j].group1 << '-';
-            fout << booksBorrowed[j].group2 << '-';
-            fout << booksBorrowed[j].group3 << '-';
-            fout << booksBorrowed[j].group4 << '-';
-            fout << booksBorrowed[j].group5 << ' ';
+            fout << booksBorrowed[j].group1s << '-';
+            fout << booksBorrowed[j].group2s << '-';
+            fout << booksBorrowed[j].group3s << '-';
+            fout << booksBorrowed[j].group4s << '-';
+            fout << booksBorrowed[j].group5s << ' ';
             fout << booksDate[j].year << '-';
             fout << booksDate[j].month << '-';
             fout << booksDate[j].day << ' ';
@@ -309,11 +309,11 @@ int Library::exportBookPool(string filePath) {
     while (i <= bookNumber) {
         fout << i << ".  ";
         fout << p->book->name << ' ';
-        fout << p->book->getISBN().group1 << '-';
-        fout << p->book->getISBN().group2 << '-';
-        fout << p->book->getISBN().group3 << '-';
-        fout << p->book->getISBN().group4 << '-';
-        fout << p->book->getISBN().group5 << ' ';
+        fout << p->book->getISBN().group1s << '-';
+        fout << p->book->getISBN().group2s << '-';
+        fout << p->book->getISBN().group3s << '-';
+        fout << p->book->getISBN().group4s << '-';
+        fout << p->book->getISBN().group5s << ' ';
         fout << p->book->author << ' ';
         fout << p->book->date.year << '-';
         fout << p->book->date.month << '-';

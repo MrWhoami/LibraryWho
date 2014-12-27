@@ -10,10 +10,10 @@
 #define __LibraryWho__library__
 
 #include <iostream>
-#include "common.h"
 #include "reader.h"
 #include "book.h"
 #include <fstream>
+#include "common.h"
 
 struct ReaderNode {
     Reader *reader;
