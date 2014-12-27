@@ -27,11 +27,13 @@ public:
 
 class ISBN {
 public:
+    /*
     unsigned group1;
     unsigned group2;
     unsigned group3;
     unsigned group4;
     unsigned group5;
+     */
     string group1s;
     string group2s;
     string group3s;

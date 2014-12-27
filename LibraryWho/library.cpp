@@ -68,7 +68,7 @@ int Library::importBooks(string filePath, int num) {
         bookPool->book->quantity = num;     //Input the quantity of the new node.
         bookNumber++;
         tmpDate.year = 0;
-        tmpISBN.group1 = 0;
+        tmpISBN.group1s = "0";
         fin >> buffer;                          //Read the No.
         reading = buffer;
         fin >> buffer;                          //Read name into the buffer.
@@ -412,7 +412,7 @@ int Library::buildBookPool(string filePath) {
         }
         bookNumber++;
         tmpDate.year = 0;
-        tmpISBN.group1 = 0;
+        tmpISBN.group1s = "0";
         lastReading = reading;
         fin >> buffer;                       //Read the No.
         reading = buffer;

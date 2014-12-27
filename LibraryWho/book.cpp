@@ -14,11 +14,7 @@ BorrowNode::BorrowNode() {
 }
 
 Book::Book(ISBN isbnIn) {
-    isbn.group1 = isbnIn.group1;
-    isbn.group2 = isbnIn.group2;
-    isbn.group3 = isbnIn.group3;
-    isbn.group4 = isbnIn.group4;
-    isbn.group5 = isbnIn.group5;
+    isbn = isbnIn;
     date.year = 2000;
     date.month = 1;
     date.day = 1;

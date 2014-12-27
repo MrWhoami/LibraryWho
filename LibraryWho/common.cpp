@@ -93,21 +93,21 @@ bool Date::operator <<(const string dataIn) {
 
 bool ISBN::operator ==(const ISBN& x) {
     bool equal = 1;
-    equal = (this->group1==x.group1)&equal;
-    equal = (this->group2==x.group2)&equal;
-    equal = (this->group3==x.group3)&equal;
-    equal = (this->group4==x.group4)&equal;
-    equal = (this->group5==x.group5)&equal;
+    equal = (this->group1s==x.group1s)&equal;
+    equal = (this->group2s==x.group2s)&equal;
+    equal = (this->group3s==x.group3s)&equal;
+    equal = (this->group4s==x.group4s)&equal;
+    equal = (this->group5s==x.group5s)&equal;
     return equal;
 }
 
 bool ISBN::operator !=(const ISBN& x) {
     bool equal = 0;
-    equal = (this->group1!=x.group1)|equal;
-    equal = (this->group2!=x.group2)|equal;
-    equal = (this->group3!=x.group3)|equal;
-    equal = (this->group4!=x.group4)|equal;
-    equal = (this->group5!=x.group5)|equal;
+    equal = (this->group1s!=x.group1s)|equal;
+    equal = (this->group2s!=x.group2s)|equal;
+    equal = (this->group3s!=x.group3s)|equal;
+    equal = (this->group4s!=x.group4s)|equal;
+    equal = (this->group5s!=x.group5s)|equal;
     return equal;
 }
 
@@ -151,12 +151,17 @@ bool ISBN::operator <<(const string isbnIn) {
     group4s = isbnIn.substr(pos+1, pos2-pos-1);
     pos = pos2;
     group5s = isbnIn.substr(pos+1);
+    if (group1s[0]-'0'<0 || group1s[0]-'0'>9) {
+        return 0;
+    }
+    /*
     group1 = stoi(group1s);
     group2 = stoi(group2s);
     group3 = stoi(group3s);
     group4 = stoi(group4s);
     group5 = stoi(group5s);
-    if(group1 != 978 && group1 != 979) {
+     */
+    if(group1s != "978" && group1s != "979") {
         return 0;
     }
     else {
@@ -199,7 +204,7 @@ bool ISBN::operator <<(const string isbnIn) {
             count++;
         }
         tmp = (10-tmp%10)%10;
-        if (tmp != group5)
+        if (tmp != stoull(group5s))
             return 0;
         else
             return 1;
