@@ -35,7 +35,6 @@
 		18C295D11A3EE490003ED771 /* LibraryWho */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LibraryWho; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C295DB1A3EE4D1003ED771 /* book.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = book.cpp; sourceTree = "<group>"; };
 		18C295DC1A3EE4D1003ED771 /* book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = book.h; sourceTree = "<group>"; };
-		18C295DE1A3EE4D1003ED771 /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queue.h; sourceTree = "<group>"; };
 		18C295E21A3EE4DF003ED771 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		18C295E41A3EE682003ED771 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		18C295E51A3EE682003ED771 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -86,7 +85,6 @@
 				18C295DC1A3EE4D1003ED771 /* book.h */,
 				18C295EC1A3EF22B003ED771 /* common.h */,
 				18C295E21A3EE4DF003ED771 /* main.cpp */,
-				18C295DE1A3EE4D1003ED771 /* queue.h */,
 				18C295E91A3EECEC003ED771 /* reader.cpp */,
 				18C295EA1A3EECEC003ED771 /* reader.h */,
 				189F48181A40643D00837A26 /* library.cpp */,

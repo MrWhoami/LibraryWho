@@ -18,31 +18,9 @@ struct Date {
     short year;
     short month;
     short day;
-    bool operator ==(const Date& x) {
-        bool equal = 1;
-        equal = (this->year==x.year)&equal;
-        equal = (this->month==x.month)&equal;
-        equal = (this->day==x.day)&equal;
-        return equal;
-    }
-    bool operator !=(const Date& x) {
-        bool equal = 0;
-        equal = (this->year!=x.year)|equal;
-        equal = (this->month!=x.month)|equal;
-        equal = (this->day!=x.day)|equal;
-        return equal;
-    }
-    bool operator <<(const string dataIn) {
-        sscanf(dataIn.c_str(), "%hd-%hd-%hd", &year, &month, &day);
-        if(year<1000 || year>2100)
-            return 0;
-        else if (month>12 || month<1)
-            return 0;
-        else if (day<1 || day>31)
-            return 0;
-        else
-            return 1;
-    }
+    bool operator ==(const Date& x);
+    bool operator !=(const Date& x);
+    bool operator <<(const string dataIn);
 };
 
 struct ISBN {
@@ -51,109 +29,200 @@ struct ISBN {
     unsigned group3;
     unsigned group4;
     unsigned group5;
-    bool operator ==(const ISBN& x) {
-        bool equal = 1;
-        equal = (this->group1==x.group1)&equal;
-        equal = (this->group2==x.group2)&equal;
-        equal = (this->group3==x.group3)&equal;
-        equal = (this->group4==x.group4)&equal;
-        equal = (this->group5==x.group5)&equal;
-        return equal;
-    }
-    bool operator !=(const ISBN& x) {
-        bool equal = 0;
-        equal = (this->group1!=x.group1)|equal;
-        equal = (this->group2!=x.group2)|equal;
-        equal = (this->group3!=x.group3)|equal;
-        equal = (this->group4!=x.group4)|equal;
-        equal = (this->group5!=x.group5)|equal;
-        return equal;
-    }
-    void operator >>(unsigned &isbnInt) {
-        unsigned power = 10;
-        unsigned powerTmp = 10;
-        isbnInt = (unsigned)group5;
-        isbnInt += (unsigned)group4*power;
-        for (powerTmp=10; group4/powerTmp!=0; powerTmp=powerTmp*10) {
-            power = power*10;
-        }
-        power = power*10;
-        isbnInt += (unsigned)group3*power;
-        for (powerTmp=10; group3/powerTmp!=0; powerTmp=powerTmp*10) {
-            power = power*10;
-        }
-        power = power*10;
-        isbnInt += (unsigned)group2*power;
-        for (powerTmp=10; group2/powerTmp!=0; powerTmp=powerTmp*10) {
-            power = power*10;
-        }
-        power = power*10;
-        isbnInt += (unsigned)group1*power;
-    }
-    bool operator <<(const string isbnIn) {
-        sscanf(isbnIn.c_str(), "%d-%d-%d-%d-%d", &group1, &group2, &group3, &group4, &group5);
-        if(group1 != 978 | group1 != 979) {
-            return 0;
-        }
-        else {
-            int count = 0;
-            unsigned power = 10;
-            for (power=10; group1/power!=0; power=power*10) {
-                count++;
-            }
-            count++;
-            for (power=10; group2/power!=0; power=power*10) {
-                count++;
-            }
-            count++;
-            for (power=10; group3/power!=0; power=power*10) {
-                count++;
-            }
-            count++;
-            for (power=10; group4/power!=0; power=power*10) {
-                count++;
-            }
-            count++;
-            for (power=10; group5/power!=0; power=power*10) {
-                count++;
-            }
-            count++;
-            if (count != 13)
-                return 0;
-            *this >> power;
-            count = 0;
-            int tmp = power%10;
-            power = power/10;
-            count += (power%10)*3;
-            power = power/10;
-            count += (power%10)*1;
-            power = power/10;
-            count += (power%10)*3;
-            power = power/10;
-            count += (power%10)*1;
-            power = power/10;
-            count += (power%10)*3;
-            power = power/10;
-            count += (power%10)*1;
-            power = power/10;
-            count += (power%10)*3;
-            power = power/10;
-            count += (power%10)*1;
-            power = power/10;
-            count += (power%10)*3;
-            power = power/10;
-            count += (power%10)*1;
-            power = power/10;
-            count += (power%10)*3;
-            power = power/10;
-            count += (power%10)*1;
-            count = (10-(count%10))%10;
-            if (tmp != count)
-                return 0;
-            else
-                return 1;
-        }
-    }
+    bool operator ==(const ISBN& x);
+    bool operator !=(const ISBN& x);
+    void operator >>(unsigned &isbnInt);
+    bool operator <<(const string isbnIn);
 };
+
+bool Date::operator ==(const Date& x) {
+    bool equal = 1;
+    equal = (this->year==x.year)&equal;
+    equal = (this->month==x.month)&equal;
+    equal = (this->day==x.day)&equal;
+    return equal;
+}
+
+bool Date::operator !=(const Date& x) {
+    bool equal = 0;
+    equal = (this->year!=x.year)|equal;
+    equal = (this->month!=x.month)|equal;
+    equal = (this->day!=x.day)|equal;
+    return equal;
+}
+
+bool Date::operator <<(const string dataIn) {
+    sscanf(dataIn.c_str(), "%hd-%hd-%hd", &year, &month, &day);
+    if(year<1000 || year>2100)
+        return 0;
+    else if (month>12 || month<1)
+        return 0;
+    else if (day<1)
+        return 0;
+    bool leap = 0;
+    if (year%4 == 0) {
+        if (year%100 == 0) {
+            if (year%400 == 0) {
+                leap = 1;
+            } else {
+                leap = 0;
+            }
+        } else {
+            leap = 1;
+        }
+    } else {
+        leap = 0;
+    }
+    switch(month) {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            if (day > 31) {
+                return 0;
+            } else {
+                return 1;
+            }
+            break;
+        case 2:
+            if (leap) {
+                if (day > 29) {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            } else {
+                if (day > 28) {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            }
+            break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            if (day > 30) {
+                return 0;
+            } else {
+                return 1;
+            }
+            break;
+            
+        default:
+            return 0;
+    }
+}
+
+bool ISBN::operator ==(const ISBN& x) {
+    bool equal = 1;
+    equal = (this->group1==x.group1)&equal;
+    equal = (this->group2==x.group2)&equal;
+    equal = (this->group3==x.group3)&equal;
+    equal = (this->group4==x.group4)&equal;
+    equal = (this->group5==x.group5)&equal;
+    return equal;
+}
+
+bool ISBN::operator !=(const ISBN& x) {
+    bool equal = 0;
+    equal = (this->group1!=x.group1)|equal;
+    equal = (this->group2!=x.group2)|equal;
+    equal = (this->group3!=x.group3)|equal;
+    equal = (this->group4!=x.group4)|equal;
+    equal = (this->group5!=x.group5)|equal;
+    return equal;
+}
+
+void ISBN::operator >>(unsigned &isbnInt) {
+    unsigned power = 10;
+    unsigned powerTmp = 10;
+    isbnInt = (unsigned)group5;
+    isbnInt += (unsigned)group4*power;
+    for (powerTmp=10; group4/powerTmp!=0; powerTmp=powerTmp*10) {
+        power = power*10;
+    }
+    power = power*10;
+    isbnInt += (unsigned)group3*power;
+    for (powerTmp=10; group3/powerTmp!=0; powerTmp=powerTmp*10) {
+        power = power*10;
+    }
+    power = power*10;
+    isbnInt += (unsigned)group2*power;
+    for (powerTmp=10; group2/powerTmp!=0; powerTmp=powerTmp*10) {
+        power = power*10;
+    }
+    power = power*10;
+    isbnInt += (unsigned)group1*power;
+}
+
+bool ISBN::operator <<(const string isbnIn) {
+    sscanf(isbnIn.c_str(), "%d-%d-%d-%d-%d", &group1, &group2, &group3, &group4, &group5);
+    if(group1 != 978 | group1 != 979) {
+        return 0;
+    }
+    else {
+        int count = 0;
+        unsigned power = 10;
+        for (power=10; group1/power!=0; power=power*10) {
+            count++;
+        }
+        count++;
+        for (power=10; group2/power!=0; power=power*10) {
+            count++;
+        }
+        count++;
+        for (power=10; group3/power!=0; power=power*10) {
+            count++;
+        }
+        count++;
+        for (power=10; group4/power!=0; power=power*10) {
+            count++;
+        }
+        count++;
+        for (power=10; group5/power!=0; power=power*10) {
+            count++;
+        }
+        count++;
+        if (count != 13)
+            return 0;
+        *this >> power;
+        count = 0;
+        int tmp = power%10;
+        power = power/10;
+        count += (power%10)*3;
+        power = power/10;
+        count += (power%10)*1;
+        power = power/10;
+        count += (power%10)*3;
+        power = power/10;
+        count += (power%10)*1;
+        power = power/10;
+        count += (power%10)*3;
+        power = power/10;
+        count += (power%10)*1;
+        power = power/10;
+        count += (power%10)*3;
+        power = power/10;
+        count += (power%10)*1;
+        power = power/10;
+        count += (power%10)*3;
+        power = power/10;
+        count += (power%10)*1;
+        power = power/10;
+        count += (power%10)*3;
+        power = power/10;
+        count += (power%10)*1;
+        count = (10-(count%10))%10;
+        if (tmp != count)
+            return 0;
+        else
+            return 1;
+    }
+}
 
 #endif
