@@ -16,6 +16,7 @@ Library::Library() {
     bookPool = NULL;
     readerNow = NULL;
     bookNow = NULL;
+    bookTable = new BookNode*[MAX_SIZE];
 }
 
 Library::~Library() {
@@ -29,6 +30,7 @@ Library::~Library() {
         bookPool = bookPool->nextBook;
         delete p;
     }
+    delete [] bookTable;
 }
 
 int Library::importBooks(string filePath, int num) {
@@ -633,4 +635,10 @@ int Library::addBooks(int num) {  //Doing
         bookPool->nextBook = p;
     }
     return 0;
+}
+
+int Library::locationCal(ISBN isbnIn){
+    unsigned long long isbnULL;
+    isbnIn >> isbnULL;
+    return (int)((isbnULL/1000000)%1000*100+isbnULL%100);
 }

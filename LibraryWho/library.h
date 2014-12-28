@@ -45,6 +45,7 @@ class Library {
     unsigned ridCount;
     ReaderNode* readerPool;
     BookNode* bookPool;
+    BookNode** bookTable;
     
     int buildReaderPool(string filePath);   //Import the reader pool from *.lwr.
     int buildBookPool(string filePath);     //Import the book pool from *.lwb.
@@ -76,6 +77,7 @@ public:
     bool READERNAME_search();               //0.Fail, 1.Success
     bool EMAIL_search();                    //0.Fail, 1.Success
     int renewBook();                        //0.Success, 1.No such book, 2.Already renewed, 4.Broken the rule.
+    int locationCal(ISBN isbnIn);                      //Calculate the location of the ISBN hash table.
 };
 
 #endif /* defined(__LibraryWho__library__) */
