@@ -74,27 +74,27 @@ int Reader::borrowNew(ISBN newBook){
 }
 
 int Reader::returnOld(ISBN oldBook) {
-/*
-    if (bookBorrowed == NULL) {
-        return 0;
-    }
-    BookBorrowed *p = bookBorrowed;
-    if (p->theBook == oldBook) {
-        bookBorrowed = p->nextBook;
-        delete p;
-    } else {
-        while (p->nextBook != NULL || p->nextBook->theBook != oldBook) {
-            p = p->nextBook;
-        }
-        if (p->nextBook == NULL) {
-            return 0;
-        }
-        BookBorrowed *tod = p->nextBook;
-        p->nextBook = tod->nextBook;
-        delete tod;
-    }
-    return 1;
- */
+    /*
+     if (bookBorrowed == NULL) {
+     return 0;
+     }
+     BookBorrowed *p = bookBorrowed;
+     if (p->theBook == oldBook) {
+     bookBorrowed = p->nextBook;
+     delete p;
+     } else {
+     while (p->nextBook != NULL || p->nextBook->theBook != oldBook) {
+     p = p->nextBook;
+     }
+     if (p->nextBook == NULL) {
+     return 0;
+     }
+     BookBorrowed *tod = p->nextBook;
+     p->nextBook = tod->nextBook;
+     delete tod;
+     }
+     return 1;
+     */
     BookBorrowed *pre = NULL;
     BookBorrowed *p = bookBorrowed;
     while (p!=NULL && p->theBook!=oldBook) {
@@ -110,14 +110,23 @@ int Reader::returnOld(ISBN oldBook) {
         time(&rawtime);
         now = localtime(&rawtime);
         Date expect = p->returnDate();
-        if (expect.year < now->tm_year) {
+        if (expect.year < now->tm_year+1900) {
             returnNum = 2;
         }
-        else if (expect.month < now->tm_mon+1){
-            returnNum = 2;
-        }
-        else if (expect.day < now->tm_mday) {
-            returnNum = 2;
+        else if (expect.year == now->tm_year+1900) {
+            if (expect.month < now->tm_mon+1){
+                returnNum = 2;
+            }
+            else if (expect.month == now->tm_mon+1) {
+                if (expect.day < now->tm_mday) {
+                    returnNum = 2;
+                } else {
+                    returnNum = 0;
+                }
+            }
+            else {
+                returnNum = 0;
+            }
         }
         else {
             returnNum = 0;

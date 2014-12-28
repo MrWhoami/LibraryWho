@@ -319,7 +319,7 @@ int Library::exportBookPool(string filePath) {
         fout << p->book->date.month << '-';
         fout << p->book->date.day << ' ';
         fout << p->book->outputPrice() << ' ';
-        fout << p->book->quantity << ' ';
+        fout << p->book->getTotal() << ' ';
         int bookNum = p->book->getReaderNum();
         unsigned* ridList = new unsigned[bookNum];
         p->book->getReaders(ridList);

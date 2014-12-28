@@ -32,4 +32,3 @@
 1. Add more descriptions to codes.
 
 ## Bugs to Debug
-1. Can only read/write 489 books from/into the file.
