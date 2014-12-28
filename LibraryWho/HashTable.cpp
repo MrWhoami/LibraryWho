@@ -14,7 +14,7 @@ HashTableBook::HashTableBook(int d) {
     assert(head != NULL);
 }
 
-HashTableBook::~HashTableBook() {
+HashTableBook::~HashTableBook() {       //May leave some rubbish.
     delete [] head;
 }
 

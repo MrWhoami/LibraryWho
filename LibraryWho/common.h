@@ -14,7 +14,7 @@ using namespace std;
 #include <assert.h>
 
 const string DEFAULT_PATH = "/Users/apple/Documents/LibraryWho/";
-const unsigned MAX_SIZE = 99999;
+const unsigned MAX_SIZE = 10007;
 
 class Date {
 public:

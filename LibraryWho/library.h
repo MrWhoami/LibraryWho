@@ -14,31 +14,8 @@
 #include "common.h"
 #include "reader.h"
 #include "book.h"
+#include "node.h"
 #include "HashTable.h"
-
-struct ReaderNode {
-    Reader *reader;
-    ReaderNode *nextReader;
-    ReaderNode (unsigned ridIn){
-        reader = new Reader(ridIn);
-        nextReader = NULL;
-    }
-    ~ReaderNode(){
-        delete reader;
-    }
-};
-
-struct BookNode {
-    Book *book;
-    BookNode *nextBook;
-    BookNode(ISBN isbnIn){
-        book = new Book(isbnIn);
-        nextBook = NULL;
-    }
-    ~BookNode() {
-        delete book;
-    }
-};
 
 class Library {
     unsigned bookNumber;
@@ -46,14 +23,12 @@ class Library {
     unsigned ridCount;
     ReaderNode* readerPool;
     BookNode* bookPool;
-    BookNode** bookTable;
+    HashTableBook bookTable;
     
     int buildReaderPool(string filePath);   //Import the reader pool from *.lwr.
     int buildBookPool(string filePath);     //Import the book pool from *.lwb.
     int exportBookPool(string filePath);    //Export the book pool into *.lwb.
     int exportReaderPool(string filePath);  //Export the reader pool into *.lwr.
-    int locationCal(ISBN isbnIn);           //Calculate the location of the ISBN hash table.
-    bool insertTable(BookNode* target);     //Doing.
     
 public:
     Book* bookNow;

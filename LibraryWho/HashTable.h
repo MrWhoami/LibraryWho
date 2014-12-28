@@ -9,7 +9,7 @@
 #ifndef __LibraryWho__HashTable__
 #define __LibraryWho__HashTable__
 
-#include "library.h"
+#include "node.h"
 
 template <class T>
 class ChainNode {           //Hash table chain node.

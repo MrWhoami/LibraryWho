@@ -8,7 +8,7 @@
 
 #include "library.h"
 
-Library::Library() {
+Library::Library():bookTable((int)MAX_SIZE) {
     bookNumber = 0;
     readerNumber = 0;
     ridCount = 0;
@@ -16,7 +16,6 @@ Library::Library() {
     bookPool = NULL;
     readerNow = NULL;
     bookNow = NULL;
-    bookTable = new BookNode*[MAX_SIZE];
 }
 
 Library::~Library() {
@@ -30,7 +29,6 @@ Library::~Library() {
         bookPool = bookPool->nextBook;
         delete p;
     }
-    delete [] bookTable;
 }
 
 int Library::importBooks(string filePath, int num) {
@@ -69,6 +67,7 @@ int Library::importBooks(string filePath, int num) {
         bookPool->book->inputPrice(price);  //Input the price to the new node.
         bookPool->book->quantity = num;     //Input the quantity of the new node.
         bookNumber++;
+        bookTable.insertBook(bookPool);     //Build hash table.
         tmpDate.year = 0;
         tmpISBN.group1s = "0";
         fin >> buffer;                          //Read the No.
@@ -413,6 +412,7 @@ int Library::buildBookPool(string filePath) {
             bookPool->book->borrowBook(rid);
         }
         bookNumber++;
+        bookTable.insertBook(bookPool);     //Build hash table.
         tmpDate.year = 0;
         tmpISBN.group1s = "0";
         lastReading = reading;
@@ -635,10 +635,4 @@ int Library::addBooks(int num) {  //Doing
         bookPool->nextBook = p;
     }
     return 0;
-}
-
-int Library::locationCal(ISBN isbnIn){
-    unsigned long long isbnULL;
-    isbnIn >> isbnULL;
-    return (int)((isbnULL/1000000)%1000*100+isbnULL%100);
 }
