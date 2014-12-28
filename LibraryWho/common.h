@@ -11,6 +11,7 @@
 
 #include <string>
 using namespace std;
+#include <assert.h>
 
 const string DEFAULT_PATH = "/Users/apple/Documents/LibraryWho/";
 const unsigned MAX_SIZE = 99999;

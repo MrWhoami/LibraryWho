@@ -10,10 +10,11 @@
 #define __LibraryWho__library__
 
 #include <iostream>
-#include "reader.h"
-#include "book.h"
 #include <fstream>
 #include "common.h"
+#include "reader.h"
+#include "book.h"
+#include "HashTable.h"
 
 struct ReaderNode {
     Reader *reader;
@@ -51,6 +52,8 @@ class Library {
     int buildBookPool(string filePath);     //Import the book pool from *.lwb.
     int exportBookPool(string filePath);    //Export the book pool into *.lwb.
     int exportReaderPool(string filePath);  //Export the reader pool into *.lwr.
+    int locationCal(ISBN isbnIn);           //Calculate the location of the ISBN hash table.
+    bool insertTable(BookNode* target);     //Doing.
     
 public:
     Book* bookNow;
@@ -77,7 +80,6 @@ public:
     bool READERNAME_search();               //0.Fail, 1.Success
     bool EMAIL_search();                    //0.Fail, 1.Success
     int renewBook();                        //0.Success, 1.No such book, 2.Already renewed, 4.Broken the rule.
-    int locationCal(ISBN isbnIn);                      //Calculate the location of the ISBN hash table.
 };
 
 #endif /* defined(__LibraryWho__library__) */

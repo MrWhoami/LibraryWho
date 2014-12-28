@@ -335,17 +335,19 @@ int Reader::renewBook(ISBN oldBook){
     time(&rawtime);
     now = localtime(&rawtime);
     Date expect = p->returnDate();
-    if (expect.year < now->tm_year) {
+    if (expect.year < now->tm_year+1900) {
         return 4;
     }
-    else if (expect.month < now->tm_mon+1){
-        return 4;
+    else if (expect.year == now->tm_year+1900) {
+        if (expect.month < now->tm_mon+1){
+            return 4;
+        }
+        else if (expect.month == now->tm_mon+1) {
+            if (expect.day < now->tm_mday) {
+                return 4;
+            }
+        }
     }
-    else if (expect.day < now->tm_mday) {
-        return 4;
-    }
-    else {
-        p->renew = 1;
-        return 0;
-    }
+    p->renew = 1;
+    return 0;
 }
