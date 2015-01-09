@@ -41,7 +41,7 @@ public:
     int printAllReaders(string filePath);   //-1.Fail, 0.Success
     int buildALibrary(string filePath);     //0.Success, 1.Book fail, 2.Reader fail.
     int addReaders(int num, int level);     //0.Success, 1-3, Fail.
-    int addBooks(int num);                  //Doing.
+    bool addBooks();                        //0.Fail, 1.Success
     bool ISBN_search();                     //0.Fail, 1.Success
     bool BOOKNAME_search();                 //0.Fail, 1.Success
     void BOOKNAMEpart_search();             //0.Fail, 1.Success
@@ -55,6 +55,8 @@ public:
     bool READERNAME_search();               //0.Fail, 1.Success
     bool EMAIL_search();                    //0.Fail, 1.Success
     int renewBook();                        //0.Success, 1.No such book, 2.Already renewed, 4.Broken the rule.
+    unsigned getBookNumber();               //Return the kind number of books.
+    unsigned getReaderNumber();             //Return the reader number.
 };
 
 #endif /* defined(__LibraryWho__library__) */

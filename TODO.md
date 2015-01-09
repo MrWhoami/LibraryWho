@@ -5,7 +5,7 @@
 3. ~~Renew return date.~~
 4. ~~Search a book by its writer.~~
 5. ~~Search a book by part of its name.~~
-6. Add new books through command line.
+6. ~~Add new books through command line.~~  
 7. ~~Find a reader by its name.~~
 8. ~~Find a reader by its email.~~
 9. ~~Borrow a book.~~
@@ -19,8 +19,8 @@
 16. ~~Add ISBN judge.~~
 17. Add date caculation.  
 18. Change the level of a reader;  
-19. More convinient way to select function.  
-20. Output the numbers;  
+19. ~~More safe way to select function.~~  
+20. ~~Output the numbers;~~  
 21. Add reader hash table search.
 
 ## Documents to Write

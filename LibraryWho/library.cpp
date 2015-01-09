@@ -67,7 +67,11 @@ int Library::importBooks(string filePath, int num) {
         bookPool->book->inputPrice(price);  //Input the price to the new node.
         bookPool->book->quantity = num;     //Input the quantity of the new node.
         bookNumber++;
-        bookTable.insertBook(bookPool);     //Build hash table.
+        if(!bookTable.insertBook(bookPool)) {     //Build hash table.
+            BookNode* toDelete = bookPool;
+            bookPool = bookPool->nextBook;
+            delete toDelete;                //Delete the duplicate book node.
+        }
         tmpDate.year = 0;
         tmpISBN.group1s = "0";
         fin >> buffer;                          //Read the No.
@@ -622,22 +626,56 @@ int Library::renewBook(){
      return readerNow->renewBook(bookNow->getISBN());
 }
 
-int Library::addBooks(int num) {  //Doing
+bool Library::addBooks() {  //Doing
+    string reading;
+    string buffer;
+    double price;
+    int num = 0;
     BookNode* p;
-    string input;
-    ISBN isbnTmp;
-    for (int i=0; i<num; i++) {
-        cout << "Book " << i+1 << endl;
-        cout << "ISBM: ";
-        cin >> input;
-        while (!(isbnTmp<<input)) {
-            cout << "Invalid ISBN code." << endl;
-            cout << "ISBM: ";
-            cin >> input;
-        }
-        p = bookPool;
-        bookPool = new BookNode(isbnTmp);
-        bookPool->nextBook = p;
+    cout << "Please input the book name and the ISBN code." << endl;
+    cout << "[LibraryWho]: ";
+    cin >> buffer;                          //Read name into the buffer.
+    ISBN tmpISBN;
+    cin >> reading;                     //Read the next string.
+    while (!(tmpISBN << reading)) {     //If this string is not an ISBN code.
+        buffer += " ";                  //Add this string to the name.
+        buffer += reading;
+        cin >> reading;                 //Read another string.
     }
-    return 0;
+    if(bookTable.searchBook(tmpISBN)) {     //Judge if already have the book.
+        cout << "Already have this book." << endl;
+        return 0;
+    }
+    p = bookPool;                       //If this string is an ISBN code.
+    bookPool = new BookNode(tmpISBN);   //Create a new book node with this ISBN code.
+    bookPool->nextBook = p;
+    bookPool->book->name = buffer;      //Input its name.
+    cout << "Auther and the publish date." << endl;
+    cout << "[LibraryWho]: ";
+    cin >> buffer;                      //Input the author.
+    Date tmpDate;
+    cin >> reading;                     //Input another string.
+    while (!(tmpDate << reading)) {     //If this string is not a Date string.
+        buffer += " ";                  //Add this string to the author.
+        buffer += reading;
+        cin >> reading;                 //Read another string.
+    }
+    bookPool->book->date = tmpDate;     //If this string is a Date code.
+    bookPool->book->author = buffer;    //Input the author and the date to the new node.
+    cout << "Price and quantity. " << endl;
+    cout << "[LibraryWho]: ";
+    cin >> price;                       //Read the price.
+    bookPool->book->inputPrice(price);  //Input the price to the new node.
+    cin >> num;
+    bookPool->book->quantity = num;     //Input the quantity of the new node.
+    bookNumber++;
+    return 1;
+}
+
+unsigned Library::getBookNumber(){
+    return bookNumber;
+}
+
+unsigned Library::getReaderNumber() {
+    return readerNumber;
 }

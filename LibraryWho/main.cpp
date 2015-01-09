@@ -14,6 +14,7 @@
 Library library;
 bool test;
 
+/*
 void printHelp(){
     cout << "OPTION FUNCTION" << endl;
     cout << " ?(H)  Viewing this page." << endl;
@@ -35,6 +36,31 @@ void printHelp(){
     cout << " M     Search the reader with the e-mail." << endl;
     cout << " G     Search the book with part of its name. " << endl;
     cout << " H     Renew the book's return date." << endl;
+}
+*/
+void printHelpNew(){
+    cout << "OPTION    FUNCTION" << endl;
+    cout << " ?(HELP)  Viewing this page." << endl;                                //1
+    cout << " QUIT     Quit this program." << endl;                                //-1
+    cout << " AB       Add books to this library through a file." << endl;         //2
+    cout << " EX       Export the library books into a file." <<  endl;            //3
+    cout << " ISBN     Search the book with an ISBN code." << endl;                //4
+    cout << " BNAM     Search the book with the name." << endl;                    //5
+    cout << " INFO     Print the information of the current book." << endl;        //6
+    cout << " TEST     Test if the file can be read correctly. " << endl;          //7
+    cout << " AR       Add readers by command line." << endl;                      //8
+    cout << " BKUP     Export all the library information into a folder." << endl; //9
+    cout << " RESM     Import all the library information from a folder." << endl; //10
+    cout << " BORW     The reader now want to borrow the book now." << endl;       //11
+    cout << " RETN     The reader now want to return the book now." << endl;       //12
+    cout << " AUTH     Search the book with the author's name." << endl;           //13
+    cout << " RID      Search the reader with the RID." << endl;                   //14
+    cout << " RNAM     Search the reader with the name." << endl;                  //15
+    cout << " EMAIL    Search the reader with the e-mail." << endl;                //16
+    cout << " RPTNAM   Search the book with part of its name. " << endl;           //17
+    cout << " RENEW    Renew the book's return date." << endl;                     //18
+    cout << " LBINFO   Print the information of the library." << endl;             //19
+    cout << " ABC      Add books through command line. " << endl;                  //20
 }
 
 void cmd_A() {
@@ -344,17 +370,160 @@ void cmd_H() {
     }
 }
 
+void cmd_19() {
+    cout << "Book number: " << library.getBookNumber() << endl;
+    cout << "Reader number: " << library.getReaderNumber() << endl;
+}
+
+void cmd_20() {
+    library.addBooks();
+}
+
+int optionSelect(string optionIn) {
+    if (optionIn == "QUIT")
+        return -1;
+    else if (optionIn == "HELP")
+        return 1;
+    else if (optionIn == "?")
+        return 1;
+    else if (optionIn == "AB")
+        return 2;
+    else if (optionIn == "EX")
+        return 3;
+    else if (optionIn == "ISBN")
+        return 4;
+    else if (optionIn == "BNAM")
+        return 5;
+    else if (optionIn == "INFO")
+        return 6;
+    else if (optionIn == "TEST")
+        return 7;
+    else if (optionIn == "AR")
+        return 8;
+    else if (optionIn == "BKUP")
+        return 9;
+    else if (optionIn == "RESM")
+        return 10;
+    else if (optionIn == "BORM")
+        return 11;
+    else if (optionIn == "RETN")
+        return 12;
+    else if (optionIn == "AUTH")
+        return 13;
+    else if (optionIn == "RID")
+        return 14;
+    else if (optionIn == "RNAM")
+        return 15;
+    else if (optionIn == "EMAIL")
+        return 16;
+    else if (optionIn == "RPTNAM")
+        return 17;
+    else if (optionIn == "RENEW")
+        return 18;
+    else if (optionIn == "LBINFO")
+        return 19;
+    else if (optionIn == "ABC")
+        return 20;
+    else
+        return 0;
+}
+
 int main(int argc, const char * argv[]) {
     cout << "============ LibraryWho ============" << endl;
-    char option = '~';
+    //char option = '~';
+    string optionIn;
+    int option = 0;
     test = 0;
     bool readBackup = 0;
     readBackup = cmd_I();
-    while (option != 0) {
+    while (option != -1) {
         cout << endl;
         cout << "Please input an option (? for help): " << endl;
         cout << "[LibraryWho]: ";
-        cin >> option;
+        cin >> optionIn;
+        option = optionSelect(optionIn);
+        switch (option) {
+            case -1:
+                cout << "Would you like to backup your data ?(0/1)" << endl;
+                cout << "[LibraryWho]: ";
+                cin >> test;
+                if (test) {
+                    cmd_E();
+                }
+                return 0;
+                break;
+            case 1:
+                printHelpNew();
+                break;
+            case 2:
+                cmd_A();
+                break;
+            case 3:
+                cmd_F();
+                break;
+            case 4:
+                cmd_C();
+                break;
+            case 5:
+                cmd_B();
+                break;
+            case 6:
+                cmd_P();
+                break;
+            case 7:
+                cmd_T();
+                break;
+            case 8:
+                cmd_R();
+                break;
+            case 9:
+                cmd_E();
+                break;
+            case 10:
+                if (readBackup) {
+                    cout << "You have already input the backup data." << endl;
+                } else {
+                    readBackup = cmd_I();
+                }
+                break;
+            case 11:
+                cmd_N();
+                break;
+            case 12:
+                cmd_O();
+                break;
+            case 13:
+                cmd_W();
+                break;
+            case 14:
+                cmd_U();
+                break;
+            case 16:
+                cmd_M();
+                break;
+            case 15:
+                cmd_D();
+                break;
+            case 17:
+                cmd_G();
+                break;
+            case 18:
+                cmd_H();
+                break;
+            case 19:
+                cmd_19();
+                break;
+            case 20:
+                cmd_20();
+                break;
+                
+            default:
+                cout << "Invalid command: " << optionIn << endl;
+                break;
+        }
+        option = 0;
+        optionIn = "No option.";
+        /*
         switch (option) {
             case 'Q':
                 cout << "Would you like to backup your data ?(0/1)" << endl;
@@ -421,12 +590,15 @@ int main(int argc, const char * argv[]) {
             case 'W':
                 cmd_W();
                 option = '~';
+                break;
             case 'U':
                 cmd_U();
                 option = '~';
+                break;
             case 'M':
                 cmd_M();
                 option = '~';
+                break;
             case 'D':
                 cmd_D();
                 option = '~';
@@ -434,11 +606,13 @@ int main(int argc, const char * argv[]) {
             case 'G':
                 cmd_G();
                 option = '~';
+                break;
                 
             default:
                 cout << "Invalid option: " << option << endl;
                 option = '~';
                 break;
         }
+        */
     }
 }
