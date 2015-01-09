@@ -31,42 +31,28 @@ int HashTableBook::findPosition(ISBN isbnIn) {
 
 bool HashTableBook::searchBook(ISBN &isbnIn) {
     int group = findPosition(isbnIn);
-    //Test
-    printf("group: %d\n", group);
-    //
     ChainNode<BookNode*>* p = head[group];
     ISBN tmp;
     while (p != NULL) {
         tmp = p->data->book->getISBN();
         if (tmp == isbnIn) {
-            //Test
-            printf("Return 1\n");
             return 1;
         }
         p = p->next;
     }
-    //Test
-    printf("Return 0\n");
     return 0;
 }
 
 bool HashTableBook::searchBook(ISBN &isbnIn, BookNode** target) {
     int group = findPosition(isbnIn);
     ChainNode<BookNode*>* p = head[group];
-    //Test
-    printf("group: %d\n", group);
-    //
     while (p != NULL) {
-        //Test
-        printf("date %d %d\n", p->data->book->date.year ,p->data->book->date.month);
         if (p->data->book->getISBN() == isbnIn) {
             *target = p->data;
             return 1;
         }
         p = p->next;
     }
-    //Test
-    printf("Return 0\n");
     return 0;
 }
 
@@ -88,7 +74,7 @@ bool HashTableBook::insertBook(BookNode* target) {
     }
     p->next = new ChainNode<BookNode*>;
     p->next->data = target;
-    p->next = NULL;
+    p->next->next = NULL;
     return 1;
 }
 
