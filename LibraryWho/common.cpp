@@ -91,17 +91,23 @@ bool Date::operator <<(const string dataIn) {
     }
 }
 
-bool ISBN::operator ==(const ISBN& x) {
+bool ISBN::operator ==(ISBN &x) {
+    /*
+    unsigned long long isbnThis, isbnIn;
+    *this >> isbnThis;
+    x >> isbnIn;
+     */
     bool equal = 1;
-    equal = (this->group1s==x.group1s)&equal;
-    equal = (this->group2s==x.group2s)&equal;
-    equal = (this->group3s==x.group3s)&equal;
-    equal = (this->group4s==x.group4s)&equal;
-    equal = (this->group5s==x.group5s)&equal;
+    ISBN target = x;
+    equal = (this->group1s==target.group1s)&equal;
+    equal = (this->group2s==target.group2s)&equal;
+    equal = (this->group3s==target.group3s)&equal;
+    equal = (this->group4s==target.group4s)&equal;
+    equal = (this->group5s==target.group5s)&equal;
     return equal;
 }
 
-bool ISBN::operator !=(const ISBN& x) {
+bool ISBN::operator !=(ISBN &x) {
     bool equal = 0;
     equal = (this->group1s!=x.group1s)|equal;
     equal = (this->group2s!=x.group2s)|equal;
@@ -209,4 +215,20 @@ bool ISBN::operator <<(const string isbnIn) {
         else
             return 1;
     }
+}
+
+void ISBN::operator = (ISBN &x) {
+    this->group1s = x.group1s;
+    this->group2s = x.group2s;
+    this->group3s = x.group3s;
+    this->group4s = x.group4s;
+    this->group5s = x.group5s;
+}
+
+void ISBN::operator = (ISBN x) {
+    this->group1s = x.group1s;
+    this->group2s = x.group2s;
+    this->group3s = x.group3s;
+    this->group4s = x.group4s;
+    this->group5s = x.group5s;
 }

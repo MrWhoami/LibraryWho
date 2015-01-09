@@ -40,10 +40,12 @@ public:
     string group3s;
     string group4s;
     string group5s;
-    bool operator == (const ISBN& x);
-    bool operator != (const ISBN& x);
+    bool operator == (ISBN &x);
+    bool operator != (ISBN &x);
     void operator >> (unsigned long long &isbnInt);
     bool operator << (const string isbnIn);
+    void operator = (ISBN &x);
+    void operator = (ISBN x);
 };
 
 #endif

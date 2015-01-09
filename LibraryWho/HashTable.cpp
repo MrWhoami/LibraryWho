@@ -11,6 +11,9 @@
 HashTableBook::HashTableBook(int d) {
     divisor = d;
     head = new ChainNode<BookNode*>*[divisor];
+    for (int i=0; i<(int)MAX_SIZE; i++) {
+        head[i] = NULL;
+    }
     assert(head != NULL);
 }
 
@@ -18,52 +21,59 @@ HashTableBook::~HashTableBook() {       //May leave some rubbish.
     delete [] head;
 }
 
-ChainNode<BookNode*>* HashTableBook::findPosition(ISBN isbnIn) {
+int HashTableBook::findPosition(ISBN isbnIn) {
     unsigned long long isbnULL;
     isbnIn >> isbnULL;
     int group = (int)(isbnULL%(unsigned long long)divisor);
-    return head[group];
+    return group;
 }
 
-bool HashTableBook::searchBook(ISBN isbnIn) {
-    ChainNode<BookNode*>* p = findPosition(isbnIn);
+bool HashTableBook::searchBook(ISBN &isbnIn) {
+    int group = findPosition(isbnIn);
+    ChainNode<BookNode*>* p = head[group];
+    ISBN tmp;
     while (p != NULL) {
-        if (p->data->book->getISBN() == isbnIn) {
+        tmp = p->data->book->getISBN();
+        if (tmp == isbnIn) {
             return 1;
         }
+        p = p->next;
     }
     return 0;
 }
 
 bool HashTableBook::searchBook(ISBN isbnIn, BookNode** target) {
-    ChainNode<BookNode*>* p = findPosition(isbnIn);
+    int group = findPosition(isbnIn);
+    ChainNode<BookNode*>* p = head[group];
     while (p != NULL) {
         if (p->data->book->getISBN() == isbnIn) {
             *target = p->data;
             return 1;
         }
     }
+    p = p->next;
     return 0;
 }
 
 bool HashTableBook::insertBook(BookNode* target) {
-    if (searchBook(target->book->getISBN())) {
+    ISBN tmp = target->book->getISBN();
+    if (searchBook(tmp)) {
         return 0;
     }
-    ChainNode<BookNode*>* p = findPosition(target->book->getISBN());
-    if (p == NULL) {
-        unsigned long long isbnULL;
-        target->book->getISBN() >> isbnULL;
-        int group = (int)(isbnULL%(unsigned long long)divisor);
+    int group = findPosition(target->book->getISBN());
+    if (head[group] == NULL) {
         head[group] = new ChainNode<BookNode*>;
         head[group]->data = target;
+        head[group]->next = NULL;
         return 1;
     }
+    ChainNode<BookNode*>* p = head[group];
     while (p->next != NULL) {
         p = p->next;
     }
     p->next = new ChainNode<BookNode*>;
     p->next->data = target;
+    p->next = NULL;
     return 1;
 }
 

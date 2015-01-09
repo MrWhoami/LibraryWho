@@ -22,12 +22,12 @@ class HashTableBook {       //Hash table for ISBN of the book.
 private:
     int divisor;
     ChainNode<BookNode*>** head;
-    ChainNode<BookNode*>* findPosition(ISBN isbnIn);
+    int findPosition(ISBN isbnIn);  //Return the group of the target.
     
 public:
     HashTableBook(int divisor);
     ~HashTableBook();
-    bool searchBook(ISBN isbnIn);
+    bool searchBook(ISBN &isbnIn);
     bool searchBook(ISBN isbnIn, BookNode** target);
     bool insertBook(BookNode* target);
     bool removeBook(BookNode* target);

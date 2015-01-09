@@ -113,12 +113,17 @@ bool Library::ISBN_search() {
         cout << "Invalid ISBN code. " << look_for << endl;
         return 0;
     }
-    BookNode * target;
+    BookNode * target = NULL;
+    //Hash table improved code.
+    bookTable.searchBook(isbnIn, &target);
+    //Following is the previous code.
+    /*
     for( target = bookPool; target != NULL; target = target->nextBook ){
         if(target->book->getISBN() == isbnIn){
             break;
         }
     }
+     */
     if(target == NULL){
         cout << " Sorry, we can't find a book whose ISBN is " << look_for << endl;
         return 0;
