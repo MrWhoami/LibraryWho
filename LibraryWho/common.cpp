@@ -216,7 +216,7 @@ bool ISBN::operator <<(const string isbnIn) {
             return 1;
     }
 }
-
+/*
 void ISBN::operator = (ISBN &x) {
     this->group1s = x.group1s;
     this->group2s = x.group2s;
@@ -224,7 +224,7 @@ void ISBN::operator = (ISBN &x) {
     this->group4s = x.group4s;
     this->group5s = x.group5s;
 }
-
+*/
 void ISBN::operator = (ISBN x) {
     this->group1s = x.group1s;
     this->group2s = x.group2s;
