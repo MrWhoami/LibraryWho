@@ -5,7 +5,7 @@
 3. ~~Renew return date.~~
 4. ~~Search a book by its writer.~~
 5. ~~Search a book by part of its name.~~
-6. Add new books through command line.
+6. ~~Add new books through command line.~~  
 7. ~~Find a reader by its name.~~
 8. ~~Find a reader by its email.~~
 9. ~~Borrow a book.~~

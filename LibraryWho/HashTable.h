@@ -27,10 +27,10 @@ private:
 public:
     HashTableBook(int divisor);
     ~HashTableBook();
-    bool searchBook(ISBN &isbnIn);
-    bool searchBook(ISBN isbnIn, BookNode** target);
-    bool insertBook(BookNode* target);
-    bool removeBook(BookNode* target);
+    bool searchBook(ISBN &isbnIn);                      //0.Fail, 1.Success
+    bool searchBook(ISBN isbnIn, BookNode** target);    //0.Fail, 1.Success
+    bool insertBook(BookNode* target);                  //0.Fail, 1.Success
+    bool removeBook(BookNode* target);                  //0.Fail. 1.Success
 };
 
 #endif /* defined(__LibraryWho__HashTable__) */

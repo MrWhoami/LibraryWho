@@ -60,6 +60,7 @@ void printHelpNew(){
     cout << " RPTNAM   Search the book with part of its name. " << endl;           //17
     cout << " RENEW    Renew the book's return date." << endl;                     //18
     cout << " LBINFO   Print the information of the library." << endl;             //19
+    cout << " ABC      Add books through command line. " << endl;                  //20
 }
 
 void cmd_A() {
@@ -374,6 +375,10 @@ void cmd_19() {
     cout << "Reader number: " << library.getReaderNumber() << endl;
 }
 
+void cmd_20() {
+    library.addBooks();
+}
+
 int optionSelect(string optionIn) {
     if (optionIn == "QUIT")
         return -1;
@@ -417,6 +422,8 @@ int optionSelect(string optionIn) {
         return 18;
     else if (optionIn == "LBINFO")
         return 19;
+    else if (optionIn == "ABC")
+        return 20;
     else
         return 0;
 }
@@ -506,7 +513,9 @@ int main(int argc, const char * argv[]) {
             case 19:
                 cmd_19();
                 break;
-
+            case 20:
+                cmd_20();
+                break;
                 
             default:
                 cout << "Invalid command: " << optionIn << endl;

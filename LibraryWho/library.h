@@ -41,7 +41,7 @@ public:
     int printAllReaders(string filePath);   //-1.Fail, 0.Success
     int buildALibrary(string filePath);     //0.Success, 1.Book fail, 2.Reader fail.
     int addReaders(int num, int level);     //0.Success, 1-3, Fail.
-    int addBooks(int num);                  //Doing.
+    bool addBooks();                        //0.Fail, 1.Success
     bool ISBN_search();                     //0.Fail, 1.Success
     bool BOOKNAME_search();                 //0.Fail, 1.Success
     void BOOKNAMEpart_search();             //0.Fail, 1.Success
