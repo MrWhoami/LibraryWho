@@ -55,6 +55,8 @@ public:
     bool READERNAME_search();               //0.Fail, 1.Success
     bool EMAIL_search();                    //0.Fail, 1.Success
     int renewBook();                        //0.Success, 1.No such book, 2.Already renewed, 4.Broken the rule.
+    unsigned getBookNumber();               //Return the kind number of books.
+    unsigned getReaderNumber();             //Return the reader number.
 };
 
 #endif /* defined(__LibraryWho__library__) */

@@ -19,8 +19,8 @@
 16. ~~Add ISBN judge.~~
 17. Add date caculation.  
 18. Change the level of a reader;  
-19. More convinient way to select function.  
-20. Output the numbers;  
+19. ~~More safe way to select function.~~  
+20. ~~Output the numbers;~~  
 21. Add reader hash table search.
 
 ## Documents to Write

@@ -59,6 +59,7 @@ void printHelpNew(){
     cout << " EMAIL    Search the reader with the e-mail." << endl;                //16
     cout << " RPTNAM   Search the book with part of its name. " << endl;           //17
     cout << " RENEW    Renew the book's return date." << endl;                     //18
+    cout << " LBINFO   Print the information of the library." << endl;             //19
 }
 
 void cmd_A() {
@@ -368,6 +369,11 @@ void cmd_H() {
     }
 }
 
+void cmd_19() {
+    cout << "Book number: " << library.getBookNumber() << endl;
+    cout << "Reader number: " << library.getReaderNumber() << endl;
+}
+
 int optionSelect(string optionIn) {
     if (optionIn == "QUIT")
         return -1;
@@ -409,6 +415,8 @@ int optionSelect(string optionIn) {
         return 17;
     else if (optionIn == "RENEW")
         return 18;
+    else if (optionIn == "LBINFO")
+        return 19;
     else
         return 0;
 }
@@ -495,6 +503,9 @@ int main(int argc, const char * argv[]) {
             case 18:
                 cmd_H();
                 break;
+            case 19:
+                cmd_19();
+                break;
 
                 
             default:
@@ -502,6 +513,7 @@ int main(int argc, const char * argv[]) {
                 break;
         }
         option = 0;
+        optionIn = "No option.";
         /*
         switch (option) {
             case 'Q':

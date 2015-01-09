@@ -641,3 +641,11 @@ int Library::addBooks(int num) {  //Doing
     }
     return 0;
 }
+
+unsigned Library::getBookNumber(){
+    return bookNumber;
+}
+
+unsigned Library::getReaderNumber() {
+    return readerNumber;
+}
