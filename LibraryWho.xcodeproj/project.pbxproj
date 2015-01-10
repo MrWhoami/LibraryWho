@@ -32,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		182E8C611A601CDF008D7074 /* BookData2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = BookData2.txt; sourceTree = "<group>"; };
 		18610F811A4E85D200C4DC8E /* common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = common.cpp; sourceTree = "<group>"; };
 		1888A3DF1A4FFCF1008CCB5E /* HashTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HashTable.cpp; sourceTree = "<group>"; };
 		1888A3E01A4FFCF1008CCB5E /* HashTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashTable.h; sourceTree = "<group>"; };
@@ -47,7 +48,6 @@
 		18C295E91A3EECEC003ED771 /* reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = reader.cpp; sourceTree = "<group>"; };
 		18C295EA1A3EECEC003ED771 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
 		18C295EC1A3EF22B003ED771 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
-		18C295ED1A3F4838003ED771 /* BookData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BookData.txt; sourceTree = "<group>"; };
 		18E4C2F31A4BF9B400672B6E /* Home.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Home.md; sourceTree = "<group>"; };
 		18E4C2F41A4BF9B400672B6E /* Struct_Date.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Struct_Date.md; sourceTree = "<group>"; };
 		18E4C2F51A4BF9B400672B6E /* Struct_ISBN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Struct_ISBN.md; sourceTree = "<group>"; };
@@ -106,8 +106,8 @@
 		18C295E81A3EE69A003ED771 /* Document */ = {
 			isa = PBXGroup;
 			children = (
-				18C295ED1A3F4838003ED771 /* BookData.txt */,
 				18C295E41A3EE682003ED771 /* LICENSE */,
+				182E8C611A601CDF008D7074 /* BookData2.txt */,
 				18C295E51A3EE682003ED771 /* README.md */,
 				18F865B61A472E760028F5CD /* TODO.md */,
 			);

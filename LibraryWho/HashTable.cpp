@@ -7,6 +7,7 @@
 //
 
 #include "HashTable.h"
+#include <cstdio>
 
 HashTableBook::HashTableBook(int d) {
     divisor = d;
@@ -42,7 +43,7 @@ bool HashTableBook::searchBook(ISBN &isbnIn) {
     return 0;
 }
 
-bool HashTableBook::searchBook(ISBN isbnIn, BookNode** target) {
+bool HashTableBook::searchBook(ISBN &isbnIn, BookNode** target) {
     int group = findPosition(isbnIn);
     ChainNode<BookNode*>* p = head[group];
     while (p != NULL) {
@@ -50,8 +51,8 @@ bool HashTableBook::searchBook(ISBN isbnIn, BookNode** target) {
             *target = p->data;
             return 1;
         }
+        p = p->next;
     }
-    p = p->next;
     return 0;
 }
 
@@ -73,13 +74,14 @@ bool HashTableBook::insertBook(BookNode* target) {
     }
     p->next = new ChainNode<BookNode*>;
     p->next->data = target;
-    p->next = NULL;
+    p->next->next = NULL;
     return 1;
 }
 
 bool HashTableBook::removeBook(BookNode* target) {
     BookNode *p = NULL;
-    if (!searchBook(target->book->getISBN(), &p)) {
+    ISBN tmpISBN = target->book->getISBN();
+    if (!searchBook(tmpISBN, &p)) {
         return 0;
     } else {
         unsigned long long isbnULL;

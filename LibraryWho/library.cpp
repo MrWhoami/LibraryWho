@@ -66,11 +66,12 @@ int Library::importBooks(string filePath, int num) {
         fin >> price;                       //Read the price.
         bookPool->book->inputPrice(price);  //Input the price to the new node.
         bookPool->book->quantity = num;     //Input the quantity of the new node.
-        bookNumber++;
         if(!bookTable.insertBook(bookPool)) {     //Build hash table.
             BookNode* toDelete = bookPool;
             bookPool = bookPool->nextBook;
             delete toDelete;                //Delete the duplicate book node.
+        } else {
+            bookNumber++;
         }
         tmpDate.year = 0;
         tmpISBN.group1s = "0";
@@ -89,7 +90,7 @@ int Library::printAllBooks(string filePath) {
     int i = 1;
     while (i <= bookNumber) {
         fout << i << ".  ";
-        fout << p->book->name;
+        fout << p->book->name << ' ';
         fout << p->book->getISBN().group1s << '-';
         fout << p->book->getISBN().group2s << '-';
         fout << p->book->getISBN().group3s << '-';
@@ -420,8 +421,13 @@ int Library::buildBookPool(string filePath) {
             rid = (unsigned)stoul(reading);
             bookPool->book->borrowBook(rid);
         }
-        bookNumber++;
-        bookTable.insertBook(bookPool);     //Build hash table.
+        if(!bookTable.insertBook(bookPool)) {     //Build hash table.
+            BookNode* toDelete = bookPool;
+            bookPool = bookPool->nextBook;
+            delete toDelete;                //Delete the duplicate book node.
+        } else {
+            bookNumber++;
+        }
         tmpDate.year = 0;
         tmpISBN.group1s = "0";
         lastReading = reading;

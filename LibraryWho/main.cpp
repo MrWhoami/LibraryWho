@@ -14,30 +14,6 @@
 Library library;
 bool test;
 
-/*
-void printHelp(){
-    cout << "OPTION FUNCTION" << endl;
-    cout << " ?(H)  Viewing this page." << endl;
-    cout << " Q     Quit this program." << endl;
-    cout << " A     Add books to this library through a file." << endl;
-    cout << " F     Export the library books into a file." <<  endl;
-    cout << " C     Search the book with an ISBN code." << endl;
-    cout << " B     Search the book with the name." << endl;
-    cout << " P     Print the information of the current book." << endl;
-    cout << " T     Test if the file can be read correctly. " << endl;
-    cout << " R     Add readers by command line." << endl;
-    cout << " E     Export all the library information into a folder." << endl;
-    cout << " I     Import all the library information from a folder." << endl;
-    cout << " N     The reader now want to borrow the book now." << endl;
-    cout << " O     The reader now want to return the book now." << endl;
-    cout << " W     Search the book with the author's name." << endl;
-    cout << " U     Search the reader with the RID." << endl;
-    cout << " D     Search the reader with the name." << endl;
-    cout << " M     Search the reader with the e-mail." << endl;
-    cout << " G     Search the book with part of its name. " << endl;
-    cout << " H     Renew the book's return date." << endl;
-}
-*/
 void printHelpNew(){
     cout << "OPTION    FUNCTION" << endl;
     cout << " ?(HELP)  Viewing this page." << endl;                                //1
@@ -430,7 +406,6 @@ int optionSelect(string optionIn) {
 
 int main(int argc, const char * argv[]) {
     cout << "============ LibraryWho ============" << endl;
-    //char option = '~';
     string optionIn;
     int option = 0;
     test = 0;
@@ -523,96 +498,5 @@ int main(int argc, const char * argv[]) {
         }
         option = 0;
         optionIn = "No option.";
-        /*
-        switch (option) {
-            case 'Q':
-                cout << "Would you like to backup your data ?(0/1)" << endl;
-                cout << "[LibraryWho]: ";
-                cin >> test;
-                if (test) {
-                    cmd_E();
-                }
-                return 0;
-                break;
-            case '?':
-            case 'H':
-                printHelp();
-                option = '~';
-                break;
-            case 'A':
-                cmd_A();
-                option = '~';
-                break;
-            case 'F':
-                cmd_F();
-                option = '~';
-                break;
-            case 'T':
-                cmd_T();
-                option = '~';
-                break;
-            case 'C':
-                cmd_C();
-                option = '~';
-                break;
-            case 'P':
-                cmd_P();
-                option = '~';
-                break;
-            case 'B':
-                cmd_B();
-                option = '~';
-                break;
-            case 'R':
-                cmd_R();
-                option = '~';
-                break;
-            case 'E':
-                cmd_E();
-                option = '~';
-                break;
-            case 'I':
-                if (readBackup) {
-                    cout << "You have already input the backup data." << endl;
-                } else {
-                    readBackup = cmd_I();
-                }
-                option = '~';
-                break;
-            case 'N':
-                cmd_N();
-                option = '~';
-                break;
-            case 'O':
-                cmd_O();
-                option = '~';
-                break;
-            case 'W':
-                cmd_W();
-                option = '~';
-                break;
-            case 'U':
-                cmd_U();
-                option = '~';
-                break;
-            case 'M':
-                cmd_M();
-                option = '~';
-                break;
-            case 'D':
-                cmd_D();
-                option = '~';
-                break;
-            case 'G':
-                cmd_G();
-                option = '~';
-                break;
-                
-            default:
-                cout << "Invalid option: " << option << endl;
-                option = '~';
-                break;
-        }
-        */
     }
 }
