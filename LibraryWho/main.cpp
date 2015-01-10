@@ -37,6 +37,7 @@ void printHelpNew(){
     cout << " RENEW    Renew the book's return date." << endl;                     //18
     cout << " LBINFO   Print the information of the library." << endl;             //19
     cout << " ABC      Add books through command line. " << endl;                  //20
+	cout << " CLR      Clear the screem. " << endl;
 }
 
 void cmd_A() {
@@ -400,12 +401,19 @@ int optionSelect(string optionIn) {
         return 19;
     else if (optionIn == "ABC")
         return 20;
+	else if (optionIn == "CLR")
+		return 21;
     else
         return 0;
 }
 
+void clearScreen(){
+	cout << string(50, '\n');
+}
+
 int main(int argc, const char * argv[]) {
-    cout << "============ LibraryWho ============" << endl;
+	clearScreen();
+    cout << "============== LibraryWho ==============" << endl;
     string optionIn;
     int option = 0;
     test = 0;
@@ -491,6 +499,9 @@ int main(int argc, const char * argv[]) {
             case 20:
                 cmd_20();
                 break;
+			case 21:
+				clearScreen();
+				break;
                 
             default:
                 cout << "Invalid command: " << optionIn << endl;

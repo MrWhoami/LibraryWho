@@ -323,6 +323,7 @@ int Reader::renewBook(ISBN oldBook){
         if (p->theBook == oldBook) {
             break;
         }
+        p = p->nextBook;
     }
     if (p == NULL) {
         return 1;
