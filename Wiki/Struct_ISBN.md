@@ -1,14 +1,14 @@
 # Struct ISBN
 ## General Description
-Struct ISBN is used to store the ISBN code of a book. ISBN is the short of International Standard Book Number. For more information about the ISBN, click [here](http://en.wikipedia.org/wiki/International_Standard_Book_Number).
+`struct ISBN` is used to store the ISBN code of a book. ISBN is the short of International Standard Book Number. For more information about the ISBN, click [here](http://en.wikipedia.org/wiki/International_Standard_Book_Number).
 ## Location
-Struct ISBN is declared and defined in commmon.h. 
+`struct ISBN` is declared  in **common.h** and is defined in **common.cpp**. 
 ## Variables
-    unsigned group1  
-    unsigned group2  
-    unsigned group3  
-    unsigned group4
-    unsigned group5
+    string group1s  
+    string group2s  
+    string group3s  
+    string group4s
+    string group5s
 Those five variables are used to store the five parts of an ISBN code.
 ## Operators
 ### ==
@@ -35,4 +35,6 @@ Change a string into a ISBN. If the string is an ISBN code, it will return true.
     if(isbn1 != isbn2) cout << 1;  
     else cout << 0;  
 
-The expected output is: `010`
+The expected output is: `010`  
+### =  
+Assign the ISBN value from another ISBN code.  

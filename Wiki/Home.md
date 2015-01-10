@@ -34,10 +34,12 @@ This is a command line library management tool. It can manage the books in the l
 + Class Book
 + Class Reader
 + Class Library
-+ Class BorrowNode
-+ Class Queue
-+ Class BookBorrowed
-+ Struct ISBN
-+ Struct Date
-+ Sturct ReaderNode
++ Class ChainNode  
++ Class HashTableBook 
++ Class BookBorrowed 
++ Struct ISBN  
++ Struct Date  
++ Struct ReaderNode  
 + Struct BookNode
++ Struct BorrowNode
+  

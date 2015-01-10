@@ -1,8 +1,8 @@
 # Struct Date
 ## General Description
-Struct Date is used to store the date information with year, month and day. It is used in this project to store the date information such as borrow date, return date and so on.
+`struct Date` is used to store the date information with year, month and day. It is used in this project to store the date information such as borrow date, return date and so on.
 ## Location
-Struct Date is declared and defined in commmon.h.
+`struct Date` is declared in **common.h** and is defined in **common.cpp**.
 ## Variables
     short year  
 This variable is used to store the year information which must be between 1000 and 2100.  
