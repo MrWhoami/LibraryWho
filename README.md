@@ -14,6 +14,6 @@ Just compile it and run it. You can use the '?' option to get the options you ca
 
 ## Cautions
 
-The testing file named *BookData.txt* in this project is formed in UTF-8. To test if your computer can read this document correctly, run the program and use the option 'T'. If not, just copy the whole file, create a new *.txt document and paste the whole file in.
+The testing file named *BookData.txt* in this project is formed in UTF-8. To test if your computer can read this document correctly, run the program and use the option 'TEST'. If not, just copy the whole file, create a new *.txt document and paste the whole file in.
 
 And it is recommanded to modify the *DEFAULT_PATH* before use.
