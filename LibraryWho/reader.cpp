@@ -49,8 +49,8 @@ int Reader::borrowNew(ISBN newBook){
     if (bookBorrowed == NULL) {
         bookBorrowed = new BookBorrowed;
         bookBorrowed->theBook = newBook;
-        bookBorrowed->borrowDate.year = now->tm_year;
-        bookBorrowed->borrowDate.month = now->tm_mon;
+        bookBorrowed->borrowDate.year = now->tm_year+1900;
+        bookBorrowed->borrowDate.month = now->tm_mon+1;
         bookBorrowed->borrowDate.day = now->tm_mday;
     } else {
         BookBorrowed* p= bookBorrowed;

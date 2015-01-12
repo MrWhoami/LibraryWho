@@ -381,7 +381,7 @@ int optionSelect(string optionIn) {
         return 9;
     else if (optionIn == "RESM")
         return 10;
-    else if (optionIn == "BORM")
+    else if (optionIn == "BORW")
         return 11;
     else if (optionIn == "RETN")
         return 12;
