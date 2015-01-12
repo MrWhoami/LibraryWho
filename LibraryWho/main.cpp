@@ -408,7 +408,7 @@ int optionSelect(string optionIn) {
 }
 
 void clearScreen(){
-	cout << string(50, '\n');
+	cout << string(80, '\n');
 }
 
 int main(int argc, const char * argv[]) {
