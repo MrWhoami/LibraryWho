@@ -413,7 +413,13 @@ void clearScreen(){
 
 int main(int argc, const char * argv[]) {
 	clearScreen();
-    cout << "============== LibraryWho ==============" << endl;
+    cout << "========================================" << endl;
+    cout << "|                                      |" << endl;
+    cout << "|            LibraryWho v1.1           |" << endl;
+    cout << "|                                      |" << endl;
+    cout << "|             By Jiyuan Liu            |" << endl;
+    cout << "|                                      |" << endl;
+    cout << "========================================" << endl;
     string optionIn;
     int option = 0;
     test = 0;
