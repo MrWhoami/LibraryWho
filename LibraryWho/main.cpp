@@ -15,29 +15,34 @@ Library library;
 bool test;
 
 void printHelpNew(){
-    cout << "OPTION    FUNCTION" << endl;
-    cout << " ?(HELP)  Viewing this page." << endl;                                //1
-    cout << " QUIT     Quit this program." << endl;                                //-1
-    cout << " AB       Add books to this library through a file." << endl;         //2
-    cout << " EX       Export the library books into a file." <<  endl;            //3
-    cout << " ISBN     Search the book with an ISBN code." << endl;                //4
-    cout << " BNAM     Search the book with the name." << endl;                    //5
-    cout << " INFO     Print the information of the current book." << endl;        //6
-    cout << " TEST     Test if the file can be read correctly. " << endl;          //7
-    cout << " AR       Add readers by command line." << endl;                      //8
-    cout << " BKUP     Export all the library information into a folder." << endl; //9
-    cout << " RESM     Import all the library information from a folder." << endl; //10
-    cout << " BORW     The reader now want to borrow the book now." << endl;       //11
-    cout << " RETN     The reader now want to return the book now." << endl;       //12
-    cout << " AUTH     Search the book with the author's name." << endl;           //13
-    cout << " RID      Search the reader with the RID." << endl;                   //14
-    cout << " RNAM     Search the reader with the name." << endl;                  //15
-    cout << " EMAIL    Search the reader with the e-mail." << endl;                //16
-    cout << " RPTNAM   Search the book with part of its name. " << endl;           //17
-    cout << " RENEW    Renew the book's return date." << endl;                     //18
-    cout << " LBINFO   Print the information of the library." << endl;             //19
-    cout << " ABC      Add books through command line. " << endl;                  //20
-	cout << " CLR      Clear the screem. " << endl;
+    cout << "OPTION      FUNCTION" << endl;
+    cout << " ?(HELP)    Viewing this page." << endl;                                //1
+    cout << " quit       Quit this program." << endl;                                //-1
+    cout << " addbook    Add books to this library through a file." << endl;         //2
+    cout << " export     Export the library books into a file." <<  endl;            //3
+    cout << " ISBN       Search the book with an ISBN code." << endl;                //4
+    cout << " bookname   Search the book with the name." << endl;                    //5
+    cout << " bookinfo   Print the information of the current book." << endl;        //6
+    cout << " test       Test if the file can be read correctly. " << endl;          //7
+    cout << " addreader  Add readers by command line." << endl;                      //8
+    cout << " backup     Export all the library information into a folder." << endl; //9
+    cout << " resume     Import all the library information from a folder." << endl; //10
+    cout << " borrow     The reader now want to borrow the book now." << endl;       //11
+    cout << " return     The reader now want to return the book now." << endl;       //12
+    cout << " author     Search the book with the author's name." << endl;           //13
+    cout << " rid        Search the reader with the RID." << endl;                   //14
+    cout << " readername Search the reader with the name." << endl;                  //15
+    cout << " email      Search the reader with the e-mail." << endl;                //16
+    cout << " partname   Search the book with part of its name. " << endl;           //17
+    cout << " renew      Renew the book's return date." << endl;                     //18
+    cout << " library    Print the information of the library." << endl;             //19
+    cout << " addbookcml Add books through command line. " << endl;                  //20
+	cout << " clear      Clear the screem. " << endl;                                //21
+    cout << " readerinfo Print the reader information." << endl;                     //22
+}
+
+void cmd_22(){
+    library.printReaderInfo();
 }
 
 void cmd_A() {
@@ -357,52 +362,54 @@ void cmd_20() {
 }
 
 int optionSelect(string optionIn) {
-    if (optionIn == "QUIT")
+    if (optionIn=="QUIT" || optionIn=="quit")
         return -1;
-    else if (optionIn == "HELP")
+    else if (optionIn=="HELP" || optionIn=="help")
         return 1;
     else if (optionIn == "?")
         return 1;
-    else if (optionIn == "AB")
+    else if (optionIn=="AB" || optionIn=="addfile")
         return 2;
-    else if (optionIn == "EX")
+    else if (optionIn=="EX" || optionIn=="export")
         return 3;
-    else if (optionIn == "ISBN")
+    else if (optionIn=="ISBN" || optionIn=="isbn")
         return 4;
-    else if (optionIn == "BNAM")
+    else if (optionIn=="BNAM" || optionIn=="bookname")
         return 5;
-    else if (optionIn == "INFO")
+    else if (optionIn=="INFO" || optionIn=="bookinfo")
         return 6;
-    else if (optionIn == "TEST")
+    else if (optionIn=="TEST" || optionIn=="test")
         return 7;
-    else if (optionIn == "AR")
+    else if (optionIn=="AR" || optionIn=="addreader")
         return 8;
-    else if (optionIn == "BKUP")
+    else if (optionIn=="BKUP" || optionIn=="backup")
         return 9;
-    else if (optionIn == "RESM")
+    else if (optionIn=="RESM" || optionIn=="resume")
         return 10;
-    else if (optionIn == "BORW")
+    else if (optionIn=="BORW" || optionIn=="borrow")
         return 11;
-    else if (optionIn == "RETN")
+    else if (optionIn=="RETN" || optionIn=="return")
         return 12;
-    else if (optionIn == "AUTH")
+    else if (optionIn=="AUTH" || optionIn=="author")
         return 13;
-    else if (optionIn == "RID")
+    else if (optionIn=="RID" || optionIn=="rid")
         return 14;
-    else if (optionIn == "RNAM")
+    else if (optionIn=="RNAM" || optionIn=="readername")
         return 15;
-    else if (optionIn == "EMAIL")
+    else if (optionIn=="EMAIL" || optionIn=="email")
         return 16;
-    else if (optionIn == "RPTNAM")
+    else if (optionIn=="BPTNAM" || optionIn=="partname")
         return 17;
-    else if (optionIn == "RENEW")
+    else if (optionIn=="RENEW" || optionIn=="renew")
         return 18;
-    else if (optionIn == "LBINFO")
+    else if (optionIn=="LBINFO" || optionIn=="library")
         return 19;
-    else if (optionIn == "ABC")
+    else if (optionIn=="ABC" || optionIn=="addbookcml")
         return 20;
-	else if (optionIn == "CLR")
+	else if (optionIn=="CLR" || optionIn=="clear")
 		return 21;
+    else if (optionIn=="RINFO" || optionIn=="readerinfo")
+        return 22;
     else
         return 0;
 }
@@ -416,6 +423,8 @@ int main(int argc, const char * argv[]) {
     cout << "========================================" << endl;
     cout << "|                                      |" << endl;
     cout << "|            LibraryWho v1.1           |" << endl;
+    cout << "|                                      |" << endl;
+    cout << "|                                      |" << endl;
     cout << "|                                      |" << endl;
     cout << "|             By Jiyuan Liu            |" << endl;
     cout << "|                                      |" << endl;
@@ -508,6 +517,9 @@ int main(int argc, const char * argv[]) {
 			case 21:
 				clearScreen();
 				break;
+            case 22:
+                cmd_22();
+                break;
                 
             default:
                 cout << "Invalid command: " << optionIn << endl;

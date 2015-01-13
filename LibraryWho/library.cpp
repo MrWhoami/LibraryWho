@@ -250,7 +250,7 @@ void Library::printReaderInfo() {
     cout << "Book History: " << readerNow->getBorrowed() << endl;
     int bookNum = readerNow->getNumber();
     cout << "Now Reading:  " << bookNum << endl;
-    cout << "ISBN        Date         Renew" << endl;
+    cout << "ISBN              Date        Renew" << endl;
     ISBN* booksBorrowed = new ISBN[bookNum];
     Date* booksDate = new Date[bookNum];
     bool* booksRenew = new bool[bookNum];

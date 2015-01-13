@@ -44,43 +44,6 @@ double Book::outputPrice() {
     return ((double)price)/100;
 }
 
-/*
-bool Book::readerReturn(unsigned rRid) {
-    BorrowNode* p = readers;
-    BorrowNode* pre = NULL;
-    time_t rawtime;
-    tm* now;
-    time(&rawtime);
-    now = localtime(&rawtime);
-    while (p != NULL) {
-        if (p->rid == rRid) {
-            Date expect = p->returnDate();
-            if (expect.year < now->tm_year) {
-                return 1;
-            }
-            else if (expect.month < now->tm_mon+1){
-                return 1;
-            }
-            else if (expect.day < now->tm_mday) {
-                return 1;
-            }
-            else {
-                if (pre == NULL) {
-                    readers = p->nextReader;
-                } else {
-                    pre->nextReader = p->nextReader;
-                }
-                delete p;
-                return 1;
-            }
-        } else {
-            pre = p;
-            p = p->nextReader;
-        }
-    }
-    return 0;
-}
- */
 
 ISBN Book::getISBN() {
     return isbn;
